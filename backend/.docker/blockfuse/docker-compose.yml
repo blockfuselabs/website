@@ -1,8 +1,6 @@
-version: '1.0'
-
 services:
   mysql:
-    image: mysql:8.0-debian 
+    image: mysql:8.0
     container_name: mysql_db
     env_file:
       - ../../.env
