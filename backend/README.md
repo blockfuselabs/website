@@ -28,7 +28,7 @@ This is the backend for *Blockfuse Labs* website.
 
 Ensure you have the following installed:
 
-* **Node.js** (>= v14)
+* **Node.js** (>= v18)
 * **npm** (>= v6)
 * **SQL Database** (MySQL)
 
@@ -50,11 +50,29 @@ npm install
 Copy .env.sample file and rename the copied one to .env.
 Edit the .env file and change the database credentials.
 
+### Step 4: Run Database Migrations
+Run database migrations:
+
+```bash
+npx sequelize-cli db:migrate
+```
+
+### Step 5: Run Seeds
+Commit seeded data to the database:
+
+```bash
+npx sequelize-cli db:seed:all
+```
+
+### Step 3: Environment Variables & Database Setup
+Copy .env.sample file and rename the copied one to .env.
+Edit the .env file and change the database credentials.
+
 ### Step 4: Start the Server
 Run the below command to start the server:
 
 ```bash
-npm run start:all
+npm start
 ```
 
 The server should be running at http://localhost:5000.
