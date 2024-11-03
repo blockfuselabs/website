@@ -54,7 +54,7 @@ Edit the .env file and change the database credentials.
 Run the below command to start the server:
 
 ```bash
-npm run dev
+npm run start:all
 ```
 
 The server should be running at http://localhost:5000.
