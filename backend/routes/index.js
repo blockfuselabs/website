@@ -13,6 +13,7 @@ const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
 const ArticleController = require('../controllers/articleController');
 const AuthController = require('../controllers/authController');
 const CohortController = require('../controllers/cohortController');
+const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 
@@ -40,5 +41,12 @@ router.get('/cohorts', CohortController.getAll);
 router.get('/cohorts/:identifier', CohortController.getOne);
 router.put('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.update);
 router.delete('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.delete);
+
+// Event Routes
+router.get('/events', EventController.getAll);
+router.get('/events/show/:id', EventController.getOne);
+router.post('/events/store', EventController.store);
+router.patch('/events/update/:id', EventController.update);
+router.delete('/events/delete/:id', EventController.delete);
 
 module.exports = router;
