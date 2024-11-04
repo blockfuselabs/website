@@ -48,6 +48,8 @@ router.post('/alumni', authMiddleware, authorizeSuperAdmin, AlumniController.add
 router.put('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.updateAlumni);
 router.delete('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.deleteAlumni);
 router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, AlumniController.getAllAlumni);
+router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
+
 
 
 module.exports = router;

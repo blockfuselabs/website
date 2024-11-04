@@ -147,6 +147,47 @@ class AlumniController {
 
         } catch (error) {
             console.error(error);
+            res.status(500).json({
+                error: "Unable to retrieve all alumni.",
+                message: error.message
+            });
+        }
+    }
+
+    static async getOneAlumni(req, res) {
+        try {
+            const { id } = req.params
+           
+            if (!id) {
+                return res.status(404).json({
+                error: 'Not found',
+                details: 'Alumni not found.'
+                });
+            }
+
+            const alumni = await Alumni.findOne({
+                where: { id }
+            });
+
+            if (!alumni) {
+                return res.status(404).json({
+                    error: 'Not found',
+                    details: 'No alumni in this cohort.'
+                });
+            }
+
+            return res.status(200).json({
+                message: 'Alunmi retrieved successfully',
+                alumni
+            });
+
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({
+                error: "Unable to retrieve an alumni.",
+                message: error.message
+            });
+
         }
     }
 }
