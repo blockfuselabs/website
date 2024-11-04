@@ -47,8 +47,9 @@ npm install
 ```
 
 ### Step 3: Environment Variables & Database Setup
-Copy .env.sample file and rename the copied one to .env.
-Edit the .env file and change the database credentials.
+- Copy .env.sample file and rename the copied one to .env.
+- Edit the .env file and change the database credentials.
+- Edit *config/config.json* and change the database credentials.
 
 ### Step 4: Run Database Migrations
 Run database migrations:
@@ -64,11 +65,7 @@ Commit seeded data to the database:
 npx sequelize-cli db:seed:all
 ```
 
-### Step 3: Environment Variables & Database Setup
-Copy .env.sample file and rename the copied one to .env.
-Edit the .env file and change the database credentials.
-
-### Step 4: Start the Server
+### Step 6: Start the Server
 Run the below command to start the server:
 
 ```bash
