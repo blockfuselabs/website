@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import Components
 import Navbar from "./components/Navbar"
-import Footer from "./components/Footer"
+// import Footer from "./components/Footer"
 import Auth from "./components/Auth"
 
 // Import Pages
@@ -70,7 +70,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <Footer />
+      {/* <Footer /> */}
     </div>
   </Router>
   </ThemeProvider>
