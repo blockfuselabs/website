@@ -41,4 +41,10 @@ router.get('/cohorts/:identifier', CohortController.getOne);
 router.put('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.update);
 router.delete('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.delete);
 
+//Alumni Routes
+router.post('/alumni')
+router.put('/alumni/:id')
+router.delete('/alumni/:id')
+
+
 module.exports = router;
