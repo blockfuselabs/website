@@ -59,7 +59,6 @@ router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, Alumn
 router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
 
 
-
 // Event Routes
 router.get('/events', EventController.getAll);
 router.get('/events/show/:id', EventController.getOne);
