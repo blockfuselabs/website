@@ -75,6 +75,67 @@ class TeamController {
       });
     }
   }
+   /**
+   * Get all team members
+   **/
+  static async getAll(req, res) {
+    try {
+      const teams = await Team.findAll();
+      res.status(200).json(teams);
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to retrieve team members.',
+        details: error.message
+      });
+    }
+  }
+/**
+   * Get a team member by ID
+   **/
+  static async getById(req, res) {
+    try {
+      const { id } = req.params;
+      const team = await Team.findByPk(id);
+
+      if (!team) {
+        return res.status(404).json({ error: 'Team member not found.' });
+      }
+
+      res.status(200).json(team);
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to retrieve team member.',
+        details: error.message
+      });
+    }
+  }
+
+  /**
+   * Delete a team member by ID
+   **/
+  static async delete(req, res) {
+    try {
+      const { id } = req.params;
+      console.log(id)
+      const team = await Team.findByPk(id);
+
+      if (!team) {
+        return res.status(404).json({ error: 'Team member not found.' });
+      }
+
+      await team.destroy();
+
+      res.status(200).json({ message: 'Team member deleted successfully.' });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to delete team member.',
+        details: error.message
+      });
+    }
+  }
 
 }
 
