@@ -1,9 +1,10 @@
-const { Alumni } = require('../models');
+const { Alumni, Cohort } = require('../models');
+const { Op } = require('sequelize')
 
 class AlumniController {
     static async addAlumni(req, res) {
         try {
-            const { cohort_id, fullname, major } = req.body;
+            const { cohort_id, fullname, major, github_link, linkedin_link } = req.body;
 
             if (!fullname || !major) {
                 return res.status(400).json({
@@ -15,10 +16,12 @@ class AlumniController {
             const alumni = await Alumni.create({
                 cohort_id,
                 fullname,
-                major
+                major,
+                github_link,
+                linkedin_link
             });
 
-            const alumniResponse = { ...cohort_id.toJSON() };
+            const alumniResponse = { ...alumni.toJSON() };
 
             res.status(201).json({
                 message: 'Alumni added successfully.',
@@ -36,7 +39,7 @@ class AlumniController {
     static async updateAlumni(req, res) {
         try {
             const { id } = req.params;
-            const { fullname, major } = req.body;
+            const { fullname, major, github_link, linkedin_link } = req.body;
 
             const alumni = await Alumni.findOne({
                 where: { id }
@@ -52,7 +55,9 @@ class AlumniController {
 
             await alumni.update({
                 fullname: fullname || alumni.fullname,
-                major: major || alumni.major
+                major: major || alumni.major,
+                github_link: github_link || alumni.github_link, 
+                linkedin_link: linkedin_link || alumni.linkedin_link 
             });
 
             res.status(200).json({
@@ -74,16 +79,18 @@ class AlumniController {
         try {
             const { id } = req.params;
 
-            const alumni = Alumni.findOne({
+            const alumni = await Alumni.findOne({
                 where: { id }
             });
+
+            console.log(await alumni)
 
             if(!alumni) {
                 return res.status(404).json({
                     error: "Not found",
                     message: "Alumni not found."
                 });
-            }
+            };
 
             await alumni.destroy();
 
@@ -97,6 +104,49 @@ class AlumniController {
                 error: "Unable to delete alumni.",
                 message: error.message
             });
+        }
+    }
+
+    static async getAllAlumni(req, res) {
+        try {
+            const { identifier } = req.params;
+            
+            const where = {};
+            if (!isNaN(identifier)) {
+                where.id = identifier;
+            } else {
+                where.slug = identifier;
+            }
+
+            const cohort = await Cohort.findOne({
+                where: { [Op.or]: [where] }
+            });
+
+            if (!cohort) {
+                return res.status(404).json({
+                error: 'Not found',
+                details: 'Cohort not found.'
+                });
+            }
+
+            const alumnis = await Alumni.findAndCountAll({
+                where: { cohort_id: cohort.id }
+            });
+
+            if (!alumnis) {
+                return res.status(404).json({
+                    error: 'Not found',
+                    details: 'No alumnis in this cohort.'
+                });
+            }
+
+            return res.status(200).json({
+                message: 'Alunmis retrieved successfully',
+                alumnis
+            });
+
+        } catch (error) {
+            console.error(error);
         }
     }
 }

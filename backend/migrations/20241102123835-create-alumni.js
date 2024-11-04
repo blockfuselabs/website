@@ -24,6 +24,14 @@ module.exports = {
       major: {
         type: Sequelize.STRING
       },
+      github_link: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      linkedin_link: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false
