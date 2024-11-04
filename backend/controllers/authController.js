@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { User } = require('../models');
-const SECRET_KEY = process.env.JWT_SECRET;
-const SALT_ROUNDS = 10; // Define salt rounds directly instead of using env variable
+const { User, Role } = require('../models');
+const SECRET_KEY = "12345";
+const SALT_ROUNDS = 10;
 
 class AuthController {
   static async register(req, res) {
@@ -20,7 +20,15 @@ class AuthController {
       if (existingUser) {
         return res.status(409).json({ 
           error: 'Registration failed', 
-          details: 'Email already registered' 
+          details: 'Email already exist' 
+        });
+      }
+
+      const existingPhone = await User.findOne({ where: { phone } });
+      if (existingPhone) {
+        return res.status(409).json({ 
+          error: 'Registration failed', 
+          details: 'Phone already exist' 
         });
       }
 
@@ -62,7 +70,16 @@ class AuthController {
         });
       }
 
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({
+        where: { email },
+        include: [
+          {
+            model: Role,
+            as: 'role',
+            attributes: ['name', 'id'],
+          },
+        ],
+      });
       if (!user) {
         return res.status(404).json({ 
           error: 'Login failed', 
@@ -82,7 +99,7 @@ class AuthController {
         {
           id: user.id, 
           role_id: user.role_id,
-          email: user.email 
+          email: user.email
         }, 
         SECRET_KEY, 
         { expiresIn: '1h' }
@@ -95,7 +112,9 @@ class AuthController {
           id: user.id,
           fullname: user.fullname,
           email: user.email,
-          role_id: user.role_id
+          phone: user.phone,
+          role_id: user.role_id,
+          role: user.role.name
         }
       });
 
