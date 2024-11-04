@@ -1,18 +1,27 @@
 const express = require('express');
+
+// Middlewares
+const authMiddleware = require('../middleware/authMiddleware');
+const authorizeSuperAdmin = require('../middleware/authorizeSuperAdmin');
+
+// Controllers
+const ArticleController = require('../controllers/articleController');
 const AuthController = require('../controllers/authController');
-const userController = require('../controllers/userController');
 const TeamController = require('../controllers/teamController');
-// const authMiddleware = require('../middleware/authMiddleware');
+const userController = require('../controllers/userController');
 
 const router = express.Router();
 
 router.get('/', userController.hello);
 
+// Authentication Routes
 router.post('/register', AuthController.register);
 router.post('/login', AuthController.login);
-router.post('/team', TeamController.add);
 
-// Protected route example
-// router.get('/profile', authMiddleware, AuthController.profile);
+// Team Routes
+router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
+
+// Article Routes
+router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
 
 module.exports = router;
