@@ -6,6 +6,7 @@ const express = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
 const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
 const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
+const { validateEvent, validateEventUpdate } = require('../middlewares/eventRequest');
 
 /**
  * Controllers
@@ -13,6 +14,7 @@ const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
 const ArticleController = require('../controllers/articleController');
 const AuthController = require('../controllers/authController');
 const CohortController = require('../controllers/cohortController');
+const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const alumniController = require('../controllers/alumniController');
@@ -57,5 +59,11 @@ router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, Alumn
 router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
 
 
+// Event Routes
+router.get('/events', EventController.getAll);
+router.get('/events/show/:id', EventController.getOne);
+router.post('/events/store', validateEvent, EventController.store);
+router.patch('/events/update/:id', validateEventUpdate, EventController.update);
+router.delete('/events/delete/:id', EventController.delete);
 
 module.exports = router;
