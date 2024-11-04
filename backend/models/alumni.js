@@ -16,7 +16,9 @@ module.exports = (sequelize, DataTypes) => {
   Alumni.init({
     cohort_id: DataTypes.BIGINT,
     fullname: DataTypes.STRING,
-    major: DataTypes.STRING
+    major: DataTypes.STRING,
+    github_link: DataTypes.STRING,
+    linkedin_link: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Alumni',
