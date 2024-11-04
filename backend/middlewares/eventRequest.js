@@ -1,6 +1,5 @@
 const Joi  = require('joi');
 
-
 const eventSchema = Joi.object({
     title: Joi.string().min(3).required(),
     description: Joi.string().required(),
