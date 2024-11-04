@@ -6,6 +6,7 @@ const express = require('express');
 const authMiddleware = require('../middlewares/authMiddleware');
 const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
 const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
+const { validateEvent, validateEventUpdate } = require('../middlewares/eventRequest');
 
 /**
  * Controllers
@@ -45,8 +46,8 @@ router.delete('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortControl
 // Event Routes
 router.get('/events', EventController.getAll);
 router.get('/events/show/:id', EventController.getOne);
-router.post('/events/store', EventController.store);
-router.patch('/events/update/:id', EventController.update);
+router.post('/events/store', validateEvent, EventController.store);
+router.patch('/events/update/:id', validateEventUpdate, EventController.update);
 router.delete('/events/delete/:id', EventController.delete);
 
 module.exports = router;
