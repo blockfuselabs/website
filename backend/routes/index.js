@@ -1,8 +1,8 @@
 const express = require('express');
 
 // Middlewares
-const authMiddleware = require('../middleware/authMiddleware');
-const authorizeSuperAdmin = require('../middleware/authorizeSuperAdmin');
+const authMiddleware = require('../middlewares/authMiddleware');
+const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
 
 // Controllers
 const ArticleController = require('../controllers/articleController');
