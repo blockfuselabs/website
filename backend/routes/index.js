@@ -3,12 +3,13 @@ const express = require('express');
 // Middlewares
 const authMiddleware = require('../middlewares/authMiddleware');
 const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
-
+const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
 // Controllers
 const ArticleController = require('../controllers/articleController');
 const AuthController = require('../controllers/authController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
+const upload = require("../config/uploadConfig");
 
 const router = express.Router();
 
@@ -22,6 +23,6 @@ router.post('/login', AuthController.login);
 router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
 
 // Article Routes
-router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
-
+router.post('/articles', authMiddleware, authorizeArticleAccess, upload.single('image'), ArticleController.create);
+router.get('/articles', ArticleController.getAll)
 module.exports = router;
