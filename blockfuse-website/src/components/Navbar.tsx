@@ -1,310 +1,147 @@
-import React, { useEffect, useState } from "react";
-import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { useTheme } from '../context/ThemeContext';
+import { Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleDropdown = (dropdownName) => {
-    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
-  };
-
-  const handleLinkClick = () => {
-    setOpenDropdown(null);
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 0);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { isDark, toggleTheme } = useTheme();
 
   return (
-    <div
-      className={`fixed top-0 left-0 w-full z-50 transition-shadow duration-300 ${
-        isScrolled ? "bg-purple-300 shadow-lg" : "bg-purple-300"
-      }`}
-    >
-      <div className="flex px-6 py-6 items-center">
-        {/* Logo on the left */}
-
-        <div className="flex items-center">
-          <Link to="/home-page">
-            <div className="flex gap-3 items-center">
-              <div className=" px-1 text-primary-100">
-                <h1 className="font-bold text-nowrap">BlockFuse Labs</h1>
+    <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 w-[300px] lg:w-[1200px]">
+      <div className="bg-white dark:bg-[#2F2E34] border border-gray-200 dark:border-zinc-800">
+        <div className="flex items-center gap-4 lg:gap-10 justify-between h-16 px-4 lg:px-10">
+          {/* Logo */}
+          <div className="flex items-center">
+            <div className="flex-shrink-0 flex items-center">
+              <div className="w-8 h-8 rounded-md flex items-center justify-center">
+                <span className="text-sm font-bold dark:text-primary-200">Logo</span>
               </div>
             </div>
-          </Link>
-        </div>
+          </div>
 
-        {/* Hamburger menu for mobile */}
-        <div className="md:hidden">
-          <button onClick={toggleSidebar} className="text-primary-200 text-2xl">
-            {isOpen ? (
-              <AiOutlineClose className="text-primary-100 ml-24" />
-            ) : (
-              <AiOutlineMenu className="text-primary-100 ml-24" />
-            )}
-          </button>
-        </div>
-
-        {/* Navigation in the center for desktop */}
-        <div className="hidden md:flex flex-col gap-4 md:flex-row md:flex-1 md:justify-center items-center space-y-4 md:space-y-0 md:space-x-2">
-          <nav className="flex flex-col items-center gap-8 md:flex-row space-y-5 md:space-y-0 md:space-x-2 px-4 text-nowrap text-sm font-semibold">
-            <div className="relative">
-              <Link to="/home">
-                <button
-                  className=" flex items-center gap-1 focus:outline-none hover:text-logoColor"
-                >
-                  Home
-                </button>
-              </Link>
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center gap-10 justify-end">
+            <div className='flex items-center space-x-3'>
+              <NavLink href="#" label="Home" />
+              <NavLink href="#" label="About us" />
+              <NavLink href="#" label="Teams" />
+              <NavLink href="#" label="Bootcamps" />
+              <NavLink href="#" label="Events" />
+              <NavLink href="#" label="Alumni" />
+              <NavLink href="#" label="Blog" />
+              <NavLink href="#" label="Open source" />
+              <NavLink href="#" label="Contact us"/>
             </div>
-
-            <div className="relative">
-            <Link to="/about-us">
-              <button
-                className="flex items-center gap-1 focus:outline-none hover:text-logoColor"
+            <div className='flex gap-4'>
+              <button 
+                className="bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2 transition-all duration-200"
               >
-                About Us
+                Apply now →
               </button>
-              </Link>
-            </div>
-
-            <div className="relative">
-              <Link to="/team">
-                <button
-                  className=" flex items-center gap-1 focus:outline-none hover:text-logoColor"
-                >
-                  Team
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/alumni">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Alumni
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor"
-               onClick={() => toggleDropdown("bootcamp")}>
-                Bootcamp
-                {openDropdown === "bootcamp" ? (
-                  <RiArrowUpSLine />
+             
+              <button
+                onClick={toggleTheme}
+                className="w-9 h-9 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center"
+                aria-label="Toggle theme"
+              >
+                {isDark ? (
+                  <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 ) : (
-                  <RiArrowDownSLine />
-                )}{" "}
-              </button>
-              {openDropdown === "bootcamp" && (
-                <div className="absolute bg-purple-300 text-black text-left py-2 shadow-lg mt-6 rounded-md w-40">
-                  <Link
-                    to="/bootcamp/web2"
-                    className="block px-4 py-2 hover:bg-gray-200"
-                    onClick={handleLinkClick}
-                  >
-                    Web2
-                  </Link>
-                  <Link
-                    to="/bootcamp/web3"
-                    className="block px-4 py-2 hover:bg-gray-200"
-                    onClick={handleLinkClick}
-                  >
-                    Web3
-                  </Link>
-                </div>
-              )}
-            </div>
-            <div className="relative">
-              <Link to="events">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Events
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="opensource">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Open Source
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="testimonial">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Testimonal
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="blog">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Blog
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="contact-us">
-                <button className=" flex items-center gap-1 focus:outline-none hover:text-logoColor">
-                  Contact Us
-                </button>
-              </Link>
-            </div>
-
-            {/* <div className="relative">
-              <button
-                onClick={() => toggleDropdown('auth')}
-                className="bg-primary-100 text-white flex items-center gap-1 px-8 py-2 rounded-md focus:outline-none "
-              >
-               Signup
-               
-              </button>
-              {openDropdown === 'auth' && (
-                <div className="absolute bg-primary-100 text-black shadow-lg mt-5 rounded-md w-36">
-                  <Link
-                    to="/auth/member-login"
-                    className="block px-4 py-2 hover:bg-gray-200"
-                    onClick={handleLinkClick}
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to="/auth/registration"
-                    className="block px-4 py-2 hover:bg-gray-200"
-                    onClick={handleLinkClick}
-                  >
-                    Register
-                  </Link>
-                </div>
-              )}
-            </div> */}
-          </nav>
-        </div>
-
-        {/* Sidebar for mobile */}
-        <div
-          className={`fixed top-0 right-0 h-full w-64 bg-primary-100 text-white z-50 transform ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          } transition-transform duration-300 ease-in-out`}
-        >
-          <button onClick={toggleSidebar} className="text-2xl p-4">
-            <AiOutlineClose />
-          </button>
-          <nav className="flex flex-col p-4 space-y-6 text-md">
-            <div className="relative">
-              <Link to="/home-page" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Home
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <button
-                onClick={() => toggleDropdown("aboutUs")}
-                className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200"
-              >
-                About Us
-              </button>
-            </div>
-            <div className="relative">
-              <Link to="/team" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Team
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/alumni" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Alumni
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <button
-                onClick={() => toggleDropdown("bootcamp")}
-                className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200"
-              >
-                Bootcamp
-                {openDropdown === "bootcamp" ? (
-                  <RiArrowUpSLine />
-                ) : (
-                  <RiArrowDownSLine />
+                  <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
                 )}
               </button>
-              {openDropdown === "bootcamp" && (
-                <div className="mt-2 rounded-md">
-                  <Link
-                    to="/bootcamp/web2"
-                    className="block px-4 py-2 hover:bg-gray-600"
-                    onClick={handleLinkClick}
-                  >
-                    Web2
-                  </Link>
-                  <Link
-                    to="/bootcamp/web3"
-                    className="block px-4 py-2 hover:bg-gray-600"
-                    onClick={handleLinkClick}
-                  >
-                    Web3
-                  </Link>
-                </div>
+            </div>
+          </div>
+
+          {/* Mobile menu button and theme toggle */}
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              className="w-9 h-9 rounded-full bg-gray-100 dark:bg-zinc-800 flex items-center justify-center"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="w-5 h-5 text-gray-600 dark:text-gray-300" />
+              ) : (
+                <Moon className="w-5 h-5 text-gray-600 dark:text-gray-300" />
               )}
-            </div>
-            <div className="relative">
-              <Link to="/events" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Events
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/opensource" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Open Source
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/testimonial" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Testimonial
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/blog" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Blog
-                </button>
-              </Link>
-            </div>
-            <div className="relative">
-              <Link to="/contact-us" onClick={toggleSidebar}>
-                <button className="text-white flex items-center gap-2 focus:outline-none hover:text-gray-200">
-                  Contact Us
-                </button>
-              </Link>
-            </div>
-          </nav>
+            </button>
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {isOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden border-t border-gray-200 dark:border-zinc-800">
+            <div className="px-4 py-3 space-y-1">
+              <MobileNavLink href="#" label="Home" />
+              <MobileNavLink href="#" label="About us" />
+              <MobileNavLink href="#" label="Teams" />
+              <MobileNavLink href="#" label="Bootcamps" />
+              <NavLink href="#" label="Events" />
+              <MobileNavLink href="#" label="Alumni" />
+              <MobileNavLink href="#" label="Blog" />
+              <MobileNavLink href="#" label="Open source" />
+              <MobileNavLink href="#" label="Contact us" />
+              <div className="pt-4">
+                <button 
+                  className="w-full bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2"
+                >
+                  Apply now →
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 };
+
+// Navigation link component for desktop
+const NavLink = ({ href, label }) => (
+  <a
+    href={href}
+    className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium"
+  >
+    {label}
+  </a>
+);
+
+// Navigation link component for mobile
+const MobileNavLink = ({ href, label }) => (
+  <a
+    href={href}
+    className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 text-base font-medium"
+  >
+    {label}
+  </a>
+);
 
 export default Navbar;

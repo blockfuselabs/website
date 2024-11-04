@@ -18,13 +18,15 @@ import Events from "./pages/Events"
 import OpenSource from "./pages/OpenSource"
 import ContactUs from "./pages/ContactUs"
 
+import { ThemeProvider } from './context/ThemeContext';
 
 function App() {
 
 
   return (
+    <ThemeProvider>
     <Router>
-    <div className="App flex flex-col min-h-screen">
+    <div className="App noise dark:bg-[#131316] bg-[#fafafa] flex flex-col min-h-screen">
       {/* Navbar */}
       <Navbar />
 
@@ -67,10 +69,11 @@ function App() {
         </Routes>
       </main>
 
-      {/* Footer should stick to the bottom */}
+      {/* Footer */}
       <Footer />
     </div>
   </Router>
+  </ThemeProvider>
   )
 }
 
