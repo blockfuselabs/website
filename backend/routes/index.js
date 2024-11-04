@@ -22,7 +22,12 @@ const router = express.Router();
 /**
  * Routes
  **/
-router.get('/', userController.hello);
+// User Routes
+router.post('/users', authMiddleware, authorizeSuperAdmin, userController.addUser);
+router.get('/users', authMiddleware, authorizeSuperAdmin, userController.getAllUsers);
+router.get('/users/:id', authMiddleware, authorizeSuperAdmin, userController.getUser);
+router.put('/users/:id', authMiddleware, authorizeSuperAdmin, userController.updateUser);
+router.delete('/users/:id', authMiddleware, authorizeSuperAdmin, userController.deleteUser);
 
 // Authentication Routes
 router.post('/register', AuthController.register);
