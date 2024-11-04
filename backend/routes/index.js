@@ -30,6 +30,7 @@ router.post('/login', AuthController.login);
 
 // Team Routes
 router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
+router.put('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.update); 
 
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
