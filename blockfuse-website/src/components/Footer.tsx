@@ -16,11 +16,37 @@ const Footer = () => {
     { label: 'Contact us', href: '#' },
   ];
 
+
+//   return (
+//     <footer className="dark:bg-[#1a1a1a] text-gray-300">
+//       {/* Community Section */}
+//       <div className="border-b border-gray-800">
+//         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
+//           <h2 className="text-3xl font-semibold mb-2">Join our Community</h2>
+//           <p className="text-gray-400 mb-8">
+//             Become part of a thriving network of blockchain enthusiasts and professionals.
+//           </p>
+import React from 'react';
+import { Facebook, Twitter, Instagram, Youtube, MoveRight } from 'lucide-react';
+import Button from './Buttons';
+
+const Footer = () => {
+  const navigationLinks = [
+    { label: 'Home', href: '#' },
+    { label: 'About us', href: '#' },
+    { label: 'Teams', href: '#' },
+    { label: 'Bootcamps', href: '#' },
+    { label: 'Events', href: '#' },
+    { label: 'Alumni', href: '#' },
+    { label: 'Blog', href: '#' },
+    { label: 'Open source', href: '#' },
+    { label: 'Contact us', href: '#' }
   // Array of profile images
   const profiles = Array(9).fill(null).map((_, index) => ({
     id: index,
     image: `/src/assets/images/founder_TradeBrigde_Portrait.JPG`,
   }));
+
 
   return (
     <footer className="dark:bg-[#1a1a1a] dark:text-gray-300">
@@ -31,7 +57,6 @@ const Footer = () => {
           <p className="text-gray-400 mb-8">
             Become part of a thriving network of blockchain enthusiasts and professionals.
           </p>
-
 
            {/* Logo Circle */}
            <div className="w-20 h-20 rounded-full bg-purple-600/10 border border-purple-500 mx-auto mb-8 flex items-center justify-center">
