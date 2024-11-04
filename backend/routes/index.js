@@ -15,6 +15,8 @@ const AuthController = require('../controllers/authController');
 const CohortController = require('../controllers/cohortController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
+const alumniController = require('../controllers/alumniController');
+const AlumniController = require('../controllers/alumniController');
 
 const router = express.Router();
 
@@ -46,5 +48,14 @@ router.get('/cohorts', CohortController.getAll);
 router.get('/cohorts/:identifier', CohortController.getOne);
 router.put('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.update);
 router.delete('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.delete);
+
+//Alumni Routes
+router.post('/alumni', authMiddleware, authorizeSuperAdmin, AlumniController.addAlumni);
+router.put('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.updateAlumni);
+router.delete('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.deleteAlumni);
+router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, AlumniController.getAllAlumni);
+router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
+
+
 
 module.exports = router;
