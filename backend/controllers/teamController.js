@@ -41,6 +41,7 @@ class TeamController {
     }
   }
 
+  // Update Team
   static async update(req, res) {
     try {
       const { id } = req.params;
