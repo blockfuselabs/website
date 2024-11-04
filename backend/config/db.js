@@ -4,6 +4,7 @@ const config = require('./config');
 const sequelize = new Sequelize(
     config.development.database, config.development.username, config.development.password, 
     {
+        port: 3306,
         host: config.development.host,
         dialect: config.development.dialect,
     }

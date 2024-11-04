@@ -17,6 +17,8 @@ const CohortController = require('../controllers/cohortController');
 const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
+const alumniController = require('../controllers/alumniController');
+const AlumniController = require('../controllers/alumniController');
 
 const router = express.Router();
 
@@ -24,7 +26,12 @@ const router = express.Router();
 /**
  * Routes
  **/
-router.get('/', userController.hello);
+// User Routes
+router.post('/users', authMiddleware, authorizeSuperAdmin, userController.addUser);
+router.get('/users', authMiddleware, authorizeSuperAdmin, userController.getAllUsers);
+router.get('/users/:id', authMiddleware, authorizeSuperAdmin, userController.getUser);
+router.put('/users/:id', authMiddleware, authorizeSuperAdmin, userController.updateUser);
+router.delete('/users/:id', authMiddleware, authorizeSuperAdmin, userController.deleteUser);
 
 // Authentication Routes
 router.post('/register', AuthController.register);
@@ -32,6 +39,7 @@ router.post('/login', AuthController.login);
 
 // Team Routes
 router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
+router.put('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.update); 
 
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
@@ -42,6 +50,15 @@ router.get('/cohorts', CohortController.getAll);
 router.get('/cohorts/:identifier', CohortController.getOne);
 router.put('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.update);
 router.delete('/cohorts/:id', authMiddleware, authorizeSuperAdmin, CohortController.delete);
+
+//Alumni Routes
+router.post('/alumni', authMiddleware, authorizeSuperAdmin, AlumniController.addAlumni);
+router.put('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.updateAlumni);
+router.delete('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.deleteAlumni);
+router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, AlumniController.getAllAlumni);
+router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
+
+
 
 // Event Routes
 router.get('/events', EventController.getAll);
