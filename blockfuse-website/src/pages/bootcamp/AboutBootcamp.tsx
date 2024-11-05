@@ -2,7 +2,7 @@ import React from 'react'
 
 const AboutBootcamp = () => {
   return (
-    <div className="px-6 py-36 h-full gap-8 mb-[900px] sm:px-8 md:px-16 lg:px-24">
+    <div className="dark:text-white px-6 py-36 h-full gap-8 mb-[900px] sm:px-8 md:px-16 lg:px-24">
         <div className='w-[1040px] h-auto absolute top-[209px] mb-8 gap-8'>
             <h1 className='h-[178px] font-space-grotesk text-[70px] font-normal leading-[89.32px] text-center'>Where Future <span className='font-space-grotesk text-[70px] font-bold leading-[89.32px] text-center'>Blockchain</span> Leaders Are Made</h1>
             <p className='w-[819px] h-[114px] font-space-grotesk text-[30px] ml-[100px] font-light leading-[38.28px] text-center'>Unlock the skills to lead in Web2 and Web3 development through hands-on training, mentorship, and real-world projects.</p>
