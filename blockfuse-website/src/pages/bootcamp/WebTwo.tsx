@@ -26,7 +26,7 @@ const WebTwo = () => {
         <p>* The bootcamp duration is 5 months.</p>
       </div>
 
-      <div className='max-w-5xl text-white w-full bg-[#1d1d1d] p-8 mt-4 rounded-md'>
+      <div className='max-w-5xl text-white text-center w-full bg-[#1d1d1d] p-8 mt-4 rounded-md'>
         <h2 className="text-2xl font-medium mb-6 text-center">Fill the form to complete your application</h2>
         <form action="">
           <div className='flex gap-20 text-center'>
