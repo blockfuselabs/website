@@ -40,6 +40,9 @@ router.post('/login', AuthController.login);
 // Team Routes
 router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
 router.put('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.update); 
+router.delete('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.delete);
+router.get('/team/',   TeamController.getAll);
+router.get('/team/:id', TeamController.getById);
 
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
