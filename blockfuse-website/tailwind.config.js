@@ -12,6 +12,7 @@ export default {
       },
       backgroundImage: {
         "primary-gradient": "linear-gradient(to right, #E649D6, #8B4FFF)",
+        'alumni-cohorts': "url('/src/assets/images/bgalmni.png')",
       },
     },
   },
