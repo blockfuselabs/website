@@ -47,6 +47,18 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-10 justify-end">
+<<<<<<<<< Temporary merge branch 1
+            <div className='flex items-center space-x-3'>
+              <NavLink href="#" label="Home" />
+              <NavLink href="#" label="About us" />
+              <NavLink href="#" label="Teams" />
+              <NavLink href="/bootcamp" label="Bootcamps" />
+              <NavLink href="#" label="Events" />
+              <NavLink href="#" label="Alumni" />
+              <NavLink href="#" label="Blog" />
+              <NavLink href="#" label="Open source" />
+              <NavLink href="#" label="Contact us"/>
+=========
             <div className="flex items-center space-x-3">
               <NavLink href="/" label="Home" />
               <NavLink href="/about-us" label="About us" />
