@@ -25,7 +25,7 @@ const Navbar = () => {
               <NavLink href="#" label="Home" />
               <NavLink href="#" label="About us" />
               <NavLink href="#" label="Teams" />
-              <NavLink href="#" label="Bootcamps" />
+              <NavLink href="/bootcamp" label="Bootcamps" />
               <NavLink href="#" label="Events" />
               <NavLink href="#" label="Alumni" />
               <NavLink href="#" label="Blog" />
