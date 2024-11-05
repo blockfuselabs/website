@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import Components
 import Navbar from "./components/Navbar"
-// import Footer from "./components/Footer"
+import Footer from "./components/Footer"
 import Auth from "./components/Auth"
 
 // Import Pages
@@ -14,6 +14,7 @@ import Alumni from "./pages/Alumni"
 import Bootcamp from "./pages/bootcamp/Bootcamp"
 import Testimonial from "./pages/Testimonial"
 import Blog from "./pages/Blog"
+import BlogPostDetail from "./components/BlogDetail"
 import Events from "./pages/Events"
 import OpenSource from "./pages/OpenSource"
 import ContactUs from "./pages/ContactUs"
@@ -56,6 +57,7 @@ function App() {
 
           {/* Blog */}
           <Route path="/blog/*" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPostDetail />} />
 
           {/* Boot Camp */}
           <Route path="/bootcamp/*" element={<Bootcamp />} />
@@ -70,7 +72,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      {/* <Footer /> */}
+      <Footer />
     </div>
   </Router>
   </ThemeProvider>
