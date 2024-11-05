@@ -29,7 +29,9 @@ const AboutBootcamp = () => {
             <div className="flex flex-col md:flex-row gap-8 justify-center">
 
                 <div className="bg-[#1d1d1d] border-2 border-custom-purple-2 rounded-lg p-6 max-w-sm flex flex-col items-center">
-                    <h3 className="text-xl font-bold mt-4 mb-2">Web 2 for Web 3</h3>
+                    <div className='bg-[url("/blockfuse-website/src/assets/images/web2 bg.jpeg")] w-full h-16'>
+                        <h3 className="text-xl font-bold mt-4 mb-2">Web 2 for Web 3</h3>
+                    </div>
                     <p className="text-sm font-light leading-relaxed mb-6 text-center">
                     Learn the essentials of modern web development in HTML, CSS, Tailwind CSS, JavaScript, and Node.js/React. This program guides you through creating interactive, responsive websites, providing the skills and confidence to start building real-world projects. Perfect for beginners ready to launch their web journey!
                     </p>
@@ -56,7 +58,7 @@ const AboutBootcamp = () => {
             
                 <div className="flex flex-col items-center text-center">
                     <div className='flex gap-4'>
-                        <img src="path/to/icon1.png" alt="" className="w-30 h-full" />
+                        <img src="path/to/icon1.png" alt="" className="w-[30px] h-[35px] mt-4" />
                         <div className="w-full h-full text-left mb-4">
                             <h3 className="text-lg font-bold mb-2">REAL WORLD EXPERIENCE</h3>
                             <p className="text-sm font-light leading-relaxed">
@@ -69,7 +71,7 @@ const AboutBootcamp = () => {
 
                 <div className="flex flex-col items-center text-center">
                     <div className='flex gap-4'>
-                        <img src="path/to/icon2.png" alt="" className="w-[35px] h-full" />   
+                        <img src="path/to/icon2.png" alt="" className="w-[30px] h-[35px] mt-4" />   
                         <div className='text-left'>
                             <h3 className="text-lg font-bold mb-2">HANDS-ON LEARNING</h3>
                             <p className="text-sm font-light leading-relaxed">
@@ -81,7 +83,7 @@ const AboutBootcamp = () => {
 
                 <div className="flex flex-col items-center text-center">
                     <div className='flex gap-4'>
-                        <img src="path/to/icon2.png" alt="" className="w-[35px] h-full" />   
+                        <img src="path/to/icon2.png" alt="" className="w-[30px] h-[35px] mt-4" />   
                         <div className='text-left'>
                             <h3 className="text-lg font-bold mb-2">INTERACTIVE LEARNING</h3>
                             <p className="text-sm font-light leading-relaxed">
@@ -93,7 +95,7 @@ const AboutBootcamp = () => {
 
                 <div className="flex flex-col items-center text-center">
                     <div className='flex gap-4'>
-                        <img src="path/to/icon2.png" alt="" className="w-[35px] h-full" />   
+                        <img src="path/to/icon2.png" alt="" className="w-[35px] h-[35px] mt-4" />   
                         <div className='text-left'>
                             <h3 className="text-lg font-bold mb-2">COLLABORATIVE LEARNING</h3>
                             <p className="text-sm font-light leading-relaxed">
@@ -106,14 +108,14 @@ const AboutBootcamp = () => {
             </div>
         </div>
 
-        <div className="text-center text-white max-w-6xl px-4">
-            <h2 className="text-3xl font-medium mb-12">Our Journey</h2>
+        <div className="text-center text-white mt-16 max-w-6xl px-4">
+            <h2 className="text-black text-3xl font-medium mb-12">Our Journey</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             
             <div className="flex flex-col bg-[#2b2b2b] p-8 border border-[#4e2ef5] rounded-lg items-center">
-                <div className="flex w-35 h-12 mb-4">
-                    <img src="path/to/icon1.png" alt="" className="w-full h-full" />
+                <div className="flex w-full h-12 mb-4">
+                    <img src="path/to/icon1.png" alt="" className="w-[35px] h-[35px]" />
                     <h3 className="text-xl font-semibold mb-4">The Leap</h3>
                 </div>
                 <p className="text-sm font-light leading-relaxed">
@@ -122,8 +124,8 @@ const AboutBootcamp = () => {
             </div>
 
             <div className="flex flex-col bg-[#2b2b2b] p-8 border border-[#4e2ef5] rounded-lg items-center">
-                <div className="flex w-12 h-12 mb-4">
-                    <img src="path/to/icon2.png" alt="" className="w-full h-full" />
+                <div className="flex w-full h-12 mb-4">
+                    <img src="path/to/icon2.png" alt="" className="w-[35px] h-[35px]" />
                     <h3 className="text-xl font-semibold mb-4">Our today</h3>
                 </div>
                 <p className="text-sm font-light leading-relaxed">
@@ -132,8 +134,8 @@ const AboutBootcamp = () => {
             </div>
 
             <div className="flex flex-col bg-[#2b2b2b] p-8 border border-[#4e2ef5] rounded-lg items-center">
-                <div className="flex w-12 h-12 mb-4">
-                    <img src="path/to/icon3.png" alt="" className="w-full h-full" />
+                <div className="flex w-full h-12 mb-4">
+                    <img src="path/to/icon3.png" alt="" className="w-[35px] h-[35px]" />
                     <h3 className="text-xl font-semibold mb-4">Our tomorrow</h3>
                 </div>
                 <p className="text-sm font-light leading-relaxed">
