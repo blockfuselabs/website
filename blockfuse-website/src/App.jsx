@@ -20,6 +20,7 @@ import OpenSource from "./pages/OpenSource"
 import ContactUs from "./pages/ContactUs"
 
 import { ThemeProvider } from './context/ThemeContext';
+import OurAlumni from './pages/OurAlumni';
 
 function App() {
 
@@ -45,6 +46,8 @@ function App() {
 
           {/* Alumni */}
           <Route path="/alumni*" element={<Alumni />} />
+          {/* our Alumni */}
+          <Route path="/ouralumni*" element={<OurAlumni />} />
 
           {/* Testimonials */}
           <Route path="/testimonial/*" element={<Testimonial />} />

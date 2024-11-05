@@ -8,8 +8,6 @@ const Team = () => {
   return (
     <div className="">
       <Gallery/>
-      <NextCohorts />
-      <NewsLetters />
     </div>
   );
 }
