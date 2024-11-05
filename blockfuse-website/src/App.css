@@ -2,7 +2,18 @@
 
 *{
   font-family: "Space Grotesk", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+
+
+body, html {
+  overflow-x: hidden;
+  width: 100vw;
+}
+
 .noise {
     position: relative;
     isolation: isolate;
