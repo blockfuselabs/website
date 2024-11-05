@@ -25,4 +25,7 @@ router.post('/team', authMiddleware, authorizeSuperAdmin, TeamController.add);
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, upload.single('image'), ArticleController.create);
 router.get('/articles', ArticleController.getAll)
+router.get('/articles/:identifier', ArticleController.getOne)
+router.delete('/articles/:id', authMiddleware, authorizeArticleAccess, ArticleController.delete)
+router.put('/articles/:id',  upload.single('image'), authMiddleware,authorizeArticleAccess, ArticleController.update)
 module.exports = router;
