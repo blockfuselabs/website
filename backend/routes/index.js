@@ -8,6 +8,8 @@ const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
 const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
 const { validateEvent, validateEventUpdate } = require('../middlewares/eventRequest');
 
+const upload = require("../config/uploadConfig");
+
 /**
  * Controllers
  **/
@@ -17,7 +19,6 @@ const CohortController = require('../controllers/cohortController');
 const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
-const alumniController = require('../controllers/alumniController');
 const AlumniController = require('../controllers/alumniController');
 
 const router = express.Router();
@@ -45,7 +46,11 @@ router.get('/team/',   TeamController.getAll);
 router.get('/team/:id', TeamController.getById);
 
 // Article Routes
-router.post('/articles', authMiddleware, authorizeArticleAccess, ArticleController.create);
+router.post('/articles', authMiddleware, authorizeArticleAccess, upload.single('image'), ArticleController.create);
+router.get('/articles', ArticleController.getAll)
+router.get('/articles/:identifier', ArticleController.getOne)
+router.delete('/articles/:id', authMiddleware, authorizeArticleAccess, ArticleController.delete)
+router.put('/articles/:id',  upload.single('image'), authMiddleware,authorizeArticleAccess, ArticleController.update)
 
 // Cohort Routes
 router.post('/cohorts', authMiddleware, authorizeSuperAdmin, CohortController.add);
@@ -60,7 +65,6 @@ router.put('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.
 router.delete('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.deleteAlumni);
 router.get('/alumni/all/:identifier', authMiddleware, authorizeSuperAdmin, AlumniController.getAllAlumni);
 router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.getOneAlumni);
-
 
 // Event Routes
 router.get('/events', EventController.getAll);
