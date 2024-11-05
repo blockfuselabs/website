@@ -5,8 +5,8 @@ import { GoArrowRight } from "react-icons/go";
 
 const NextCohorts = () => {
   return (
-    <div className='max-w-[1240px] w-full h-auto flex flex-col gap-12 justify-center items-center p-4'>
-      <h1 className='text-4xl leading-tight font-semibold text-center'>Join the next cohort</h1>
+    <div className='max-w-[1240px] mt-32 w-full h-auto flex flex-col gap-12 justify-center items-center p-4'>
+      <h1 className='text-4xl leading-tight font-medium text-center'>Join the next cohort</h1>
       <p className='text-xl leading-relaxed text-center'>
         Step into the future of blockchain with Blockfuse Labs! Our upcoming cohort offers hands-on training, expert mentorship, and a vibrant community to help you build and thrive in Web3. Secure your spot and start your journey today!
       </p>
