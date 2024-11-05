@@ -143,7 +143,7 @@ const BlogPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 px-6 py-12 sm:px-8 md:px-16 lg:px-24">
+    <div className="min-h-screen  px-6 py-12 sm:px-8 md:px-16 lg:px-24">
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {currentPosts.map((post) => (
         <div

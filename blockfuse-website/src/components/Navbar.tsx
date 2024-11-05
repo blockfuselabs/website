@@ -47,7 +47,7 @@ const Navbar = () => {
 
           {/* Navigation Links */}
           <div className="hidden md:flex items-center gap-10 justify-end">
-<<<<<<<<< Temporary merge branch 1
+
             <div className='flex items-center space-x-3'>
               <NavLink href="#" label="Home" />
               <NavLink href="#" label="About us" />
@@ -58,7 +58,6 @@ const Navbar = () => {
               <NavLink href="#" label="Blog" />
               <NavLink href="#" label="Open source" />
               <NavLink href="#" label="Contact us"/>
-=========
             <div className="flex items-center space-x-3">
               <NavLink href="/" label="Home" />
               <NavLink href="/about-us" label="About us" />
@@ -201,8 +200,7 @@ const Navbar = () => {
                   className="w-full bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2"
                   onClick={() => navigate('/auth')}
                 >
-                  Apply now
-                  <MoveRight />
+                  Apply now →
                 </button>
               </div>
             </div>
