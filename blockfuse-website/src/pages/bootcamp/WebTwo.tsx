@@ -2,8 +2,8 @@ import React from 'react'
 
 const WebTwo = () => {
   return (
-    <div className="px-6 py-36 h-full sm:px-8 md:px-16 lg:px-24">
-      <div className="flex flex-col items-center text-center text-white py-10 px-4">
+    <div className="white:text-black px-6 py-36 h-full sm:px-8 md:px-16 lg:px-24">
+      <div className="flex flex-col items-center text-center dark:text-white py-10 px-4">
         <h1 className="text-3xl font-bold">
           Apply to the <span className="text-purple-500">web2 bootcamp</span>
         </h1>
@@ -11,7 +11,7 @@ const WebTwo = () => {
         <p className="text-2xl font-semibold">
           Cohort 2 commences on-
         </p>
-        <p className="text-5xl font-bold mb-4 text-white">
+        <p className="text-5xl font-bold mb-4 dark:text-white">
           02.Jan.2024
         </p>
 
@@ -26,7 +26,7 @@ const WebTwo = () => {
         <p>* The bootcamp duration is 5 months.</p>
       </div>
 
-      <div className='max-w-5xl w-full bg-[#1d1d1d] p-8 mt-4 rounded-md'>
+      <div className='max-w-5xl text-white w-full bg-[#1d1d1d] p-8 mt-4 rounded-md'>
         <h2 className="text-2xl font-medium mb-6 text-center">Fill the form to complete your application</h2>
         <form action="">
           <div className='flex gap-20 text-center'>
