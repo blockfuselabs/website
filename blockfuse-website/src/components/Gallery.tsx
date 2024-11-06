@@ -1,29 +1,40 @@
-import React from 'react';
-import item1 from "../assets/images/Rectangle2.png";
-import item2 from "../assets/images/Rectangle1.png";
-import item3 from "../assets/images/Rectangle4.png";
-import item4 from "../assets/images/Rectangle3.png";
+
+import React from "react";
+import { images } from "../utils/TeamData"; 
+import { FaGithub, FaLinkedin } from "react-icons/fa"; 
 
 const Gallery = () => {
-  const images = [
-    { src: item1, alt: "item1" },
-    { src: item2, alt: "item2" },
-    { src: item3, alt: "item3" },
-    { src: item4, alt: "item4" },
-    { src: item1, alt: "item1" },
-    { src: item2, alt: "item2" },
-    { src: item3, alt: "item3" },
-    { src: item4, alt: "item4" },
-  ];
-
   return (
     <div className="mt-20 mx-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {images.map((image, index) => (
           <div key={index} className="flex flex-col items-center">
-            <img src={image.src} alt={image.alt} className="w-full object-cover" />
-            <div className="border px-6 py-1 mt-2 h-[31px] w-full bg-white flex justify-center items-center">
-              <button className="cursor-pointer">Logo here</button>
+            <img
+              src={image.image} 
+              alt={image.name}
+              className="w-full object-cover"
+            />
+            <div className="text-center mt-2">
+              <p className="font-semibold">{image.name}</p>
+              <p className="text-sm text-gray-500">{image.stack}</p> 
+              <div className="flex gap-2 items-center">
+              <p className="text-sm text-gray-500">{image.github}</p>
+              <p className="text-sm text-gray-500">{image.linkdin}</p> 
+
+              </div>
+              <div className="flex  gap-8 mt-2">
+               
+                {image.github && (
+                  <a href={image.github} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-800">
+                    <FaGithub size={20} />
+                  </a>
+                )}
+                {image.linkdin && (
+                  <a href={image.linkdin} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-gray-800">
+                    <FaLinkedin size={20} />
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         ))}

@@ -68,6 +68,67 @@ const WebThree = () => {
           </button>
         </form>
       </div>
+      <div className="w-full max-w-5xl min-h-screen items-center text-gray-300  p-8 bg-gray-800 mt-8 rounded-lg shadow-lg">
+        <h2 className="text-center text-2xl font-semibold mb-6">Fill the form to complete your application</h2>
+        <h3 className="text-center text-xl font-medium mb-8">Complete your experience information</h3>
+
+        <form className="space-y-6">
+          <div>
+              <label className="block text-sm mb-1">Do you have any history with programming or writing code?</label>
+              <input
+              type="text"
+              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="Describe your experience"
+              />
+          </div>
+
+          <div>
+              <label className="block text-sm mb-1">Why do you want to join Blockfuse Labs cohort 2? </label>
+              <input
+              type="text"
+              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder="List programming languages"
+              />
+          </div>
+
+          <div>
+              <label className="block text-sm mb-1">How much time (daily) are you willing to dedicate to this program?</label>
+              <select
+              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+              <option>Two-to-Three hours</option>
+              <option>Two-to-Five hours</option>
+              <option>five-to-Ten hours</option>
+              <option>Totally commited</option>
+              </select>
+          </div>
+
+          <div>
+              <label className="block text-sm mb-1">What is your experience with blockchain technology</label>
+              <select
+              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              >
+              <option></option>
+              </select>
+          </div>
+
+          <div className="flex justify-between items-center mt-8">
+            <button
+            type="button"
+            className="text-sm text-gray-400 hover:text-gray-300"
+            >
+            Previous
+            </button>
+            <p className="text-sm text-gray-400">Page 2 of 3</p>
+            <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg"
+            >
+            Proceed to payment
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   )
 }
