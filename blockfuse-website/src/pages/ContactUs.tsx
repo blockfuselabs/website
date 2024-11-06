@@ -62,11 +62,14 @@ const ContactUs = () => {
 
 <div className="flex flex-col items-center p-8 dark:text-white  rounded-lg shadow-md space-y-8">
   {/* Join the Next Cohort */}
-  <div className="text-center">
+  <div className="text-center w-full md:w-2/3 ">
     <h3 className="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-2">Join the next cohort</h3>
     <p className="text-gray-600 dark:text-gray-300 mb-4">
-      Step into the future of blockchain with Blockfuse Labs! Our upcoming cohort offers hands-on training, expert mentorship, and a vibrant community to help you build and thrive in Web3. Secure your spot and start your journey today!
+      Step into the future of blockchain with Blockfuse Labs! Our upcoming cohort offers hands-on training, expert mentorship,and a vibrant community to help you build and thrive in Web3. Secure your spot and start your journey today! 
     </p>
+  
+    
+    
     <button className="py-2 px-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold  dark:from-purple-700 dark:to-pink-700">
       Apply now →
     </button>
@@ -80,8 +83,8 @@ const ContactUs = () => {
     </p>
     <form className="flex flex-col items-center space-y-4">
       <input type="email" placeholder="Enter your Email here" className="w-full p-2 border border-purple-300 dark:bg-gray-700 dark:border-purple-500 dark:text-gray-100" required />
-      <button type="submit" className="py-2 px-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold dark:from-purple-700 dark:to-pink-700">
-        Subscribe
+      <button type="submit" className="w-full py-2 px-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold  dark:from-purple-700 dark:to-pink-700">
+        Submit →
       </button>
     </form>
   </div>
