@@ -159,7 +159,7 @@ const WebTwo = () => {
       </div>
       
 
-      <div className="w-full max-w-5xl text-gray-300 mt-8 items-center p-8 bg-gray-800 rounded-lg shadow-lg">
+      <div className="w-full max-w-5xl text-gray-300  items-center p-8 bg-gray-800 rounded-lg shadow-lg">
         <h2 className="text-center text-2xl font-semibold mb-6">Use the following details to make payment</h2>
 
         <div className="space-y-4 text-center">
