@@ -10,6 +10,7 @@ import Framethree from "../assets/svgs/Frame-3702.svg";
 import Framefour from "../assets/svgs/Frame-3701.svg";
 import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
+import TestimonialsSection from "../components/TestimonialCarousel";
 
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -315,62 +316,8 @@ const Hero = () => {
         role="region"
         aria-labelledby="testimonials"
       >
-        <header id="testimonials" className="text-center mb-12">
-          <h2 className="text-3xl font-semibold dark:text-white">
-            Testimonials
-          </h2>
-        </header>
+              <TestimonialsSection Testimonial={Testimonial} Box1={Box1} />
 
-        <div className="max-w-4xl mx-auto relative">
-          {/* Navigation Buttons */}
-          <button className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full sm:-left-10">
-            <ChevronLeft className="dark:text-white" size={20} sm:size={24} />
-          </button>
-
-          {/* Testimonial Card */}
-          <div className="dark:bg-black border border-purple-500 mx-4 h-auto sm:mx-12 sm:h-60">
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 relative">
-              <div className="w-full sm:w-52 h-48 sm:h-[14.8rem] flex-shrink-0">
-                <img
-                  src={Testimonial}
-                  alt="Testimonial"
-                  className="w-full h-full object-cover relative z-10"
-                />
-                {/* Box1 behind Imageone */}
-                <img
-                  src={Box1}
-                  alt="Secondary Image"
-                  className="absolute w-40 h-40 sm:w-56 sm:h-60 -top-6 sm:-top-10 left-2 sm:left-0 z-0"
-                  style={{ transform: "translate(-20%, -20%)" }}
-                />
-              </div>
-              <div className="p-4 sm:p-6">
-                <p className="text-xs sm:text-sm dark:text-gray-400 mb-2">
-                  May 8, 2023
-                </p>
-                <h3 className="text-lg sm:text-xl font-semibold dark:text-white mb-2 sm:mb-4">
-                  Person's Full Name
-                </h3>
-                <p className="text-sm dark:text-gray-300">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                  nisl mauris, nec turpis orci lectus maecenas. Suspendisse sed
-                  magna eget nibh in turpis. Consequat duis diam lacus arcu.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <button className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full sm:-right-10">
-            <ChevronRight className="dark:text-white" size={20} sm:size={24} />
-          </button>
-
-          {/* Testimonial Navigation Dots */}
-          <div className="flex justify-center gap-2 mt-6">
-            <div className="w-2 h-2 rounded-full bg-purple-600"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-600"></div>
-            <div className="w-2 h-2 rounded-full bg-gray-600"></div>
-          </div>
-        </div>
       </section>
 
       {/* Section 7: Next Cohort */}
