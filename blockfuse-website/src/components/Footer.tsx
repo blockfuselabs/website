@@ -46,7 +46,7 @@ const Footer = () => {
 <div className="mb-12 py-8 overflow-hidden hidden sm:block">
   <div className="flex justify-center items-center -space-x-4 px-4">
     {profiles.map((profile, index) => {
-      const centerIndex = Math.floor(profiles.length / 2); // Find center image
+      const centerIndex = Math.floor(profiles.length / 2); 
       const distanceFromCenter = Math.abs(centerIndex - index);
       const scale = 1 + (centerIndex - distanceFromCenter) * 0.1;
       const translateX =
@@ -56,14 +56,14 @@ const Footer = () => {
           ? -(centerIndex - index) * 8
           : (index - centerIndex) * 8;
 
-      // Adjust `zIndex` so that only images adjacent to the center are underneath
+     
       let zIndex;
       if (index === centerIndex) {
-        zIndex = 20; // Center image on top
+        zIndex = 20; 
       } else if (Math.abs(index - centerIndex) === 1) {
-        zIndex = 18; // Adjacent images underneath
+        zIndex = 18; 
       } else {
-        zIndex = 15; // Remaining images further back
+        zIndex = 15; 
       }
 
       return (
