@@ -1,4 +1,5 @@
 import React from 'react'
+import Alumnicohorts from '../components/Alumnicohorts'
 
 const AboutUs = () => {
   return (
@@ -32,11 +33,11 @@ const AboutUs = () => {
           innovation across Africa, helping learners at all levels build their skills and confidence.
         </p>
       </div>
-   
+     
 </div>
+<Alumnicohorts/>
 </div>
-
-  )
+ )
 }
 
 export default AboutUs
