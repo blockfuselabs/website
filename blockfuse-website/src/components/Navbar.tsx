@@ -51,7 +51,8 @@ const Navbar = () => {
               <NavLink href="/" label="Home" />
               <NavLink href="/about-us" label="About us" />
               <NavLink href="/team" label="Teams" />
-              <div
+              <NavLink href="/bootcamp" label="Boot Camp" />
+              {/* <div
                 className="relative"
                 onClick={toggleBootcampMenu}
                 ref={dropdownRef}
@@ -81,7 +82,7 @@ const Navbar = () => {
                     </Link>
                   </div>
                 )}
-              </div>
+              </div> */}
               <NavLink href="/events" label="Events" />
               <NavLink href="/alumni" label="Alumni" />
               <NavLink href="/blog" label="Blog" />
