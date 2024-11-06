@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { Sun, Moon, ChevronDown, MoveRight } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import Button from './Buttons';
+import Logo from '../assets/images/blockfuse-logo.png'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,9 +40,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               <div className="w-8 h-8 rounded-md flex items-center justify-center">
-                <span className="text-sm font-bold dark:text-primary-200">
-                  Logo
-                </span>
+               <img src={Logo} alt="Blockfuse Logo" />
               </div>
             </div>
           </div>
@@ -88,7 +88,10 @@ const Navbar = () => {
               <NavLink href="/opensource" label="Open source" />
               <NavLink href="/contact-us" label="Contact us" />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-4 items-center">
+            <Button className="w-28 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0">
+            Donate
+          </Button>
               <button
                 className=" flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2 transition-all duration-200"
                 onClick={() => navigate('/auth')}
@@ -185,12 +188,15 @@ const Navbar = () => {
               <MobileNavLink href="/opensource" label="Open source" />
               <MobileNavLink href="/contact-us" label="Contact us" />
               <div className="pt-4">
-                <button
-                  className="w-full bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2"
+                <Button
+                    style={{
+                      width: "100%",
+                      maxWidth: "200px",
+                    }}
                   onClick={() => navigate('/auth')}
                 >
                   Apply now →
-                </button>
+                </Button>
               </div>
             </div>
           </div>

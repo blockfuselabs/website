@@ -21,8 +21,21 @@ const Hero = () => {
   };
   return (
     <main className="h-full">
-      <section className="flex items-center justify-center h-screen  px-6 py-36 sm:px-8 md:px-16 lg:px-24">
-        <div className="text-center">
+      <section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
+        {/* Background Image */}
+        <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
+          <img
+            src="/src/assets/svgs/circles.svg"
+            alt="Background illustration representing blockchain technology"
+            width="800"
+            height="400"
+            loading="lazy"
+            className="w-full h-auto max-w-[800px]"
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="relative text-center z-10">
           <header>
             <h1 className="text-5xl md:text-6xl dark:text-white">
               Unlock the Future with{" "}
@@ -43,27 +56,18 @@ const Hero = () => {
               <MoveRight />
             </Button>
           </div>
-          <div className="mt-12 flex justify-center">
-            <img
-              src="https://via.placeholder.com/800x400"
-              alt="Illustration representing blockchain technology"
-              className="shadow-lg"
-              width="800"
-              height="400"
-              loading="lazy"
-            />
-          </div>
         </div>
       </section>
 
       {/* Section 2: About Us */}
       <section
-        className="space-y-5 h-auto px-6 py-20 sm:px-8 md:px-16 lg:px-24 dark:text-white"
+        className="space-y-5 h-auto px-4 py-20 sm:px-6 md:px-16 lg:px-24 dark:text-white"
         role="region"
         aria-labelledby="about-us"
       >
-        <div className="flex px-80 justify-end">
-          <p className="mt-4 dark:text-gray-300 text-left break-words">
+        {/* Text Section */}
+        <div className="flex justify-center md:justify-end md:px-80">
+          <p className="mt-4 text-center md:text-left dark:text-gray-300 break-words max-w-xs md:max-w-none">
             At Blockfuse Labs, we see education as a journey.
             <br />
             Whether you're new to blockchain or an experienced developer,
@@ -73,18 +77,24 @@ const Hero = () => {
             and tools for every stage of your growth.
           </p>
         </div>
+
+        {/* Image Section */}
         <div className="flex flex-col items-center">
-          <div className="relative">
-            {/* Imageone at the top */}
+          <div className="relative w-full max-w-xs sm:max-w-md md:max-w-full">
+            {/* Main Image */}
             <div className="flex justify-center">
-              <img src={Imageone} alt="Main Image" className="relative z-10" />
+              <img
+                src={Imageone}
+                alt="Main Image"
+                className="relative z-10 w-full max-w-[300px] sm:max-w-full lg:max-w-[1400px]"
+              />
             </div>
 
-            {/* Box1 behind Imageone */}
+            {/* Box1 behind Main Image */}
             <img
               src={Box1}
               alt="Secondary Image"
-              className="absolute top-0 left-0 z-0"
+              className="absolute top-0 left-0 md:top-0 md:left-10 z-0 w-20 h-20 sm:w-48 sm:h-48 md:w-72 md:h-72"
               style={{ transform: "translate(-20%, -20%)" }}
             />
           </div>
@@ -93,12 +103,14 @@ const Hero = () => {
 
       {/* Section 3: Bootcamp */}
       <section
-        className="px-6 py-20 h-auto sm:px-8 md:px-16 lg:px-24"
+        className="px-6 space-y-10 py-20 h-auto sm:px-8 md:px-16 lg:px-24"
         role="region"
         aria-labelledby="services"
       >
         <header id="services" className="text-center">
-          <h2 className="text-3xl font-semibold text-white">Our Bootcamps</h2>
+          <h2 className="text-3xl font-semibold dark:text-white">
+            Our Bootcamps
+          </h2>
         </header>
 
         <div className="your-container-class">
@@ -107,83 +119,115 @@ const Hero = () => {
       </section>
       {/* Why Choose Us */}
       <section
-        className="px-6 py-20 sm:px-8 md:px-16 lg:px-24 dark:bg-[#131316]"
+        className="px-10 py-10 sm:px-8 md:px-16 lg:px-24 dark:bg-[#131316]"
         role="region"
         aria-labelledby="why-choose-us"
       >
         <header id="why-choose-us" className="text-center">
-          <h2 className="text-3xl font-semibold dark:text-white">
+          <h2 className="text-2xl sm:text-3xl font-semibold dark:text-white">
             More Than Just the Basics
           </h2>
         </header>
-        <div className="flex justify-center">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+        <div className="flex justify-center mt-8 sm:mt-12">
+          <div className="grid grid-cols-1 gap-8 sm:gap-12 sm:grid-cols-2 mt-8">
             {/* Card 1 */}
-            <div className="flex items-start">
-              <img src={Frameone} alt="Icon" className="text-purple-500" />
-              <div className="ml-4">
-                <h3 className="text-xl font-bold dark:text-white">
+            <div className="flex flex-col sm:flex-row items-start">
+              <img
+                src={Frameone}
+                alt="Icon"
+                className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
+              />
+              <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   REAL WORLD EXPERIENCE
                 </h3>
-                <div className="flex items-center space-x-3 mt-2">
-                  <p className="dark:text-gray-300">
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-3 mt-2">
+                  <p className="dark:text-gray-300 text-sm sm:text-base">
                     Apply your skills to solve real-world problems and see
                     immediate results.
                   </p>
-                  <img src={Diamond} alt="Diamond" />
+                  <img
+                    src={Diamond}
+                    alt="Diamond"
+                    className="w-5 h-5 sm:w-auto sm:h-auto"
+                  />
                 </div>
-                <div className="h-1 w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-1 w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 2 */}
-            <div className="flex items-start">
-              <img src={Frametwo} alt="Icon" className="text-purple-500" />
-              <div className="ml-4">
-                <h3 className="text-xl font-bold dark:text-white">
+            <div className="flex flex-col sm:flex-row items-start">
+              <img
+                src={Frametwo}
+                alt="Icon"
+                className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
+              />
+              <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   HANDS-ON LEARNING
                 </h3>
-                <div className="flex items-center space-x-16 mt-2">
-                  <p className="dark:text-gray-300">
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-16 mt-2">
+                  <p className="dark:text-gray-300 text-sm sm:text-base">
                     Dive into projects and learn by doing, transforming theory
                     into practice.
                   </p>
-                  <img src={Diamond} alt="Diamond" />
+                  <img
+                    src={Diamond}
+                    alt="Diamond"
+                    className="w-5 h-5 sm:w-auto sm:h-auto"
+                  />
                 </div>
-                <div className="h-1 w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-1 w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 3 */}
-            <div className="flex items-start">
-              <img src={Framethree} alt="Icon" className="text-purple-500" />
-              <div className="ml-4">
-                <h3 className="text-xl font-bold dark:text-white">
+            <div className="flex flex-col sm:flex-row items-start">
+              <img
+                src={Framethree}
+                alt="Icon"
+                className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
+              />
+              <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   INTERACTIVE LEARNING
                 </h3>
-                <div className="flex items-center space-x-12 mt-2">
-                  <p className="dark:text-gray-300">
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-12 mt-2">
+                  <p className="dark:text-gray-300 text-sm sm:text-base">
                     Engage actively with hands-on activities that bring concepts
                     to life.
                   </p>
-                  <img src={Diamond} alt="Diamond" />
+                  <img
+                    src={Diamond}
+                    alt="Diamond"
+                    className="w-5 h-5 sm:w-auto sm:h-auto"
+                  />
                 </div>
-                <div className="h-1 w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-1 w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 4 */}
-            <div className="flex items-start">
-              <img src={Framefour} alt="Icon" className="text-purple-500" />
-              <div className="ml-4">
-                <h3 className="text-xl font-bold dark:text-white">
+            <div className="flex flex-col sm:flex-row items-start">
+              <img
+                src={Framefour}
+                alt="Icon"
+                className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
+              />
+              <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   COLLABORATIVE LEARNING
                 </h3>
-                <div className="flex items-center space-x-4 mt-2">
-                  <p className="dark:text-gray-300">
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-4 mt-2">
+                  <p className="dark:text-gray-300 text-sm sm:text-base">
                     Collaborate with peers to share insights, tackle challenges,
                     and grow together.
                   </p>
-                  <img src={Diamond} alt="Diamond" />
+                  <img
+                    src={Diamond}
+                    alt="Diamond"
+                    className="w-5 h-5 sm:w-auto sm:h-auto"
+                  />
                 </div>
-                <div className="h-1 w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-1 w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
           </div>
@@ -267,7 +311,7 @@ const Hero = () => {
 
       {/* Testimonials Section */}
       <section
-        className="px-6 py-20 sm:px-8 md:px-16 lg:px-24 "
+        className="px-6 py-20 sm:px-8 md:px-16 lg:px-24"
         role="region"
         aria-labelledby="testimonials"
       >
@@ -279,14 +323,14 @@ const Hero = () => {
 
         <div className="max-w-4xl mx-auto relative">
           {/* Navigation Buttons */}
-          <button className="absolute -left-10 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full">
-            <ChevronLeft className="dark:text-white" size={24} />
+          <button className="absolute -left-4 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full sm:-left-10">
+            <ChevronLeft className="dark:text-white" size={20} sm:size={24} />
           </button>
 
           {/* Testimonial Card */}
-          <div className="dark:bg-black h-60 border border-purple-500 mx-12">
-            <div className="flex gap-6 relative">
-              <div className="w-52 h-[14.8rem] flex-shrink-0">
+          <div className="dark:bg-black border border-purple-500 mx-4 h-auto sm:mx-12 sm:h-60">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 relative">
+              <div className="w-full sm:w-52 h-48 sm:h-[14.8rem] flex-shrink-0">
                 <img
                   src={Testimonial}
                   alt="Testimonial"
@@ -296,16 +340,18 @@ const Hero = () => {
                 <img
                   src={Box1}
                   alt="Secondary Image"
-                  className="absolute w-56 h-60 -top-10 left-0 z-0"
+                  className="absolute w-40 h-40 sm:w-56 sm:h-60 -top-6 sm:-top-10 left-2 sm:left-0 z-0"
                   style={{ transform: "translate(-20%, -20%)" }}
                 />
               </div>
-              <div className="p-3">
-                <p className="text-sm dark:text-gray-400 mb-2">May 8, 2023</p>
-                <h3 className="text-xl font-semibold dark:text-white mb-4">
-                  Person's Full name
+              <div className="p-4 sm:p-6">
+                <p className="text-xs sm:text-sm dark:text-gray-400 mb-2">
+                  May 8, 2023
+                </p>
+                <h3 className="text-lg sm:text-xl font-semibold dark:text-white mb-2 sm:mb-4">
+                  Person's Full Name
                 </h3>
-                <p className="dark:text-gray-300">
+                <p className="text-sm dark:text-gray-300">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
                   nisl mauris, nec turpis orci lectus maecenas. Suspendisse sed
                   magna eget nibh in turpis. Consequat duis diam lacus arcu.
@@ -314,8 +360,8 @@ const Hero = () => {
             </div>
           </div>
 
-          <button className="absolute -right-10 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full">
-            <ChevronRight className="dark:text-white" size={24} />
+          <button className="absolute -right-4 top-1/2 -translate-y-1/2 z-10 bg-purple-600 p-2 rounded-full sm:-right-10">
+            <ChevronRight className="dark:text-white" size={20} sm:size={24} />
           </button>
 
           {/* Testimonial Navigation Dots */}
@@ -443,35 +489,41 @@ const Hero = () => {
       </section>
 
       {/* Section 8: Subscribe */}
-      <section className="w-full flex justify-center items-center dark:text-white h-96 mx-auto p-6 dark:bg-[#1F1E23] ">
-        <div className="space-y-7">
-          <h2 className="text-2xl font-semibold text-white text-center">
+      <section className="w-full flex justify-center items-center dark:text-white h-auto sm:h-96 mx-auto p-4 sm:p-6 dark:bg-[#1F1E23]">
+        <div className="space-y-5 sm:space-y-7 max-w-lg sm:max-w-none">
+          <h2 className="text-xl sm:text-2xl font-semibold dark:text-white text-center">
             Subscribe to Our Newsletter
           </h2>
           <div className="-space-y-1">
-          <p className="text-gray-300 text-center text-sm">
-            Stay ahead in the world of blockchain! Get the latest updates,
-            insights, 
-          </p>
-          <p className="text-gray-300 text-center text-sm">
-          and exclusive resources from BlockTate Labs delivered
-          straight to your inbox. Don't miss out—subscribe today!
-          </p>
+            <p className="dark:text-gray-300 text-center text-sm">
+              Stay ahead in the world of blockchain! Get the latest updates,
+              insights,
+            </p>
+            <p className="dark:text-gray-300 text-center text-sm">
+              and exclusive resources from BlockTate Labs delivered straight to
+              your inbox. Don't miss out—subscribe today!
+            </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3 ">
+          <form onSubmit={handleSubmit} className="space-y-3">
             <div className="flex justify-center">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your Email here"
-                className="w-[800px] px-4 py-2 bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+                className="w-full sm:w-[800px] px-4 py-2 dark:bg-gray-800 border border-gray-700 dark:text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
                 required
               />
             </div>
             <div className="flex justify-center">
-              <Button type="submit" style={{ width: "800px" }}>
+              <Button
+                type="submit"
+                style={{
+                  width: "100%",
+                  maxWidth: "800px",
+                }}
+              >
                 Subscribe
               </Button>
             </div>
