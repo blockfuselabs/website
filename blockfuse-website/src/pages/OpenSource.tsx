@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Users, Star, ChevronLeft, ChevronRight, Newspaper, Github, Book, Globe } from 'lucide-react';
+import { Users, Star, ChevronLeft, ChevronRight, Newspaper, Book, Globe } from 'lucide-react';
+import { LuGithub } from "react-icons/lu";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -28,7 +29,7 @@ const getIcon = (tag) => {
     case 'blog':
       return <Newspaper size={16} className="mr-1" />;
     case 'github':
-      return <Github size={16} className="mr-1" />;
+      return <LuGithub size={16} className="mr-1" />;
     case 'docs':
       return <Book size={16} className="mr-1" />;
     case 'website':
@@ -55,9 +56,9 @@ const OpenSource = () => {
 
   return (
     <div className="min-h-screen dark:text-white">
-      <div className="px-6 py-36 h-full sm:px-8 md:px-16 lg:px-24">
+      <div className="px-6 py-12 h-full sm:px-8 md:px-16 lg:px-24">
         {/* Header */}
-        <h1 className="text-4xl font-bold text-center mb-16">Open source</h1>
+        <h1 className="text-4xl text-center mb-16">Open source</h1>
 
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-7xl mx-auto">
