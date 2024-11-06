@@ -17,7 +17,7 @@ const Footer = () => {
     { label: "Contact us", href: "#" },
   ];
 
-  // Array of profile images
+
   const profiles = Array(9)
     .fill(null)
     .map((_, index) => ({
