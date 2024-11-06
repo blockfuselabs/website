@@ -1,0 +1,21 @@
+<svg width="711" height="652" viewBox="0 0 711 652" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g style="mix-blend-mode:hard-light">
+<circle cx="365" cy="326" r="326" fill="url(#paint0_radial_939_7741)"/>
+</g>
+<rect x="557.126" y="33.5771" width="304.922" height="642.127" rx="152.461" transform="rotate(60 557.126 33.5771)" stroke="url(#paint1_linear_939_7741)"/>
+<rect x="557.126" y="33.5771" width="304.922" height="642.127" rx="152.461" transform="rotate(60 557.126 33.5771)" stroke="url(#paint2_linear_939_7741)"/>
+<defs>
+<radialGradient id="paint0_radial_939_7741" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(567.5 216.5) rotate(114.938) scale(480.278)">
+<stop stop-color="#BF64E7"/>
+<stop offset="1" stop-color="#4E2EF5" stop-opacity="0"/>
+</radialGradient>
+<linearGradient id="paint1_linear_939_7741" x1="640.639" y1="621.678" x2="861.553" y2="-21.7156" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint2_linear_939_7741" x1="557.309" y1="354.458" x2="863.231" y2="354.458" gradientUnits="userSpaceOnUse">
+<stop stop-color="#BF64E7"/>
+<stop offset="1" stop-color="#4E2EF5"/>
+</linearGradient>
+</defs>
+</svg>
