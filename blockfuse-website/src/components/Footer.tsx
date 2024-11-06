@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
 import Button from "./Buttons";
+import Logo from '../assets/images/blockfuse-logo.png'
 
 const Footer = () => {
   const navigationLinks = [
@@ -29,68 +30,68 @@ const Footer = () => {
       <div className="border-b bg-[#f5f5f5] dark:bg-[#1a1a1a] border-gray-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 text-center">
           <h2 className="text-3xl font-semibold mb-2">Join our Community</h2>
-          <p className="text-gray-400 mb-8">
+          <p className="dark:text-gray-400 mb-8">
             Become part of a thriving network of blockchain enthusiasts and
             professionals.
           </p>
 
           {/* Logo Circle */}
           <div className="w-20 h-20 rounded-full bg-purple-600/10 border border-purple-500 mx-auto mb-8 flex items-center justify-center">
-            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">Logo</span>
+            <div className="w-8 h-8flex items-center justify-center">
+            <img src={Logo} alt="Blockfuse Logo" />
             </div>
           </div>
+{/* Profile Images */}
+<div className="mb-12 py-8 overflow-hidden hidden sm:block">
+  <div className="flex justify-center items-center -space-x-4 px-4">
+    {profiles.map((profile, index) => {
+      const centerIndex = Math.floor(profiles.length / 2); // Find center image
+      const distanceFromCenter = Math.abs(centerIndex - index);
+      const scale = 1 + (centerIndex - distanceFromCenter) * 0.1;
+      const translateX =
+        index === centerIndex
+          ? 0
+          : index < centerIndex
+          ? -(centerIndex - index) * 8
+          : (index - centerIndex) * 8;
 
-          {/* Profile Images */}
-          <div className="mb-12 py-8 overflow-hidden hidden sm:block">
-            <div className="flex justify-center items-center -space-x-4 px-4">
-              {profiles.map((profile, index) => {
-                const centerIndex = Math.floor(profiles.length / 2);
-                const distanceFromCenter = Math.abs(centerIndex - index);
-                // Adjust the scale to make the last items slightly larger
-                const scale = 1 + (centerIndex - distanceFromCenter) * 0.1;
-                // Adjust translateX to control spacing more accurately
-                const translateX =
-                  index === centerIndex
-                    ? 0
-                    : index < centerIndex
-                    ? -(centerIndex - index) * 8
-                    : (index - centerIndex) * 8;
-                // Adjust z-index to control depth
-                let zIndex;
-                if (index === centerIndex) {
-                  zIndex = 20;
-                } else if (Math.abs(index - centerIndex) === 1) {
-                  zIndex = 18;
-                } else {
-                  zIndex =
-                    20 + (centerIndex - Math.abs(centerIndex - index)) * 2;
-                }
-                return (
-                  <div
-                    key={profile.id}
-                    className={`relative group z-${zIndex}`}
-                    style={{
-                      transform: `translateX(${translateX}px) scale(${scale})`,
-                    }}
-                  >
-                    {/* Border and image container */}
-                    <div className="relative w-16 h-16 lg:w-28 lg:h-28 rounded-full border-4 border-purple-500 overflow-hidden">
-                      <img
-                        src={profile.image}
-                        alt={`Community member ${index + 1}`}
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+      // Adjust `zIndex` so that only images adjacent to the center are underneath
+      let zIndex;
+      if (index === centerIndex) {
+        zIndex = 20; // Center image on top
+      } else if (Math.abs(index - centerIndex) === 1) {
+        zIndex = 18; // Adjacent images underneath
+      } else {
+        zIndex = 15; // Remaining images further back
+      }
+
+      return (
+        <div
+          key={profile.id}
+          className="relative group"
+          style={{
+            zIndex,
+            transform: `translateX(${translateX}px) scale(${scale})`,
+          }}
+        >
+          {/* Border and image container */}
+          <div className="relative w-16 h-16 lg:w-28 lg:h-28 rounded-full border-4 border-purple-500 overflow-hidden">
+            <img
+              src={profile.image}
+              alt={`Community member ${index + 1}`}
+              className="w-full h-full object-contain"
+            />
           </div>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
 
           {/* Telegram Button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="text-gray-400">Connect with us on Telegram</span>
+            <span className="dark:text-gray-400">Connect with us on Telegram</span>
 
             <a
               href="#"
@@ -104,15 +105,18 @@ const Footer = () => {
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Logo and Contact Section */}
-        <div className="flex flex-col items-center sm:flex-row sm:items-center mb-8">
-          <div className="flex items-center justify-center gap-2 flex-col mb-4 sm:mb-0 mx-auto">
-            <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center mr-0 sm:mr-3">
-              <span className="text-white font-bold">Logo</span>
-            </div>
-            <span className="text-sm text-center">block.hustle@gmail.com</span>
-          </div>
-        </div>
+       {/* Logo and Contact Section */}
+<div className="flex flex-col items-center sm:flex-row sm:items-center mb-8">
+  <div className="flex flex-col  items-center sm:flex-col sm:items-center sm:justify-start mb-4 sm:mb-0 sm:ml-0 mx-auto sm:mx-0">
+    {/* Logo container */}
+    <div className="w-8 h-8 flex items-center justify-center mr-0 sm:mr-3">
+      <img src={Logo} alt="Blockfuse Logo" />
+    </div>
+    {/* Email text */}
+    <span className="text-sm text-center sm:text-left">blockfuse@gmail.com</span>
+  </div>
+</div>
+
 
         {/* Navigation Links */}
         <nav className="mb-8 flex gap-3 items-center justify-center flex-col sm:flex-row sm:justify-between">
@@ -160,7 +164,7 @@ const Footer = () => {
                 Terms & Conditions
               </a>
             </div>
-            <span className="text-gray-500">
+            <span className="dark:text-gray-500">
               All Copyright (C) 2024 Reserved
             </span>
           </div>
