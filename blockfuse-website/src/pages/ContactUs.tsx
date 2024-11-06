@@ -1,8 +1,36 @@
+import { MoveRight } from 'lucide-react'
 import React from 'react'
+import Button from '../components/Buttons'
 
 const ContactUs = () => {
   return (
  <div className="px-6 h-full sm:px-8 md:px-16 lg:px-24">
+
+<section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
+        {/* Background Image */}
+        <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
+          <img
+            src="/src/assets/svgs/circles.svg"
+            alt="Background illustration representing blockchain technology"
+            width="800"
+            height="400"
+            loading="lazy"
+            className="w-full h-auto max-w-[800px]"
+          />
+        </div>
+
+        {/* Text Content */}
+        <div className="relative text-center z-10">
+          <header>
+            <h1 className="text-5xl md:text-6xl dark:text-white">
+              Contact{" "}
+              <span className="text-purple-500 font-bold">Blockfuse Labs</span>
+            </h1>
+          </header>
+        </div>
+      </section>
+
+  
   <div className="flex flex-col md:flex-row gap-8 p-6 dark:text-white  rounded-lg shadow-md">
   {/* Contact Info */}
   <div className="flex flex-col items-start p-4 dark:text-white rounded-md">
