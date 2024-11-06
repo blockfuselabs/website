@@ -94,7 +94,7 @@ const Footer = () => {
             <span className="dark:text-gray-400">Connect with us on Telegram</span>
 
             <a
-              href="#"
+              href="https://t.me/blockfuselabs"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-6 py-2 transition-all duration-200"
             >
               Join our Community →
@@ -140,16 +140,16 @@ const Footer = () => {
         {/* Social Links and Copyright */}
         <div className="flex flex-col sm:flex-row justify-between bg-gray-100 dark:bg-[#2F2E34] border  dark:border-zinc-800 items-center py-3 border-t">
           <div className="flex gap-4 mb-4 sm:mb-0 py-2 px-4">
-            <a href="#" className="hover:text-purple-400 transition-colors">
+            <a href="https://www.facebook.com/profile.php?id=61562117006926&mibextid=ZbWKwL" className="hover:text-purple-400 transition-colors">
               <Facebook size={20} />
             </a>
-            <a href="#" className="hover:text-purple-400 transition-colors">
+            <a href=" https://x.com/blockfuselabs" className="hover:text-purple-400 transition-colors">
               <Twitter size={20} />
             </a>
-            <a href="#" className="hover:text-purple-400 transition-colors">
+            <a href="https://www.instagram.com/blockfuselabs" className="hover:text-purple-400 transition-colors">
               <Instagram size={20} />
             </a>
-            <a href="#" className="hover:text-purple-400 transition-colors">
+            <a href="https://www.youtube.com/@blockfuselabs" className="hover:text-purple-400 transition-colors">
               <Youtube size={20} />
             </a>
           </div>
