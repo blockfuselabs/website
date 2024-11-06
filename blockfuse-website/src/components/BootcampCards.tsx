@@ -6,10 +6,10 @@ import Web3 from "../assets/images/web3-bg.jpeg"
 
 const StyledCards = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2  p-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
       {/* Card 1 */}
      {/* Card 1 */}
-<div className="dark:bg-black sm:mx-28 h-auto sm:h-[650px] sm:w-[700px] border border-purple-500 shadow-lg overflow-hidden">
+<div className="dark:bg-black h-auto sm:h-[650px]  border border-purple-500 shadow-lg overflow-hidden">
   <div
     className="h-40 sm:h-60 bg-cover dark:bg-black m-3 sm:m-5 bg-center"
     style={{ backgroundImage: `url(${Web2})` }}
@@ -34,7 +34,7 @@ const StyledCards = () => {
 </div>
 
 {/* Card 2 */}
-<div className="dark:bg-black h-auto sm:h-[650px] sm:w-[700px] border border-purple-500 shadow-lg overflow-hidden">
+<div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
   <div
     className="h-40 sm:h-60 m-3 sm:m-5 bg-cover bg-center"
     style={{ backgroundImage: `url(${Web3})` }}
