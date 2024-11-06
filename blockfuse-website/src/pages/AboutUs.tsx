@@ -3,7 +3,7 @@ import Alumnicohorts from '../components/Alumnicohorts'
 
 const AboutUs = () => {
   return (
-  <div className="px-6 py-10 h-auto dark:text-white sm:px-8 md:px-16 lg:px-24">
+  <div className="px-6 h-auto dark:text-white sm:px-8 md:px-16 lg:px-24">
     <div className="flex items-center justify-center min-h-screen relative">
       {/* Background Image */}
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
