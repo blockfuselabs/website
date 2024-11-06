@@ -2,27 +2,11 @@ import React from 'react'
 
 const AboutBootcamp = () => {
   return (
-    <div className="px-6 py-36 h-full gap-8 mb-[900px] sm:px-8 md:px-16 lg:px-24">
+    <div className="dark:text-white px-6 py-36 h-full gap-8 mb-[900px] sm:px-8 md:px-16 lg:px-24">
         <div className='w-[1040px] h-auto absolute top-[209px] mb-8 gap-8'>
             <h1 className='h-[178px] font-space-grotesk text-[70px] font-normal leading-[89.32px] text-center'>Where Future <span className='font-space-grotesk text-[70px] font-bold leading-[89.32px] text-center'>Blockchain</span> Leaders Are Made</h1>
             <p className='w-[819px] h-[114px] font-space-grotesk text-[30px] ml-[100px] font-light leading-[38.28px] text-center'>Unlock the skills to lead in Web2 and Web3 development through hands-on training, mentorship, and real-world projects.</p>
         </div>
-        {/* <div className='w-[1440px] h-[866px] absolute top-[571px] p-[86px_8px_86px_8px] mb-16 gap-[72px] text-center'>
-            <h3 className='h-[51px] font-space-grotesk text-[40px] font-normal leading-[51.04px]'>Our Bootcamps</h3>
-            <div className='flex w-[1424px] h-[571px] gap-[26px]'>
-                <div className='w-[574px] h-[472px] gap-[61px] border-t-2'>
-                    <div>Web2 For Web3</div>
-                    <p className='w-[558px] h-[156px] font-space-grotesk text-20px font-light leading-[25.52px] text-center'>Learn the essentials of modern web development in HTML, CSS, Tailwind css, JavaScript and React/Nodejs. This program guides you through creating interactive, responsive websites, providing the skills and confidence to start building real-world projects. Perfect for beginners ready to launch their web journey!</p>
-                    <button>Apply now</button>
-                    
-                </div>
-                <div className='w-[574px] h-[507px]  gap-[61px] border-t-2'>
-                    <div>Web3</div>
-                    <p className='w-[558px] h-[156px] font-space-grotesk text-[20px] font-light leading-[25.52px] text-center'>Unlock the future of the internet with our Web3 Bootcamp! Learn blockchain fundamentals, smart contracts, and dApps to build decentralized applications. Ideal for beginners eager to explore Web3 technology and launch into the world of blockchain development!</p>
-                    <button>Apply now</button>
-                </div>
-            </div>
-        </div> */}
 
         <div className="text-center text-white pt-20 mt-[230px] max-w-5xl px-4">
             <h2 className="text-2xl text-black font-normal mb-10">Our Bootcamps</h2>
