@@ -1,43 +1,29 @@
 import { MoveRight } from 'lucide-react'
 import React from 'react'
 import Button from '../components/Buttons'
+import logo from "../assets/images/blockfuse-logo.png"
 
 const ContactUs = () => {
   return (
  <div className="px-6 h-full sm:px-8 md:px-16 lg:px-24">
 
-<section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
-        {/* Background Image */}
-        <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
-          <img
-            src="/src/assets/svgs/circles.svg"
-            alt="Background illustration representing blockchain technology"
-            width="800"
-            height="400"
-            loading="lazy"
-            className="w-full h-auto max-w-[800px]"
-          />
-        </div>
-
-        {/* Text Content */}
-        <div className="relative text-center z-10">
+   {/* Text Content */}
+   <div className="relative text-center z-10">
           <header>
-            <h1 className="text-5xl md:text-6xl dark:text-white">
+            <h1 className="text-2xl md:text-3xl dark:text-white">
               Contact{" "}
               <span className="text-purple-500 font-bold">Blockfuse Labs</span>
             </h1>
           </header>
         </div>
-      </section>
-
-  
+ 
   <div className="flex flex-col md:flex-row gap-8 p-6 dark:text-white  rounded-lg shadow-md">
   {/* Contact Info */}
   <div className="flex flex-col items-start p-4 dark:text-white rounded-md">
     <div className="flex items-center mb-4">
-      <div className="bg-purple-500 p-2 rounded-full">
+      <div className=" p-2 rounded-full">
         {/* Placeholder for Logo */}
-        <span className="text-white font-bold">Logo here</span>
+        <img src={logo} alt="Blockfuse Labs Logo" className="h-10 w-auto" />
       </div>
     </div>
     <p className="text-sm text-gray-600 dark:text-gray-300 mb-2">
@@ -47,13 +33,7 @@ const ContactUs = () => {
       <span className="font-semibold">Phone:</span> +234 -000-000-000
     </p>
     {/* Social Media Icons */}
-    <div className="flex space-x-4 text-purple-500 dark:text-purple-400">
-      {/* Placeholder for icons */}
-      <span>🔗</span>
-      <span>🔗</span>
-      <span>🔗</span>
-      <span>🔗</span>
-    </div>
+    
   </div>
 
   {/* Contact Form */}
