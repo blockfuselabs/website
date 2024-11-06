@@ -144,6 +144,7 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen  px-6 py-12 sm:px-8 md:px-16 lg:px-24">
+        <h1 className="text-4xl dark:text-white text-center mb-16">Open source</h1>
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {currentPosts.map((post) => (
         <div
