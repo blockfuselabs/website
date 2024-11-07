@@ -1,15 +1,27 @@
 const { Alumni, Cohort } = require('../models');
 const { Op } = require('sequelize')
+const path=require('path');
+const fs=require('fs');
+const cloudinary = require('../config/cloudinaryConfig');
 
 class AlumniController {
     static async addAlumni(req, res) {
         try {
-            const { cohort_id, fullname, major, github_link, linkedin_link } = req.body;
+            const { cohort_id, fullname, github_link, linkedin_link } = req.body;
 
-            if (!fullname || !major) {
+            if (!fullname) {
                 return res.status(400).json({
                     error: "Validation failed",
                     message: "All fields are required."
+                });
+            }
+
+            const cohort = await Cohort.findByPK(cohort_id);
+
+            if(!cohort) {
+                return res.status(404).json({
+                    error: "Not Found",
+                    message: "Cohort not found,"
                 });
             }
 
@@ -39,7 +51,7 @@ class AlumniController {
     static async updateAlumni(req, res) {
         try {
             const { id } = req.params;
-            const { fullname, major, github_link, linkedin_link } = req.body;
+            const { fullname, github_link, linkedin_link } = req.body;
 
             const alumni = await Alumni.findOne({
                 where: { id }
@@ -52,10 +64,8 @@ class AlumniController {
                 });
             }
 
-
             await alumni.update({
                 fullname: fullname || alumni.fullname,
-                major: major || alumni.major,
                 github_link: github_link || alumni.github_link, 
                 linkedin_link: linkedin_link || alumni.linkedin_link 
             });
@@ -64,7 +74,6 @@ class AlumniController {
                 message: "Alumni updated successfully.",
                 alumni: alumni.toJSON()
             });
-
 
         } catch (error) {
             console.error(error)
@@ -187,7 +196,6 @@ class AlumniController {
                 error: "Unable to retrieve an alumni.",
                 message: error.message
             });
-
         }
     }
 }

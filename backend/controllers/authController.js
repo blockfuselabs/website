@@ -7,7 +7,7 @@ const SALT_ROUNDS = 10;
 class AuthController {
   static async register(req, res) {
     try {
-      const { fullname, email, phone, password, role_id } = req.body;
+      const { fullname, email, phone, password } = req.body;
 
       if (!fullname || !email || !password) {
         return res.status(400).json({ 
@@ -39,7 +39,7 @@ class AuthController {
         email,
         phone,
         password: hashedPassword,
-        role_id,
+        role_id: 4,
       });
 
       const userResponse = { ...user.toJSON() };

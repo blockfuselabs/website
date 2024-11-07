@@ -1,15 +1,12 @@
 const { Article, Team } = require('../models');
 const { Op, where } = require('sequelize');
-const path = require('path');
-const fs = require('fs');
-//const { toTwos } = require('ethers');
-const { timeLog } = require('console');
-
+const path=require('path');
+const fs=require('fs');
+const cloudinary = require('../config/cloudinaryConfig');
 
 class ArticleController {
 
   static async create(req, res) {
-
     
     try {
       const slug_package = (await import('slug')).default;
@@ -19,35 +16,52 @@ class ArticleController {
         body:
         {
           title,
-          content,
-          image,
+          content
         },
      
       } = req;
       // Custom validations
       if(!title || !content){
         return res.status(400).json({
-          message: "Artcile not Created",
+          message: "Article not created",
           error: "All Field are required"
         });
       }
 
       if(title.trim().length < 5 || title.trim() > 255 ){
         return res.status(400).json({
-          message:"Could  not update aritcle",
+          message:"Article not created",
           error: "Title must be between 5 and 255 characters"
         });
       }
 
       if(content.trim().length< 255){
         return res.status(400).json({
-          error:"Could not update Article",
+          error:"Article not created",
           message: "Article is less than 255 characters"
         })
       }
       
       const author_id = req.user.id;
-       const imagePath = req.file ? req.file.path : null; 
+      let imagePath = null;
+
+      if (req.file) {
+        
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+        
+        const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+          resource_type: 'image',
+          folder: 'articles'
+        });
+        imagePath = cloudinaryResponse.secure_url;
+      } else {
+        return res.status(400).json({
+          error: 'Article not created',
+          message: 'Please upload a featured image for the article',
+        });
+      }
+
       const article = await Article.create(
         {
           author_id,
@@ -180,6 +194,7 @@ class ArticleController {
       });
     }
   }
+  
   static async update(req, res){
 
     const {id} = req.params;

@@ -1,27 +1,7 @@
-// config/uploadConfig.js
 const multer = require('multer');
 const path = require('path');
-const fs = require('fs');
 
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-
-    const dir = `uploads/images/${year}/${month}/`;
-
-    fs.mkdirSync(dir, { recursive: true });
-
-    cb(null, dir); 
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.random().toString(36).substr(2, 9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  }
-});
-
+const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {
   const allowedTypes = /jpg|jpeg|png|gif/; 
@@ -35,7 +15,6 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
-
 const upload = multer({
   storage: storage,
   fileFilter: fileFilter,
@@ -44,4 +23,4 @@ const upload = multer({
   }
 });
 
-module.exports = upload; 
+module.exports = upload;
