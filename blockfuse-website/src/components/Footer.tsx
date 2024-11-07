@@ -1,5 +1,6 @@
 import React from "react";
-import { Facebook, Twitter, Instagram, Youtube } from "lucide-react";
+import { SlSocialFacebook, SlSocialInstagram, SlSocialYoutube,  } from "react-icons/sl";
+import { RiTwitterXFill } from "react-icons/ri";
 import Button from "./Buttons";
 import Logo from '../assets/images/blockfuse-logo.png'
 
@@ -16,7 +17,7 @@ const Footer = () => {
     { label: "Contact us", href: "#" },
   ];
 
-  // Array of profile images
+
   const profiles = Array(9)
     .fill(null)
     .map((_, index) => ({
@@ -45,7 +46,7 @@ const Footer = () => {
 <div className="mb-12 py-8 overflow-hidden hidden sm:block">
   <div className="flex justify-center items-center -space-x-4 px-4">
     {profiles.map((profile, index) => {
-      const centerIndex = Math.floor(profiles.length / 2); // Find center image
+      const centerIndex = Math.floor(profiles.length / 2); 
       const distanceFromCenter = Math.abs(centerIndex - index);
       const scale = 1 + (centerIndex - distanceFromCenter) * 0.1;
       const translateX =
@@ -55,14 +56,14 @@ const Footer = () => {
           ? -(centerIndex - index) * 8
           : (index - centerIndex) * 8;
 
-      // Adjust `zIndex` so that only images adjacent to the center are underneath
+     
       let zIndex;
       if (index === centerIndex) {
-        zIndex = 20; // Center image on top
+        zIndex = 20; 
       } else if (Math.abs(index - centerIndex) === 1) {
-        zIndex = 18; // Adjacent images underneath
+        zIndex = 18; 
       } else {
-        zIndex = 15; // Remaining images further back
+        zIndex = 15; 
       }
 
       return (
@@ -141,16 +142,16 @@ const Footer = () => {
         <div className="flex flex-col sm:flex-row justify-between bg-gray-100 dark:bg-[#2F2E34] border  dark:border-zinc-800 items-center py-3 border-t">
           <div className="flex gap-4 mb-4 sm:mb-0 py-2 px-4">
             <a href="https://www.facebook.com/profile.php?id=61562117006926&mibextid=ZbWKwL" className="hover:text-purple-400 transition-colors">
-              <Facebook size={20} />
+              <SlSocialFacebook size={20} />
             </a>
             <a href=" https://x.com/blockfuselabs" className="hover:text-purple-400 transition-colors">
-              <Twitter size={20} />
+              <RiTwitterXFill size={20} />
             </a>
             <a href="https://www.instagram.com/blockfuselabs" className="hover:text-purple-400 transition-colors">
-              <Instagram size={20} />
+              <SlSocialInstagram size={20} />
             </a>
             <a href="https://www.youtube.com/@blockfuselabs" className="hover:text-purple-400 transition-colors">
-              <Youtube size={20} />
+              <SlSocialYoutube size={20} />
             </a>
           </div>
 
