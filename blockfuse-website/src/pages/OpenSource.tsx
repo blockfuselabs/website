@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Users, Star, ChevronLeft, ChevronRight, Newspaper, Book, Globe } from 'lucide-react';
 import { LuGithub } from "react-icons/lu";
+import Frame3869 from "../assets/images/Frame-3869.png"
 
 const ITEMS_PER_PAGE = 6;
 
@@ -68,7 +69,7 @@ const OpenSource = () => {
              
                 <div className="w-1/3">
                   <img
-                    src="/src/assets/images/Frame-3869.png"
+                    src={Frame3869}
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />

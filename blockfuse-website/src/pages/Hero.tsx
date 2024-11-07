@@ -11,6 +11,7 @@ import Framefour from "../assets/svgs/Frame-3701.svg";
 import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
 import TestimonialsSection from "../components/TestimonialCarousel";
+import Circles from "../assets/svgs/circles.svg"
 
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -26,7 +27,7 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
-            src="/src/assets/svgs/circles.svg"
+            src={Circles}
             alt="Background illustration representing blockchain technology"
             width="800"
             height="400"
@@ -368,7 +369,7 @@ const Hero = () => {
           </p>
           <p className="mt-2 dark:text-gray-400">
             Please chat with our friendly team, or{" "}
-            <a href="#" className="text-purple-700 underline">
+            <a href="https://t.me/blockfuselabs" target="_blank" className="text-purple-700 underline">
               reach out to us on our Telegram channel here.
             </a>
           </p>

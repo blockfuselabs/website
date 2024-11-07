@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Button from '../components/Buttons';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import Circles from "../assets/svgs/circles.svg"
+import Event1 from "../assets/images/event1.png"
+import Event2 from "../assets/images/event1.png"
+import Event3 from "../assets/images/event1.png"
 
 const EventsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -13,21 +17,21 @@ const EventsPage = () => {
         id: 1,
         title: "Ripple Effects: Wallet Integration and Innovation",
         date: "April 28, 2024",
-        image: "/src/assets/images/event1.png",
+        image: Event1,
         description: "Lorem ipsum dolor sit amet consectetur. Faucibus enim eleifend pretium massa risus orci dignissim. In et ornare ullamcorper.",
       },
       {
         id: 2,
         title: "Bitcoin Development Workshop",
         date: "April 28, 2024",
-        image: "/src/assets/images/event2.png",
+        image: Event2,
         description: "Lorem ipsum dolor sit amet consectetur. Faucibus enim eleifend pretium massa risus orci dignissim. In et ornare ullamcorper.",
       },
       {
         id: 3,
         title: "Binance Trading Masterclass",
         date: "April 28, 2024",
-        image: "/src/assets/images/event2.png",
+        image: Event3,
         description: "Lorem ipsum dolor sit amet consectetur. Faucibus enim eleifend pretium massa risus orci dignissim. In et ornare ullamcorper.",
       },
     ],
@@ -36,14 +40,14 @@ const EventsPage = () => {
         id: 4,
         title: "Web3 Summit 2023",
         date: "December 15, 2023",
-        image: "/src/assets/images/event1.png",
+        image: Event1,
         description: "Lorem ipsum dolor sit amet consectetur. Faucibus enim eleifend pretium massa risus orci dignissim. In et ornare ullamcorper.",
       },
       {
         id: 5,
         title: "DeFi Conference",
         date: "November 20, 2023",
-        image: "/src/assets/images/event2.png",
+        image: Event3,
         description: "Lorem ipsum dolor sit amet consectetur. Faucibus enim eleifend pretium massa risus orci dignissim. In et ornare ullamcorper.",
       },
     ]
@@ -67,7 +71,7 @@ const EventsPage = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
-            src="/src/assets/svgs/circles.svg"
+            src={Circles}
             alt="Background illustration representing blockchain technology"
             width="800"
             height="400"
