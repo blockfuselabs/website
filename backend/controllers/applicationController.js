@@ -17,7 +17,6 @@ class ApplicationController {
             application_type 
         } = req.body;
 
-
         const applictaion = await Application.create({
             fullname, 
             email, 
