@@ -1,4 +1,4 @@
-const { Application } = require('../models/application');
+const { Application } = require('../models');
 const { Op } = require('sequelize');
 
 class ApplicationController {
@@ -81,7 +81,7 @@ class ApplicationController {
             });
 
         } catch (error) {
-            
+
             console.error('Error:', error);
 
             res.status(500).json({
@@ -123,50 +123,81 @@ class ApplicationController {
         }
     }
 
-  static async store(req, res) {
-    try {
-      
-        const { 
-            fullname, 
-            email, 
-            phone, 
-            gender, 
-            residential_address, 
-            country, 
-            state, 
-            referral_source, 
-            application_type 
-        } = req.body;
+    static async store(req, res) {
+        try {
+        
+            const { 
+                fullname, 
+                email, 
+                phone, 
+                gender, 
+                residential_address, 
+                country, 
+                state, 
+                referral_source, 
+                application_type 
+            } = req.body;
 
-        const applictaion = await Application.create({
-            fullname, 
-            email, 
-            phone, 
-            gender, 
-            residential_address, 
-            country, 
-            state, 
-            referral_source, 
-            application_type
-        });
+            const applictaion = await Application.create({
+                fullname: fullname.toLowerCase(), 
+                email, 
+                phone, 
+                gender: gender.toLowerCase(), 
+                residential_address: residential_address.toLowerCase(), 
+                country: country.toLowerCase(), 
+                state: state.toLowerCase(), 
+                referral_source: referral_source.toLowerCase(), 
+                application_type: application_type.toLowerCase()
+            });
 
-        const applictaionResponse = { ...applictaion.toJSON() };
-            res.status(201).json({ 
-            message: 'applictaion was submitted successfully!', 
-            applictaion: applictaionResponse 
-        });
+            const applictaionResponse = { ...applictaion.toJSON() };
+                res.status(201).json({ 
+                message: 'applictaion was submitted successfully!', 
+                applictaion: applictaionResponse 
+            });
 
-    } catch (error) {
+        } catch (error) {
 
-        console.error('Error:', error);
+            console.error('Error:', error);
 
-        res.status(500).json({ 
-        error: 'Unable to submit applictaion.', 
-        details: error.message 
-        });
+            res.status(500).json({ 
+            error: 'Unable to submit applictaion.', 
+            details: error.message 
+            });
+        }
     }
-  }
 
+    static async delete(req, res) {
+        try {
+          const { id } = req.params;
+          
+          const application = await Application.findOne({
+            where: { id }
+          });
+    
+          if (!application) {
+            return res.status(404).json({
+              error: 'Not found',
+              details: 'application not found.'
+            });
+          }
+    
+          await application.destroy();
+    
+          res.status(200).json({
+            message: 'application deleted successfully.'
+          });
+          
+        } catch (error) {
+
+            console.error('Error:', error);
+
+            res.status(500).json({
+            error: 'Unable to delete application.',
+            details: error.message
+            });
+        }
+    }
 }
 
 module.exports = ApplicationController;
