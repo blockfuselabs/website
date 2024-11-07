@@ -4,6 +4,15 @@ import item1 from "../assets/images/Rectangle2.png";
 import item2 from "../assets/images/Rectangle1.png";
 import item3 from "../assets/images/Rectangle4.png";
 import item4 from "../assets/images/Rectangle3.png";
+import team4 from "../assets/images/team1.png";
+import team2 from "../assets/images/team2.png";
+import team3 from "../assets/images/team3.png";
+import team1 from "../assets/images/team4.png";
+
+
+
+
+
 
 export const images = [
   {
@@ -41,7 +50,7 @@ export const images = [
   {
     name: "Mr.Mano",
     stack: "PM",
-    image: item1,
+    image: team1,
     twitter:"twitter",
     github: "github", 
     linkdin: "linkdin", 
@@ -49,7 +58,7 @@ export const images = [
   {
     name: "Mr.Mitong",
     stack: "Legal Officer",
-    image: item2,
+    image: team2,
     twitter:"twitter",
     github: "github",  
     linkdin: "linkdin", 
@@ -57,7 +66,7 @@ export const images = [
   {
     name: "Mr. Lucky",
     stack: "Engineer",
-    image: item3,
+    image: team3,
     twitter:"twitter",
     github: "github",  
     linkdin: "linkdin", 
@@ -65,7 +74,7 @@ export const images = [
   {
     name: "Mr. KC",
     stack: "Engineer",
-    image: item4,
+    image: team4,
     twitter:"twitter",
     github: "github", 
     linkdin: "linkdin", 
