@@ -2,11 +2,27 @@ require('dotenv').config();
 
 module.exports = {
   development: {
-    username: "root",
-    password: process.env.DB_PASS, // Access the environment variable
-    database: process.env.DB_NAME,  // Access the environment variable
-    port: 3306,
-    host: "127.0.0.1",
-    dialect: "mysql"
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
+  },
+  test: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
+  },
+  production: {
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT
   },
 };
