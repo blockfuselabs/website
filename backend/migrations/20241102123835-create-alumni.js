@@ -21,8 +21,9 @@ module.exports = {
       fullname: {
         type: Sequelize.STRING
       },
-      major: {
-        type: Sequelize.STRING
+      image: {
+        type: Sequelize.STRING,
+        allowNull: false
       },
       github_link: {
         type: Sequelize.STRING,
