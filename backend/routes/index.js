@@ -44,6 +44,7 @@ router.put('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.upda
 router.delete('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.delete);
 router.get('/team/',   TeamController.getAll);
 router.get('/team/:id', TeamController.getById);
+router.get('/team/articles/:identifier', ArticleController.getUserArticles)
 
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, upload.single('image'), ArticleController.create);

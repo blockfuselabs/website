@@ -9,11 +9,11 @@ class TeamController {
   static async add(req, res) {
     try {
       
-      const slug = (await import(slug)).default;
+      const slug = (await import('slug')).default;
 
       const { fullname, position, about, image } = req.body;
 
-      if (!fullname || !position || !about || !image || !slug) {
+      if (!fullname || !position || !about || !image) {
         return res.status(400).json({ 
           error: 'Validation failed', 
           details: 'All fields are required.' 
@@ -53,7 +53,7 @@ class TeamController {
 
       const team = await Team.findByPk(id);
 
-      const slug = (await import(slug)).default;
+      const slug = (await import('slug')).default;
 
      // Checking if the team member exists in the database.
       if (!team) {

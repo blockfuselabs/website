@@ -1,9 +1,8 @@
-const { Article } = require('../models');
+const { Article, Team } = require('../models');
 const { Op, where } = require('sequelize');
 const path=require('path');
 const fs=require('fs');
 const cloudinary = require('../config/cloudinaryConfig');
-
 
 class ArticleController {
 
@@ -278,6 +277,74 @@ class ArticleController {
         }
       )
     }
+  }
+
+  static async getUserArticles(req, res) {
+    try {
+      const { identifier } = req.params;
+
+      const { page = 1, limit = 10 } = req.query;
+      const offset = (page - 1) * limit;
+
+      const where = {};
+      if (!isNaN(identifier)) {
+        where.id = identifier;
+      } else {
+        where.slug = identifier;
+      }
+
+      const team = await Team.findOne({
+        where: { [Op.or]: [where] }
+      });
+
+      if (!team) {
+        return res.status(404).json({
+          error: 'Not found',
+          details: 'Team member not found.'
+        });
+      }
+
+      const { count, rows: articles } = await Article.findAndCountAll({
+        where: { author_id: identifier },
+        offset: parseInt(offset),
+        limit: parseInt(limit),
+      });
+
+      if (!article) {
+        return res.status(404).json({
+          error: 'Not found',
+          details: 'Article not found.'
+        });
+      }
+
+      const totalPages = Math.ceil(count / limit);
+      const currentPage = parseInt(page);
+      const hasNextPage = currentPage < totalPages;
+      const hasPrevPage = currentPage > 1;
+
+      res.status(200).json({
+        message: 'Team member articles retrieved successfully.',
+        data: {
+          articles,
+          pagination: {
+            total: count,
+            per_page: parseInt(limit),
+            current_page: currentPage,
+            total_pages: totalPages,
+            has_next_page: hasNextPage,
+            has_prev_page: hasPrevPage,
+          },
+        },
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to retrieve articles.',
+        details: error.message,
+      });
+    }
+
+  
   }
 }
 
