@@ -20,7 +20,7 @@ const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const AlumniController = require('../controllers/alumniController');
-
+const FaqController = require('../controllers/faqController');
 const router = express.Router();
 
 
@@ -73,5 +73,12 @@ router.get('/events/show/:id', EventController.getOne);
 router.post('/events/store', validateEvent, EventController.store);
 router.patch('/events/update/:id', validateEventUpdate, EventController.update);
 router.delete('/events/delete/:id', EventController.delete);
+
+// Faq Routes
+router.post('/faqs', authMiddleware, authorizeArticleAccess, FaqController.create);
+router.get('/faqs', FaqController.getAll);
+router.get('/faqs/:id', FaqController.getOne);
+router.delete('/faqs/:id', authMiddleware, authorizeArticleAccess, FaqController.delete)
+router.put('/faqs/:id', authMiddleware,authorizeArticleAccess, FaqController.update)
 
 module.exports = router;
