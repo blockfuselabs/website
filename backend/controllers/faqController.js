@@ -68,7 +68,7 @@ class FaqController {
       const offset = (page - 1) * limit;
 
       
-      const { count, rows: articles } = await Faq.findAndCountAll({
+      const { count, rows: faqs } = await Faq.findAndCountAll({
         offset: parseInt(offset),
         limit: parseInt(limit),
       });
@@ -82,7 +82,7 @@ class FaqController {
       res.status(200).json({
         message: 'Faq retrieved successfully.',
         data: {
-          articles,
+          faqs,
           pagination: {
             total: count,
             per_page: parseInt(limit),
@@ -122,7 +122,7 @@ class FaqController {
 
       const faqResponse = { ...faq.toJSON() };
       res.status(200).json({
-        message: 'Article retrieved successfully.',
+        message: 'Faq retrieved successfully.',
         faq: faqResponse
       });
     } catch (error) {
