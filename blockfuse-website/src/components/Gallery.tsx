@@ -41,7 +41,7 @@ const Gallery = () => {
               className=" object-cover "
             />
             <div className="text-center mt-2 pb-12">
-              <Link to={`/person/${image.name}`} className="font-semibold hover:text-blue-500">
+              <Link to={`/teamdetails/${image.id}`} className="font-semibold hover:text-blue-500">
                 {image.name}
               </Link>
               <p className="text-sm text-gray-500">{image.stack}</p>
