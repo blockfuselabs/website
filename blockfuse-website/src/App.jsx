@@ -21,6 +21,7 @@ import ContactUs from "./pages/ContactUs"
 
 import { ThemeProvider } from './context/ThemeContext';
 import OurAlumni from './pages/OurAlumni';
+import TeamDetails from './pages/TeamDetails';
 
 function App() {
 
@@ -43,6 +44,8 @@ function App() {
 
           {/* Team */}
           <Route path="/team/*" element={<Team />} />
+          <Route path="/teamdetails/:id/*" element={<TeamDetails />} />
+
 
           {/* Alumni */}
           <Route path="/alumni*" element={<Alumni />} />
