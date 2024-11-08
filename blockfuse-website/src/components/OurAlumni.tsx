@@ -1,6 +1,6 @@
 import React from 'react';
 import alumni1 from "../assets/images/alumni.png";
-import alumni2 from "../assets/images/alumni1.png";
+import alumni2 from "../assets/images/alumni.png";
 
 const OurAlumni = () => {
   return (
