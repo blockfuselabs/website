@@ -3,13 +3,13 @@ import Button from "./Buttons";
 import { MoveRight } from "lucide-react";
 import Web2 from "../assets/images/web2-bg.jpeg";
 import Web3 from "../assets/images/web3-bg.jpeg";
+import { NavLink } from "react-router-dom"; // Import NavLink
 
 const StyledCards = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
       {/* Card 1 */}
-      {/* Card 1 */}
-      <div className="dark:bg-black h-auto sm:h-[650px]  border border-purple-500 shadow-lg overflow-hidden">
+      <div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 bg-cover dark:bg-black m-3 sm:m-5 bg-center"
           style={{ backgroundImage: `url(${Web2})` }}
@@ -30,16 +30,12 @@ const StyledCards = () => {
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfhmiatYp0gh-IbqYnPNIcwNejxeIiVuI2O0q72SfPYwTZrKw/viewform?usp=pp_url"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <NavLink to="/web2"> {/* Use NavLink instead of anchor tag */}
             <Button>
               Apply now
               <MoveRight />
             </Button>
-          </a>
+          </NavLink>
         </div>
       </div>
 
@@ -64,15 +60,12 @@ const StyledCards = () => {
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-24">
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScOJq9oESgBFI65yxsQcyb1AUOM2DkqLy0xdlseq7eTM5-tIw/viewform?usp=pp_url"
-            target="_blank"
-            rel="noopener noreferrer"
-          ></a>
-          <Button>
-            Apply now
-            <MoveRight />
-          </Button>
+          <NavLink to="/web3"> {/* Use NavLink instead of anchor tag */}
+            <Button>
+              Apply now
+              <MoveRight />
+            </Button>
+          </NavLink>
         </div>
       </div>
     </div>

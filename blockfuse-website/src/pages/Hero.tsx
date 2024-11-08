@@ -154,7 +154,7 @@ const Hero = () => {
                     className="w-5 h-5 sm:w-auto sm:h-auto"
                   />
                 </div>
-                <div className="h-1 w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-[1px] w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 2 */}
@@ -179,7 +179,7 @@ const Hero = () => {
                     className="w-5 h-5 sm:w-auto sm:h-auto"
                   />
                 </div>
-                <div className="h-1 w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-[1px] w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 3 */}
@@ -204,7 +204,7 @@ const Hero = () => {
                     className="w-5 h-5 sm:w-auto sm:h-auto"
                   />
                 </div>
-                <div className="h-1 w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-[1px] w-full sm:w-[600px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
             {/* Card 4 */}
@@ -229,7 +229,7 @@ const Hero = () => {
                     className="w-5 h-5 sm:w-auto sm:h-auto"
                   />
                 </div>
-                <div className="h-1 w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
+                <div className="h-[1px] w-full sm:w-[650px] bg-gradient-to-r from-purple-500 to-pink-500 mt-2"></div>
               </div>
             </div>
           </div>

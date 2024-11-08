@@ -144,7 +144,7 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen  px-6 py-12 sm:px-8 md:px-16 lg:px-24">
-        <h1 className="text-4xl dark:text-white text-center mb-16">Open source</h1>
+        <h1 className="text-4xl dark:text-white text-center mb-16">Blog</h1>
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {currentPosts.map((post) => (
         <div
@@ -161,7 +161,7 @@ const BlogPage = () => {
             <div className="absolute inset-0 bg-black/40"></div>
           </div>
           
-          <div className="py-6">
+          <div className="py-6 px-3">
             <div className="flex justify-between items-center mb-4">
               <span className="text-sm text-purple-400">{post.category}</span>
               <ArrowUpRight className="w-5 h-5 text-purple-400 transform group-hover:translate-x-1 transition-transform" />
