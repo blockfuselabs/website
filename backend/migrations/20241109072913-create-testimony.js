@@ -9,7 +9,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.createTable('Testimonies', {
+    await queryInterface.createTable('"Testimonies', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -32,11 +32,11 @@ module.exports = {
         type: Sequelize.DATE,
         // defaultValue: Sequelize.fn('NOW')  // Use Sequelize.fn('NOW') for default value
       },
-      // updatedAt: {
-      //   allowNull: false,
-      //   type: Sequelize.DATE,
-      //   defaultValue: Sequelize.fn('NOW')  // Use Sequelize.fn('NOW') for default value
-      // }
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE,
+        defaultValue: Sequelize.fn('NOW')  // Use Sequelize.fn('NOW') for default value
+      }
     });
   },
 
