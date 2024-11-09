@@ -1,6 +1,9 @@
 const { Community } = require('../models');
 const { Op, where } = require('sequelize');
+const { fs } = require('fs');
+const path=require('path');
 const cloudinary = require('../config/cloudinaryConfig');
+const { error } = require('console');
 
 
 class CommunityController {
@@ -68,8 +71,65 @@ class CommunityController {
             }
 
             
-        } catch (error) {
+
+            if(req.file) {
+                if (req.file) {
+        
+                    const b64 = Buffer.from(req.file.buffer).toString("base64");
+                    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+                    
+                    const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+                      resource_type: 'image',
+                      folder: 'community'
+                    });
+                    community.image_link = cloudinaryResponse.secure_url;
+                    await community.save();
+
+                  } else {
+                    return res.status(400).json({
+                      error: 'Community image not created',
+                      message: 'Please upload a featured image for the community',
+                    });
+                }
+            }
+
+            await community.save();
+
+            return res.status(201).json({
+                message: "Community image updated successfully"
+            })
+
             
+        } catch (error) {
+            res.status(500).json({
+                error: "Unable to update image path",
+                message: error.message
+            })
+        }
+    }
+
+    static async getCommunityImages(req, res) {
+        try {
+            const communityImages = await Community.findAll();
+
+            if(!community) {
+                return res.status(404).json({
+                    error: "Not found",
+                    message: "Community images not found"
+                });
+            }
+
+            return res.status(200).json({
+                message: "Community images retrieved successfully",
+                communityImages
+            });
+        } catch (error) {
+            res.status(500).json({
+                error: "Unable to retrieve all community images",
+                message: error.message
+            });
         }
     }
 }
+
+module.exports = CommunityController;
