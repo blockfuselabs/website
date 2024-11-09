@@ -13,11 +13,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Cohort.init({
+  Community.init({
     image_link: DataTypes.STRING,
     image_id: DataTypes.BIGINT,
-    start_date: DataTypes.DATE,
-    end_date: DataTypes.DATE
   }, {
     sequelize,
     modelName: 'Community',
