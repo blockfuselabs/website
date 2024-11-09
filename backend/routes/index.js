@@ -20,6 +20,7 @@ const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const AlumniController = require('../controllers/alumniController');
+const CommunityController = require('../controllers/communityController');
 
 const router = express.Router();
 
@@ -73,5 +74,10 @@ router.get('/events/show/:id', EventController.getOne);
 router.post('/events/store', validateEvent, EventController.store);
 router.patch('/events/update/:id', validateEventUpdate, EventController.update);
 router.delete('/events/delete/:id', EventController.delete);
+
+// Community Routes
+router.get('/community-images', authMiddleware, CommunityController.getCommunityImages);
+router.post('/community-create', authMiddleware, upload.single('image'), CommunityController.create);
+router.put('/community-update/:id', authMiddleware, upload.single('image'), CommunityController.update);
 
 module.exports = router;

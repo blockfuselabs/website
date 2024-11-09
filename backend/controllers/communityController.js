@@ -3,7 +3,6 @@ const { Op, where } = require('sequelize');
 const { fs } = require('fs');
 const path=require('path');
 const cloudinary = require('../config/cloudinaryConfig');
-const { error } = require('console');
 
 
 class CommunityController {
@@ -67,12 +66,12 @@ class CommunityController {
     }
 
     static async update(req, res) {
-        const { image_id } = req.body;
+        const { id } = req.params;
 
         try {
             const community = await Community.findOne(
                 {
-                    where: {image_id}
+                    where: {id}
                 }
             );
 
