@@ -11,6 +11,19 @@ class CommunityController {
         try {
             const { image_id } = req.body;
 
+            const findExistingImage = await Community.findOne(
+                {
+                    where: {image_id}
+                }
+            );
+
+            if(findExistingImage) {
+                return res.status(409).json({
+                    error: "Community image already exists",
+                    message: "Cannot add duplicate image"
+                })
+            }
+
             if(!image_id) {
                 res.status(400).json({
                     message: "Community image not added",
@@ -59,7 +72,7 @@ class CommunityController {
         try {
             const community = await Community.findOne(
                 {
-                    where: {id}
+                    where: {image_id}
                 }
             );
 
@@ -70,7 +83,6 @@ class CommunityController {
                 })
             }
 
-            
 
             if(req.file) {
                 if (req.file) {
