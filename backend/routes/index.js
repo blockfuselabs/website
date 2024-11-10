@@ -22,11 +22,11 @@ const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const AlumniController = require('../controllers/alumniController');
+const TestimonyController = require('../controllers/testimonialController');
 const ApplicationController = require('../controllers/applicationController');
 const HelperController = require('../controllers/helperController');
 
 const router = express.Router();
-
 
 /**
  * Routes
@@ -49,6 +49,13 @@ router.delete('/team/:id', authMiddleware, authorizeSuperAdmin, TeamController.d
 router.get('/team/',   TeamController.getAll);
 router.get('/team/:id', TeamController.getById);
 router.get('/team/articles/:identifier', ArticleController.getUserArticles)
+
+// Testimonial Routes
+router.post('/testimonies', TestimonyController.createTestimony);
+router.get('/testimonies', TestimonyController.getAllTestimonies);
+// router.get('/testimonies/:id', TestimonyController.getTestimonyById);
+router.put('/testimonies/:id', TestimonyController.updateTestimony);
+router.delete('/testimonies/:id', TestimonyController.deleteTestimony);
 
 // Article Routes
 router.post('/articles', authMiddleware, authorizeArticleAccess, upload.single('image'), ArticleController.create);
