@@ -22,6 +22,7 @@ const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const AlumniController = require('../controllers/alumniController');
+const CommunityController = require('../controllers/communityController');
 const TestimonyController = require('../controllers/testimonialController');
 const ApplicationController = require('../controllers/applicationController');
 const HelperController = require('../controllers/helperController');
@@ -93,5 +94,10 @@ router.delete('/applications/:id', authMiddleware, authorizeSuperAdmin, Applicat
 
 // Helper Routes
 router.get('/countries', HelperController.getCountries);
+
+// Community Routes
+router.get('/community-images', authMiddleware, CommunityController.getCommunityImages);
+router.post('/community-create', authMiddleware, upload.single('image'), CommunityController.create);
+router.put('/community-update/:id', authMiddleware, upload.single('image'), CommunityController.update);
 
 module.exports = router;
