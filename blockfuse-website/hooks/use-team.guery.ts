@@ -12,7 +12,7 @@ const useTeamQuery = (query: any) => {
   return { 
     getAllTeamData: data, 
     getAllTeamError: error, 
-    getAllTeamRefetch:refetch,
+    getAllTeamRefetch: refetch,
     isGetAllTeamloading:isLoading, 
     isGetAllTeamSuccess: isSuccess,
     isGetAllTeamError: isError, 
