@@ -7,6 +7,8 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const authorizeSuperAdmin = require('../middlewares/authorizeSuperAdmin');
 const authorizeArticleAccess = require('../middlewares/authorizeArticleAccess');
 const { validateEvent, validateEventUpdate } = require('../middlewares/eventRequest');
+const { validateApplication } = require('../middlewares/applicationRequest');
+
 
 const upload = require("../config/uploadConfig");
 
@@ -20,6 +22,8 @@ const EventController = require('../controllers/eventController');
 const TeamController = require('../controllers/teamController');
 const userController = require('../controllers/userController');
 const AlumniController = require('../controllers/alumniController');
+const ApplicationController = require('../controllers/applicationController');
+const HelperController = require('../controllers/helperController');
 
 const router = express.Router();
 
@@ -69,9 +73,18 @@ router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.
 
 // Event Routes
 router.get('/events', EventController.getAll);
-router.get('/events/show/:id', EventController.getOne);
-router.post('/events/store', validateEvent, EventController.store);
-router.patch('/events/update/:id', validateEventUpdate, EventController.update);
-router.delete('/events/delete/:id', EventController.delete);
+router.get('/events/:id', EventController.getOne);
+router.post('/events', validateEvent, authMiddleware, authorizeSuperAdmin, EventController.store);
+router.patch('/events/:id', validateEventUpdate, authMiddleware, authorizeSuperAdmin, EventController.update);
+router.delete('/events/:id', authMiddleware, authorizeSuperAdmin, EventController.delete);
+
+// Application Routes
+router.get('/applications', authMiddleware, authorizeSuperAdmin, ApplicationController.getAll);
+router.get('/applications/:id', authMiddleware, authorizeSuperAdmin, ApplicationController.getOne);
+router.post('/applications', validateApplication, ApplicationController.store);
+router.delete('/applications/:id', authMiddleware, authorizeSuperAdmin, ApplicationController.delete);
+
+// Helper Routes
+router.get('/countries', HelperController.getCountries);
 
 module.exports = router;
