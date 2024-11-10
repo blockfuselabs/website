@@ -23,7 +23,7 @@ import ContactUs from "./pages/ContactUs"
 import OurAlumni from './pages/OurAlumni';
 
 import { ThemeProvider } from './context/ThemeContext';
-import OurAlumni from './pages/OurAlumni';
+import './pages/OurAlumni';
 import TeamDetails from './pages/TeamDetails';
 
 function App() {
