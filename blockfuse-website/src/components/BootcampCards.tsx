@@ -60,7 +60,7 @@ const StyledCards = () => {
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-24">
-          <NavLink to="/web3"> {/* Use NavLink instead of anchor tag */}
+          <NavLink to="/web3"> {/* Use NavLink instead of anchor  */}
             <Button>
               Apply now
               <MoveRight />

@@ -26,6 +26,12 @@ const WebTwo = () => {
   };
 
   const BioForm = () => (
+    <>
+    <div className="w-[1200px] bg-gray-200 dark:bg-[#1d1d1d] border border-purple-500 p-4 text-center text-xl text-red-500 space-y-1 mb-8">
+        <p>* This bootcamp is not free; the program fee is <span className="text-red-500 font-bold">₦50,000 (NON-REFUNDABLE)</span>.</p>
+        <p>* The payment is required to secure your spot in the bootcamp.</p>
+        <p>* The bootcamp duration is 5 months.</p>
+      </div>
     <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
       <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
@@ -116,6 +122,7 @@ const WebTwo = () => {
         </div>
       </form>
     </div>
+    </>
   );
 
   const ExperienceForm = () => (
@@ -145,7 +152,9 @@ const WebTwo = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
-              <option>Select one or more options</option>
+              <option>1-2 hours</option>
+              <option>3-4 hours</option>
+              <option>5+ hours</option>
             </select>
           </div>
           
@@ -155,7 +164,10 @@ const WebTwo = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
-              <option>Select one or more options</option>
+              <option>Social Media</option>
+              <option>Referral</option>
+              <option>Advertisement</option>
+              <option>Other</option>
             </select>
           </div>
         </div>
@@ -164,7 +176,7 @@ const WebTwo = () => {
           <button
             type="button"
             onClick={prevStep}
-            className="dark:text-gray-400 hover:text-gray-300"
+            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
           >
             Previous
           </button>
@@ -198,20 +210,21 @@ const WebTwo = () => {
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div className="border border-purple-500 p-8 text-center">
-          <div className="text-purple-500 text-4xl mb-4">
-            <svg className="w-16 h-16 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3v-13" />
-            </svg>
-          </div>
-          <p className="dark:text-white">Drag your file(s) or <span className="text-purple-400 underline">browse</span></p>
-          <p className="text-xl dark:text-gray-400">Max 10 MB files are allowed</p>
-          <p className="text-xl dark:text-gray-400">JPEG PNG</p>
+        <div className="p-6 bg-gray-700 border border-purple-500 rounded-lg text-center">
+          <label htmlFor="file-upload" className="cursor-pointer">
+            <div className="text-4xl text-purple-500 mb-4">
+              <i className="fas fa-cloud-upload-alt"></i>
+            </div>
+            <p>Drag your file(s) or <span className="text-purple-400 underline">browse</span></p>
+            <p className="text-sm text-gray-400">Max 10 MB files are allowed</p>
+            <p className="text-sm text-gray-400">JPEG, PNG</p>
+          </label>
           <input
+            id="file-upload"
             type="file"
             accept="image/jpeg, image/png"
-            onChange={handleFileChange}
             className="hidden"
+            onChange={handleFileChange}
           />
           {file && <p className="text-sm text-green-500 mt-2">{file.name}</p>}
         </div>
@@ -220,7 +233,7 @@ const WebTwo = () => {
           <button
             type="button"
             onClick={prevStep}
-            className="dark:text-gray-400 hover:text-gray-300"
+            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
           >
             Previous
           </button>
@@ -254,12 +267,6 @@ const WebTwo = () => {
         <p className="text-xl max-w-4xl">
           Welcome to the WEB2 FOR WEB3 DEVELOPERS PREPARATORY BOOTCAMP application form. This bootcamp is designed to take you from a complete beginner with no coding experience to being a developer that is well-prepared to dive into blockchain programming bootcamp.
         </p>
-      </div>
-
-      <div className="w-[1200px] bg-gray-200 dark:bg-[#1d1d1d] border border-purple-500 p-4 text-center text-xl text-red-500 space-y-1 mb-8">
-        <p>* This bootcamp is not free; the program fee is <span className="text-red-500 font-bold">₦50,000 (NON-REFUNDABLE)</span>.</p>
-        <p>* The payment is required to secure your spot in the bootcamp.</p>
-        <p>* The bootcamp duration is 5 months.</p>
       </div>
 
       {currentStep === 1 && <BioForm />}
