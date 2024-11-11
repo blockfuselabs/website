@@ -2,20 +2,17 @@
 import { useQuery } from "@tanstack/react-query";
 import http from "../services/http";  
 
-const useTeamQuery = (query: any) => {
-  const { data, error, isLoading, isError, isSuccess, refetch } = useQuery({
-    queryKey: ["get_all_teams", query],
+const useTeamQuery = () => {
+  const { data, error, isLoading, isSuccess } = useQuery({
+    queryKey: ["get_all_teams"],
     queryFn: http.httpGetAllTeam,
-    enabled: !!query,
   });
   
   return { 
     getAllTeamData: data, 
     getAllTeamError: error, 
-    getAllTeamRefetch: refetch,
     isGetAllTeamloading:isLoading, 
     isGetAllTeamSuccess: isSuccess,
-    isGetAllTeamError: isError, 
    };
 };
 
