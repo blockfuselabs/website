@@ -1,9 +1,36 @@
+import { Linkedin } from 'lucide-react';
 import React, { useState } from 'react';
 
 const WebTwo = () => {
+
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    email: '',
+    phone: '',
+    country: '',
+    state: '',
+    linkedIn: '',
+    gender: '',
+    time: '',
+    fullTime: '',
+    history: '',
+    language: '',
+    source: '',
+
+  });
+
+  
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
-
+  
+  const handleChange = (name: string, value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+  
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
@@ -43,21 +70,36 @@ const WebTwo = () => {
               First name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text"
+              name='fName'
+              value={formData.fName} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Last name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='lName'
+              value={formData.lName}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Email
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="email" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="email" 
+              name='email'
+              value={formData.email}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
         </div>
 
@@ -67,21 +109,36 @@ const WebTwo = () => {
               Gender
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='gender'
+              value={formData.gender}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Country
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text"
+              name='country'
+              value={formData.country} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               State
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='state'
+              value={formData.state}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
         </div>
 
@@ -91,21 +148,36 @@ const WebTwo = () => {
               Phone number
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="tel" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="tel"
+              name='phone'
+              value={formData.phone}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               LinkedIn
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='linkedIn'
+              value={formData.linkedIn}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Are you available for full time study?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text"
+              name='fullTime'
+              value={formData.fullTime}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
           </div>
         </div>
 
@@ -136,14 +208,24 @@ const WebTwo = () => {
             <label className="dark:text-white text-lg">
               Do you have any history with programming or writing code?
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" />
+            <input 
+              type="text"
+              name='history'
+              value={formData.history}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} />
           </div>
           
           <div className="space-y-1">
             <label className="dark:text-white text-lg">
               What programming language(s) are you familiar with?
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" />
+            <input 
+              type="text"
+              name='language'
+              value={formData.language}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} />
           </div>
           
           <div className="space-y-1">
@@ -151,7 +233,11 @@ const WebTwo = () => {
               How much time (daily) are you willing to dedicate to this program?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+            <select 
+              name='time'
+              value={formData.time}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}>
               <option>1-2 hours</option>
               <option>3-4 hours</option>
               <option>5+ hours</option>
@@ -163,7 +249,11 @@ const WebTwo = () => {
               How did you find out about Blockfuse Labs
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+            <select 
+              name='source'
+              value={formData.source}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}>
               <option>Social Media</option>
               <option>Referral</option>
               <option>Advertisement</option>
