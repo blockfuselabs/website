@@ -9,8 +9,7 @@ const ContactUs = () => {
   return (
     <div className="h-full flex flex-col items-center justify-center px-4  relative">
 
-
-<div className="relative text-center z-10">
+      <div className="relative text-center z-10">
           <header>
             <h1 className="text-5xl md:text-5xl dark:text-white">
               Contact{" "}
@@ -18,7 +17,7 @@ const ContactUs = () => {
             </h1>
           </header>
         </div>
-      <div className="relative flex items-center justify-center mb-2 mt-10">
+      <div className="relative flex items-center justify-center mb-2 mt-10 ml-40">
       <div className="absolute -left-64 z-0 dark:bg-[#1A1A1A] bg-gray-100 w-[330px] h-[80%] border border-purple-500 flex flex-col items-center justify-center space-y-10 p-10">
   
       <h1 className="text-2x1 md:text-2xl dark:text-white mr-14">
@@ -100,7 +99,7 @@ const ContactUs = () => {
       </div>
       <Buttons
   type="submit"
-  className="w-2/4 flex items-center justify-center mx-auto bg-gradient-to-r from-purple-600 to-purple-400  hover:from-purple-700 hover:to-purple-500  text-white py-3 px-6"
+  className="w-2/3 flex items-center justify-center mx-auto bg-gradient-to-r from-purple-600 to-purple-400  hover:from-purple-700 hover:to-purple-500  text-white py-3 px-6"
 >
   Submit →
 </Buttons>
