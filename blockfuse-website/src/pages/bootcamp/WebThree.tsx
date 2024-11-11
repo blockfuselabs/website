@@ -1,10 +1,32 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const WebTwo = () => {
+
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    email: '',
+    phone: '',
+    country: '',
+    state: '',
+    github: '',
+    gender: '',
+    time: '',
+    fullTime: '',
+    history: '',
+    language: '',
+    source: '',
+
+  });
+
   const [currentStep, setCurrentStep] = useState(1);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleChange = (name: string, value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
   };
 
   const nextStep = () => {
@@ -14,6 +36,21 @@ const WebTwo = () => {
   const prevStep = () => {
     setCurrentStep(currentStep - 1);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // try {
+    //   const response = await axios.post('https://example.com/api/submitForm', formData);
+    //   alert('Form submitted successfully:', response.data);
+    //   // Handle success (e.g., clear form, show a success message)
+    // } catch (error) {
+    //   alert('Error submitting form:', error.response ? error.response.data : error.message);
+    //   // Handle errors (e.g., show error message)
+    // }
+  
+  };
+
 
   const BioForm = () => (
     <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
@@ -27,21 +64,32 @@ const WebTwo = () => {
               First name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='fName' 
+              value={formData.fName} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Last name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input type="text" name='lName' value={formData.lName} className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Email
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="email" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="email" 
+              name='email' 
+              value={formData.email} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white "
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required
+            />
           </div>
         </div>
 
@@ -51,21 +99,39 @@ const WebTwo = () => {
               Gender
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='gender' 
+              value={formData.gender} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Country
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='country' 
+              value={formData.country} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               State
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='state' 
+              value={formData.state} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
         </div>
 
@@ -75,32 +141,49 @@ const WebTwo = () => {
               Phone number
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="tel" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="tel" 
+              name='phone' 
+              value={formData.phone} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Github
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='github' 
+              value={formData.github} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Are you available for full time study?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+            <input 
+              type="text" 
+              name='fullTime' 
+              value={formData.fullTime} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
         </div>
 
         <div className="flex justify-between items-center mt-8">
-          <div></div>
           <p className="dark:text-gray-400 text-lg">Page 1 of 2</p>
           <button
             type="button"
             onClick={nextStep}
             className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
-          >
+            >
             Continue →
           </button>
         </div>
@@ -119,14 +202,25 @@ const WebTwo = () => {
             <label className="dark:text-white text-lg">
               Do you have any history with programming or writing code?
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" />
+            <input 
+              type="text" 
+              name='history' 
+              value={formData.history} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
           
           <div className="space-y-1">
             <label className="dark:text-white text-lg">
               What programming language(s) are you familiar with?
             </label>
-            <input type="text" className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" />
+            <input 
+              type="text" 
+              name='language' 
+              value={formData.language} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required 
+            />
           </div>
           
           <div className="space-y-1">
@@ -134,7 +228,10 @@ const WebTwo = () => {
               How much time (daily) are you willing to dedicate to this program?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+            <select 
+              name='time' 
+              value={formData.time} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
               <option>1-2 hours</option>
               <option>3-4 hours</option>
               <option>5+ hours</option>
@@ -146,7 +243,10 @@ const WebTwo = () => {
               How did you find out about Blockfuse Labs
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+            <select 
+              name='source' 
+              value={formData.source} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
               <option>Social Media</option>
               <option>Referral</option>
               <option>Advertisement</option>
