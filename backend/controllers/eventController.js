@@ -301,7 +301,7 @@ class EventController {
       const hasPrevPage = currentPage > 1;
 
       res.status(200).json({
-        message: 'Past events retrieved successfully.',
+        message: 'Upcoming events retrieved successfully.',
         data: {
           events,
           pagination: {
@@ -327,7 +327,7 @@ class EventController {
     } catch (error) {
       console.error('Error:', error);
       res.status(500).json({
-        error: 'Unable to retrieve past events.',
+        error: 'Unable to retrieve upcoming events.',
         details: error.message
       });
     }
