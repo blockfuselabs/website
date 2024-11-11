@@ -50,6 +50,6 @@ class BaseUrl{
             console.log(error);
             throw error
         }
-    }
+
 }
   export default new BaseUrl()
