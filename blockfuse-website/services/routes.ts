@@ -6,5 +6,5 @@ export default Object.freeze({
     LOGIN:"/auth/login",
     TESTIMONIAL: "//testimonies",
     COHORTS: "/cohorts/",
-
+    
 })
