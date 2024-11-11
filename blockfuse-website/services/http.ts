@@ -32,5 +32,6 @@ class BaseUrl{
           throw error
         }
       }
+      
 }
   export default new BaseUrl()
