@@ -20,7 +20,7 @@ const AboutUs = () => {
   <div className="text-center max-w-2xl p-6 relative z-10">
         {/* Heading */}
         <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 whitespace-nowrap">
-          Welcome to <span className="text-purple-500">Blockchain</span>
+          Welcome to <span className="text-purple-500">Blockfuse</span>
         </h1>
 
         {/* Paragraphs */}
