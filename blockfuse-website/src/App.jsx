@@ -51,9 +51,9 @@ function App() {
 
 
           {/* Alumni */}
-          <Route path="/alumni*" element={<Alumni />} />
+          <Route path="/alumni/*" element={<Alumni />} />
           {/* our Alumni */}
-          <Route path="/ouralumni*" element={<OurAlumni />} />
+          <Route path="/alumni/:slug*" element={<OurAlumni />} />
 
           {/* Testimonials */}
           <Route path="/testimonial/*" element={<Testimonial />} />
