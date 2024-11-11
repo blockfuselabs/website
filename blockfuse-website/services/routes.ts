@@ -8,6 +8,4 @@ export default Object.freeze({
     EVENTS: "/api/events",
     APPLICATION:"/api/applications",
     COHORTS: "/cohorts/",
-    TEAMDETAILS: "team/2"
-
 })

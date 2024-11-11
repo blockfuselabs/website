@@ -120,6 +120,7 @@ class BaseUrl {
             console.log(error);
             throw error
         }
+<<<<<<< HEAD
     }
 
     async httpPostApplication(formData) {
@@ -132,6 +133,9 @@ class BaseUrl {
         }
       }
     
+=======
+
+>>>>>>> 66c1b07d64b375c6bb9a6d2497446e15258e8e38
 }
 
 export default new BaseUrl();
