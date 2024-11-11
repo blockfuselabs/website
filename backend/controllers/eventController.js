@@ -159,6 +159,180 @@ class EventController {
     }
   }
 
+  static async getPastEvents(req, res) {
+    try {
+
+      const {
+        title,
+        startDate,
+        endDate,
+        page = 1,
+        limit = 10,
+        sortBy = 'start_date',
+        sortOrder = 'DESC',
+        search
+      } = req.query;
+
+      const offset = (page - 1) * limit;
+
+      const whereClause = {};
+
+      whereClause.end_date = { [Op.lt]: new Date() };
+      
+      if (startDate) {
+        whereClause.start_date = { [Op.gte]: startDate };
+      }
+      
+      if (endDate) {
+        whereClause.end_date = { [Op.lte]: endDate };
+      }
+
+      if (search) {
+        whereClause[Op.or] = [
+          { title: { [Op.iLike]: `%${search}%` } },
+          { slug: { [Op.iLike]: `%${search}%` } }
+        ];
+      }
+
+      const allowedSortFields = ['id', 'title', 'start_date', 'end_date', 'created_at'];
+      const validSortBy = allowedSortFields.includes(sortBy) ? sortBy : 'start_date';
+
+      const validSortOrder = ['ASC', 'DESC'].includes(sortOrder.toUpperCase()) 
+        ? sortOrder.toUpperCase() 
+        : 'DESC';
+
+      const { count, rows: events } = await Event.findAndCountAll({
+        where: whereClause,
+        order: [[validSortBy, validSortOrder]],
+        limit: parseInt(limit),
+        offset: parseInt(offset)
+      });
+
+      const totalPages = Math.ceil(count / limit);
+      const currentPage = parseInt(page);
+      const hasNextPage = currentPage < totalPages;
+      const hasPrevPage = currentPage > 1;
+
+      res.status(200).json({
+        message: 'Past events retrieved successfully.',
+        data: {
+          events,
+          pagination: {
+            total: count,
+            per_page: parseInt(limit),
+            current_page: currentPage,
+            total_pages: totalPages,
+            has_next_page: hasNextPage,
+            has_prev_page: hasPrevPage
+          },
+          filters: {
+            title,
+            startDate,
+            endDate,
+            search
+          },
+          sorting: {
+            sortBy: validSortBy,
+            sortOrder: validSortOrder
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to retrieve past events.',
+        details: error.message
+      });
+    }
+  }
+
+  static async getUpcomingEvents(req, res) {
+    try {
+
+      const {
+        title,
+        startDate,
+        endDate,
+        page = 1,
+        limit = 10,
+        sortBy = 'start_date',
+        sortOrder = 'DESC',
+        search
+      } = req.query;
+
+      const offset = (page - 1) * limit;
+
+      const whereClause = {};
+
+      whereClause.end_date = { [Op.gt]: new Date() };
+      
+      if (startDate) {
+        whereClause.start_date = { [Op.gte]: startDate };
+      }
+      
+      if (endDate) {
+        whereClause.end_date = { [Op.lte]: endDate };
+      }
+
+      if (search) {
+        whereClause[Op.or] = [
+          { title: { [Op.iLike]: `%${search}%` } },
+          { slug: { [Op.iLike]: `%${search}%` } }
+        ];
+      }
+
+      const allowedSortFields = ['id', 'title', 'start_date', 'end_date', 'created_at'];
+      const validSortBy = allowedSortFields.includes(sortBy) ? sortBy : 'start_date';
+
+      const validSortOrder = ['ASC', 'DESC'].includes(sortOrder.toUpperCase()) 
+        ? sortOrder.toUpperCase() 
+        : 'DESC';
+
+      const { count, rows: events } = await Event.findAndCountAll({
+        where: whereClause,
+        order: [[validSortBy, validSortOrder]],
+        limit: parseInt(limit),
+        offset: parseInt(offset)
+      });
+
+      const totalPages = Math.ceil(count / limit);
+      const currentPage = parseInt(page);
+      const hasNextPage = currentPage < totalPages;
+      const hasPrevPage = currentPage > 1;
+
+      res.status(200).json({
+        message: 'Past events retrieved successfully.',
+        data: {
+          events,
+          pagination: {
+            total: count,
+            per_page: parseInt(limit),
+            current_page: currentPage,
+            total_pages: totalPages,
+            has_next_page: hasNextPage,
+            has_prev_page: hasPrevPage
+          },
+          filters: {
+            title,
+            startDate,
+            endDate,
+            search
+          },
+          sorting: {
+            sortBy: validSortBy,
+            sortOrder: validSortOrder
+          }
+        }
+      });
+    } catch (error) {
+      console.error('Error:', error);
+      res.status(500).json({
+        error: 'Unable to retrieve past events.',
+        details: error.message
+      });
+    }
+  }
+
   static async update(req, res) {
     try {
 
