@@ -1,7 +1,7 @@
 export default Object.freeze({
     TEAM: "/team",
     ALUMNI: "/alumni/all/web3-cohort-i",
-    ARTICLES:"/api/articles",
+    ARTICLES:"/articles",
     REGISTER: "/auth/register",
     LOGIN:"/auth/login",
     TESTIMONIAL: "/testimonies",
