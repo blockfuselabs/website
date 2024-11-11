@@ -104,13 +104,13 @@ const TestimonialsSection = ({ Testimonial, Box1 }) => {
                       />
                     </div>
                     <div className="p-4 sm:p-6">
-                      <p className="text-xs sm:text-sm dark:text-gray-400 mb-2">
+                      <p className="text-xs sm:text-xl dark:text-gray-400 mb-2">
                         {testimonial.date}
                       </p>
-                      <h3 className="text-lg sm:text-xl font-semibold dark:text-white mb-2 sm:mb-4">
+                      <h3 className="text-lg sm:text-2xl font-semibold dark:text-white mb-2 sm:mb-4">
                         {testimonial.name}
                       </h3>
-                      <p className="text-sm dark:text-gray-300">
+                      <p className="text-xl dark:text-gray-300">
                         {testimonial.content}
                       </p>
                     </div>

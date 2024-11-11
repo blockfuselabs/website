@@ -12,9 +12,11 @@ import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
 import TestimonialsSection from "../components/TestimonialCarousel";
 import Circles from "../assets/svgs/circles.svg"
+import useFAQSQuery from '../../hooks/useFaqsQuery';
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+  const { FAQS, FAQSError, isFAQSLoading, isFAQSSuccess } = useFAQSQuery();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,7 +71,7 @@ const Hero = () => {
       >
         {/* Text Section */}
         <div className="flex justify-center md:justify-end md:px-80">
-          <p className="mt-4 text-center md:text-left dark:text-gray-300 break-words max-w-xs md:max-w-none">
+          <p className="mt-4 text-xl text-center md:text-left dark:text-gray-300 break-words max-w-xs md:max-w-none">
             At Blockfuse Labs, we see education as a journey.
             <br />
             Whether you're new to blockchain or an experienced developer,
@@ -140,11 +142,11 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
-                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
                   REAL WORLD EXPERIENCE
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-3 mt-2">
-                  <p className="dark:text-gray-300 text-sm sm:text-base">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
                     Apply your skills to solve real-world problems and see
                     immediate results.
                   </p>
@@ -165,11 +167,11 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
-                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
                   HANDS-ON LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-16 mt-2">
-                  <p className="dark:text-gray-300 text-sm sm:text-base">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
                     Dive into projects and learn by doing, transforming theory
                     into practice.
                   </p>
@@ -190,11 +192,11 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
-                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
                   INTERACTIVE LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-12 mt-2">
-                  <p className="dark:text-gray-300 text-sm sm:text-base">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
                     Engage actively with hands-on activities that bring concepts
                     to life.
                   </p>
@@ -215,11 +217,11 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
-                <h3 className="text-lg sm:text-xl font-bold dark:text-white">
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
                   COLLABORATIVE LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-4 mt-2">
-                  <p className="dark:text-gray-300 text-sm sm:text-base">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
                     Collaborate with peers to share insights, tackle challenges,
                     and grow together.
                   </p>
@@ -253,11 +255,11 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
-              <h3 className="text-xl font-semibold dark:text-white">
+              <h3 className="text-2xl font-semibold dark:text-white">
                 The Leap
               </h3>
             </div>
-            <p className="dark:text-gray-300 text-sm">
+            <p className="dark:text-gray-300 text-xl">
               Blockfuse Labs was established with a mission to empower
               developers through both remote and onsite training. Our primary
               agenda is to build a sustainable blockchain economy by fostering
@@ -270,11 +272,11 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
-              <h3 className="text-xl font-semibold dark:text-white">
+              <h3 className="text-2xl font-semibold dark:text-white">
                 Our today
               </h3>
             </div>
-            <p className="dark:text-gray-300 text-sm">
+            <p className="dark:text-gray-300 text-xl">
               Today, Blockfuse Labs stands as a beacon of blockchain education,
               offering cutting-edge courses that cover everything from basic
               blockchain principles to advanced development, helping learners
@@ -286,11 +288,11 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
-              <h3 className="text-xl font-semibold dark:text-white">
+              <h3 className="text-2xl font-semibold dark:text-white">
                 Our tomorrow
               </h3>
             </div>
-            <p className="dark:text-gray-300 text-sm">
+            <p className="dark:text-gray-300 text-xl">
               As we look to the future, we aim to expand our reach and impact,
               continually adapting to the evolving needs of the blockchain
               ecosystem. Our commitment is to provide unmatched training and

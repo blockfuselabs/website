@@ -52,37 +52,7 @@ const Navbar = () => {
               <NavLink href="/about-us" label="About us" />
               <NavLink href="/team" label="Teams" />
               <NavLink href="/bootcamp" label="Boot Camp" />
-              {/* <div
-                className="relative"
-                onClick={toggleBootcampMenu}
-                ref={dropdownRef}
-              >
-                <NavLink href="#" label="Bootcamps">
-                  <ChevronDown
-                    className={`w-5 h-5 transition-transform duration-300 ${
-                      isBootcampMenuOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </NavLink>
-                {isBootcampMenuOpen && (
-                  <div className="absolute mt-5 z-10 w-48 bg-white dark:bg-[#2F2E34] border border-gray-200 dark:border-zinc-800 rounded-md shadow-lg">
-                    <Link
-                      to="/bootcamp/web2"
-                      className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700"
-                      onClick={() => setIsBootcampMenuOpen(false)}
-                    >
-                      Web2
-                    </Link>
-                    <Link
-                      to="/bootcamp/web3"
-                      className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-zinc-700"
-                      onClick={() => setIsBootcampMenuOpen(false)}
-                    >
-                      Web3
-                    </Link>
-                  </div>
-                )}
-              </div> */}
+             
               <NavLink href="/events" label="Events" />
               <NavLink href="/alumni" label="Alumni" />
               <NavLink href="/blog" label="Blog" />
@@ -90,12 +60,13 @@ const Navbar = () => {
               <NavLink href="/contact-us" label="Contact us" />
             </div>
             <div className="flex gap-4 items-center">
-            <Button className="w-28 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0">
+            <Button className="w-28 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0"
+             onClick={() => navigate('/donate/*')}>
             Donate
           </Button>
               <button
                 className=" flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2 transition-all duration-200"
-                onClick={() => navigate('/auth')}
+                onClick={() => navigate('/boot-camp/')}
               >
                 Apply now
                 <MoveRight />

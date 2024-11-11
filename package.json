@@ -1,5 +1,8 @@
 {
   "dependencies": {
-    "lucide-react": "^0.454.0"
+    "@thirdweb-dev/react": "^4.9.4",
+    "lucide-react": "^0.454.0",
+    "qrcode.react": "^4.1.0",
+    "react-copy-to-clipboard": "^5.1.0"
   }
 }

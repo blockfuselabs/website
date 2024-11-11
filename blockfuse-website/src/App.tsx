@@ -21,10 +21,15 @@ import Events from "./pages/Events"
 import OpenSource from "./pages/OpenSource"
 import ContactUs from "./pages/ContactUs"
 import OurAlumni from './pages/OurAlumni';
+import TeamDetails from './pages/TeamDetails';
+import Donate from './pages/Donate';
 
 import { ThemeProvider } from './context/ThemeContext';
-import './pages/OurAlumni';
-import TeamDetails from './pages/TeamDetails';
+
+
+
+
+
 
 function App() {
 
@@ -51,9 +56,9 @@ function App() {
 
 
           {/* Alumni */}
-          <Route path="/alumni/*" element={<Alumni />} />
+          <Route path="/alumni*" element={<Alumni />} />
           {/* our Alumni */}
-          <Route path="/alumni/:slug*" element={<OurAlumni />} />
+          <Route path="/ouralumni*" element={<OurAlumni />} />
 
           {/* Testimonials */}
           <Route path="/testimonial/*" element={<Testimonial />} />
@@ -76,6 +81,9 @@ function App() {
           {/* Contact Us */}
           <Route path="/contact-us/*" element={<ContactUs />} />
 
+              {/* Donate */}
+              <Route path="/donate/*" element={<Donate />} />
+
           {/* Sign up  */}
           <Route path="/auth/*" element={<Auth />} />
 
@@ -84,6 +92,7 @@ function App() {
 
       {/* Footer */}
       <Footer />
+     
     </div>
   </Router>
   </ThemeProvider>
