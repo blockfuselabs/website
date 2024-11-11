@@ -20,25 +20,23 @@ const AboutUs = () => {
         <div className="relative text-center z-10">
           <header>
             <h1 className="text-5xl  md:text-7xl dark:text-white">
-              Welcome to{" "}
+              Welcome to {" "}
               <span className="text-purple-500 font-bold">Blockfuselabs</span>
             </h1>
           </header>
           <div className="-space-y-1">
-            <p className="mt-8 text-lg md:text-3xl w-full md:w-3/4  mx-auto dark:text-gray-300">
-         
-          At Blockfuse Labs, we provide expert training and resources to advance blockchain education.
+            <p className="mt-4 text-lg md:text-3xl w-full md:w-3/4  mx-auto dark:text-gray-300">
+            At Blockfuse Labs, we provide expert training and resources to advance blockchain education.
           Since our founding, Blockfuse Labs has grown into a leading educational platform, trusted by
           developers and enthusiasts alike. Today, we're proud to be driving blockchain education and
-          innovation across Africa, helping learners at all levels build their skills and confidence.</p>
+          innovation across Africa, helping learners at all levels build their skills and confidence.
+            </p>
           </div>
 
         </div>
       </section>
+      
     </div>
-  
-     
-
 <Alumnicohorts/>
 </div>
  )
