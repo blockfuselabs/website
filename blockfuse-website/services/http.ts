@@ -1,11 +1,9 @@
 import axios from "axios"
 import routes from "./routes"
-import {Team, Registeration} from "../types/generated";
-import { log } from "console";
 
 
 const AxiosInstance = axios.create({
-baseURL: process.env.NEXT_PUBLIC_API_URL,
+baseURL: "https://dev.basicpayng.com/api/",
 headers:{
     accept: "application/json",
     "content-Type": "application/json",
@@ -23,14 +21,35 @@ class BaseUrl{
         }
     }
 
-    httpRegistration = async (data: Registeration) => {
+
+    httpGetAllAlumni = async () => {
         try {
-          const response = await AxiosInstance.post(routes.REGISTER, data)
-          console.log(response)
-          return response.data
+            const URL = `${routes.ALUMNI}`
+            const response = await AxiosInstance.get(URL)
+            return response.data
         } catch (error) {
-          throw error
+            console.log(error);
+            throw error
         }
-      }
+    }
+    httpGetTeamDetails = async () => {
+        try {
+            const response = await AxiosInstance.get(routes.TEAMDETAILS)
+            return response.data
+        } catch (error) {
+            console.log(error);
+            throw error
+        }
+    }
+
+    httpGetAllCohorts = async () => {
+        try {
+            const response = await AxiosInstance.get(routes.COHORTS)
+            return response.data
+        } catch (error) {
+            console.log(error);
+            throw error
+        }
+    }
 }
   export default new BaseUrl()

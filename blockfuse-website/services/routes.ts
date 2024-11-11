@@ -1,10 +1,11 @@
 export default Object.freeze({
     TEAM: "/team",
-    ALUMNI: "/alumni/all",
+    ALUMNI: "/alumni/all/web3-cohort-i",
     ARTICLES:"/articles",
     REGISTER: "/auth/register",
     LOGIN:"/auth/login",
-    TESTIMONIAL: "//testimonies",
+    TESTIMONIAL: "/testimonies",
     COHORTS: "/cohorts/",
+    TEAMDETAILS: "team/2"
 
 })
