@@ -12,15 +12,18 @@ import AboutUs from "./pages/AboutUs"
 import Team from "./pages/Team"
 import Alumni from "./pages/Alumni"
 import Bootcamp from "./pages/bootcamp/AboutBootcamp"
+import Web2 from "./pages/bootcamp/WebTwo"
+import Web3 from "./pages/bootcamp/WebThree"
 import Testimonial from "./pages/Testimonial"
 import Blog from "./pages/Blog"
 import BlogPostDetail from "./components/BlogDetail"
 import Events from "./pages/Events"
 import OpenSource from "./pages/OpenSource"
 import ContactUs from "./pages/ContactUs"
+import OurAlumni from './pages/OurAlumni';
 
 import { ThemeProvider } from './context/ThemeContext';
-import OurAlumni from './pages/OurAlumni';
+import './pages/OurAlumni';
 import TeamDetails from './pages/TeamDetails';
 
 function App() {
@@ -67,6 +70,8 @@ function App() {
 
           {/* Boot Camp */}
           <Route path="/bootcamp/*" element={<Bootcamp />} />
+          <Route path="/web2" element={<Web2 />} />
+        <Route path="/web3" element={<Web3 />} />
 
           {/* Contact Us */}
           <Route path="/contact-us/*" element={<ContactUs />} />

@@ -67,19 +67,8 @@ const EventsPage = () => {
 
   return (
     <>
-      <section className="relative flex items-center justify-center h-screen px-6 sm:px-8 md:px-16 lg:px-24">
-        {/* Background Image */}
-        <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
-          <img
-            src={Circles}
-            alt="Background illustration representing blockchain technology"
-            width="800"
-            height="400"
-            loading="lazy"
-            className="w-full h-auto max-w-[800px]"
-          />
-        </div>
-
+      <section className="relative flex items-center justify-center py-20 px-6 sm:px-8 md:px-16 lg:px-24">
+       
         {/* Text Content */}
         <div className="relative text-center z-10">
           <header>
@@ -129,47 +118,47 @@ const EventsPage = () => {
             </Button>
           </div>
         </div>
-{/* Events Grid */}
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {paginatedEvents.map((event) => (
-          <div key={event.id} className="bg-white dark:bg-[#1F1E23] overflow-hidden shadow-lg border border-purple-400 relative h-[600px]">
-            {/* Image Container with Gradient Overlay */}
-            <div className="relative h-96">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10" />
-              <img
-                src={event.image}
-                alt={event.title}
-                className="w-full h-full object-cover"
-              />
-              {/* Text Overlay */}
-              <div className="absolute bottom-0 left-0 p-4 z-20 text-white">
-                <h3 className="text-xl font-semibold mb-1">{event.title}</h3>
-                <p className="text-sm opacity-90">{event.date}</p>
+
+        {/* Events Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {paginatedEvents.map((event) => (
+            <div key={event.id} className="bg-white dark:bg-[#1F1E23] overflow-hidden shadow-lg border border-purple-400 relative h-[600px]">
+              {/* Image Container with Gradient Overlay */}
+              <div className="relative h-96">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/50 z-10" />
+                <img
+                  src={event.image}
+                  alt={event.title}
+                  className="w-full h-full object-cover"
+                />
+                {/* Text Overlay */}
+                <div className="absolute bottom-0 left-0 p-4 z-20 text-white">
+                  <h3 className="text-xl font-semibold mb-1">{event.title}</h3>
+                  <p className="text-sm opacity-90">{event.date}</p>
+                </div>
+              </div>
+              
+              {/* Description Section */}
+              <div className="px-6 py-8 flex flex-col justify-between h-[calc(600px-384px)]">
+                <p className="text-gray-600 dark:text-gray-300 text-sm">
+                  {event.description}
+                </p>
+                <div className="flex justify-between items-center mt-4">
+                  <button className="text-gray-600 dark:text-gray-400 text-sm hover:text-gray-800 dark:hover:text-gray-200">
+                    See more
+                  </button>
+                  <Button
+                    className={`w-full max-w-[200px] py-2 ${activeFilter === 'past' ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'bg-purple-500 text-white'}`}
+                    disabled={activeFilter === 'past'}
+                  >
+                    {activeFilter === 'past' ? 'Ended' : 'Register now!'}
+                  </Button>
+                </div>
               </div>
             </div>
-            
-            {/* Description Section */}
-            <div className="px-6 py-8 flex flex-col justify-between h-[calc(600px-384px)]">
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
-                {event.description}
-              </p>
-              <div className="flex justify-between items-center mt-4">
-                <button className="text-gray-600 dark:text-gray-400 text-sm hover:text-gray-800 dark:hover:text-gray-200">
-                  See more
-                </button>
-                <Button
-                 style={{
-                  width: "100%",
-                  maxWidth: "200px",
-                }}
-              >
-                  Register now!
-                </Button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div> 
+          ))}
+        </div>
+
         {/* Pagination */}
         {currentEvents.length > eventsPerPage && (
           <div className="mt-12 flex justify-center items-center gap-4">

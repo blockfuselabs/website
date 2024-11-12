@@ -11,7 +11,7 @@ const Alumnicohorts = () => {
         aria-labelledby="about-us"
       >
        
-        <p className="dark:text-gray-300 text-xl pb-10 md:pb-0 lg:pb-0 leading-[26px] font-light sm:w-[90%] md:w-[700px] mx-auto text-center md:text-left md:ml-[290px]">
+        <p className="dark:text-gray-300 text-xl pl-14 pb-10 md:pb-0 lg:pb-0 leading-[26px] font-light sm:w-[90%] md:w-[700px] mx-auto text-center md:text-left md:ml-[290px]">
           At Blockfuse Labs, we see education as a journey. Whether you're new
           to blockchain or an experienced developer, we offer resources,
           expert instructors, and tools for every stage of your growth.

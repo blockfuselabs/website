@@ -8,5 +8,4 @@ export default Object.freeze({
     TESTIMONIAL: "/testimonies",
     COHORTS: "/cohorts/",
     TEAMDETAILS: "team/"
-
 })

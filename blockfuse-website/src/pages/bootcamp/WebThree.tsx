@@ -1,136 +1,305 @@
-import React from 'react'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-const WebThree = () => {
-  return (
-    <div className="white:text-black px-6 py-36 h-full sm:px-8 md:px-16 lg:px-24">
-      <div className="flex flex-col items-center text-center dark:text-white py-10 px-4">
-        <h1 className="text-3xl font-bold">
-          Apply to the <span className="text-purple-500">web3 bootcamp</span>
-        </h1>
+const WebTwo = () => {
 
-        <p className="text-2xl font-semibold">
-          Cohort 2 commences on-
-        </p>
-        <p className="text-5xl font-bold mb-4 white:text-white">
-          02.Jan.2024
-        </p>
+  const [formData, setFormData] = useState({
+    fName: '',
+    lName: '',
+    email: '',
+    phone: '',
+    country: '',
+    state: '',
+    github: '',
+    gender: '',
+    time: '',
+    fullTime: '',
+    history: '',
+    language: '',
+    source: '',
 
-      </div>
+  });
 
-      <div className='max-w-5xl text-white w-full bg-[#1d1d1d] p-8 mt-4 rounded-md'>
-        <h2 className="text-2xl font-medium mb-6 text-center">Fill the form to complete your application</h2>
-        <form action="">
-          <div className='flex gap-20 text-center'>
-            <div className='text-left gap-8'>
-              <label htmlFor="firstName">First name</label> <br />
-              <input type="text" id="firstName" name="firstName" className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required />
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="lastName">Last name</label><br />
-              <input type="text" id='lastName' name='lastName' className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="phoneNumber">Phone number</label><br />
-              <input type="tel" className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
+  const [currentStep, setCurrentStep] = useState(1);
+
+  const handleChange = (name: string, value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value
+    }));
+  };
+
+  const nextStep = () => {
+    setCurrentStep(currentStep + 1);
+  };
+
+  const prevStep = () => {
+    setCurrentStep(currentStep - 1);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // try {
+    //   const response = await axios.post('https://example.com/api/submitForm', formData);
+    //   alert('Form submitted successfully:', response.data);
+    //   // Handle success (e.g., clear form, show a success message)
+    // } catch (error) {
+    //   alert('Error submitting form:', error.response ? error.response.data : error.message);
+    //   // Handle errors (e.g., show error message)
+    // }
+  
+  };
+
+
+  const BioForm = () => (
+    <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
+      <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
+      <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
+      
+      <form className="space-y-7">
+        <div className="grid grid-cols-3 gap-6">
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              First name
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='fName' 
+              value={formData.fName} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
           </div>
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Last name
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input type="text" name='lName' value={formData.lName} className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required />
+          </div>
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Email
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="email" 
+              name='email' 
+              value={formData.email} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white "
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required
+            />
+          </div>
+        </div>
 
-          <div className='flex gap-20 text-center'>
-            <div className='text-left gap-8'>
-              <label htmlFor="email">Email Address</label> <br />
-              <input type="email" id="email" name="email" className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required />
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="country">Country</label><br />
-              <input type="text" id='country' name='country' className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="state">State</label><br />
-              <input type="text" id='state' name='state' className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Gender
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='gender' 
+              value={formData.gender} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
-          <div className='flex gap-20 text-center'>
-            <div className='text-left gap-8'>
-              <label htmlFor="firstName">Gender</label> <br />
-              <input type="text" id="gender" name="gender" className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required />
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="lastName">Github</label><br />
-              <input type="text" id='linkedin' name='linkedin' className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
-            <div className='text-left gap-8'>
-              <label htmlFor="phoneNumber">Are you available in full time</label><br />
-              <input type="text" className='w-full bg-[#2b2b2b] border border-[#4e2ef5] text-sm p-1 rounded-md outline-none focus:ring-2 focus:ring-[#4e2ef5]' required/>
-            </div>
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Country
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='country' 
+              value={formData.country} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
           </div>
-          <button className="text-white text-left py-2 px-4 bg-gradient-to-r from-[#bf64e7] to-[#4e2ef5] rounded mt-8 font-normal">
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              State
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='state' 
+              value={formData.state} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
+          </div>
+        </div>
+
+        <div className="grid grid-cols-3 gap-6">
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Phone number
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="tel" 
+              name='phone' 
+              value={formData.phone} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Github
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='github' 
+              value={formData.github} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
+          </div>
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              Are you available for full time study?
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <input 
+              type="text" 
+              name='fullTime' 
+              value={formData.fullTime} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center mt-8">
+          <p className="dark:text-gray-400 text-lg">Page 1 of 2</p>
+          <button
+            type="button"
+            onClick={nextStep}
+            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
+            >
             Continue →
           </button>
-        </form>
-      </div>
-      <div className="w-full max-w-5xl min-h-screen items-center text-gray-300  p-8 bg-gray-800 mt-8 rounded-lg shadow-lg">
-        <h2 className="text-center text-2xl font-semibold mb-6">Fill the form to complete your application</h2>
-        <h3 className="text-center text-xl font-medium mb-8">Complete your experience information</h3>
-
-        <form className="space-y-6">
-          <div>
-              <label className="block text-sm mb-1">Do you have any history with programming or writing code?</label>
-              <input
-              type="text"
-              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              placeholder="Describe your experience"
-              />
-          </div>
-
-          <div>
-              <label className="block text-sm mb-1">Why do you want to join Blockfuse Labs cohort 2? </label>
-              <input
-              type="text"
-              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              placeholder="List programming languages"
-              />
-          </div>
-
-          <div>
-              <label className="block text-sm mb-1">How much time (daily) are you willing to dedicate to this program?</label>
-              <select
-              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-              <option>Two-to-Three hours</option>
-              <option>Two-to-Five hours</option>
-              <option>five-to-Ten hours</option>
-              <option>Totally commited</option>
-              </select>
-          </div>
-
-          <div>
-              <label className="block text-sm mb-1">What is your experience with blockchain technology</label>
-              <select
-              className="w-full bg-gray-700 border border-gray-600 text-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-purple-500"
-              >
-              <option></option>
-              </select>
-          </div>
-
-          <div className="flex justify-between items-center mt-8">
-            <button
-            type="button"
-            className="text-sm text-gray-400 hover:text-gray-300"
-            >
-            Previous
-            </button>
-            <p className="text-sm text-gray-400">Page 2 of 3</p>
-            <button
-            type="submit"
-            className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg"
-            >
-            Proceed to payment
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
-  )
-}
+  );
 
-export default WebThree
+  const ExperienceForm = () => (
+    <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8 rounded-lg">
+      <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
+      <h3 className="text-xl dark:text-white text-center mb-6">Complete your experience information</h3>
+      
+      <form className="space-y-6">
+        <div className="space-y-7">
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg">
+              Do you have any history with programming or writing code?
+            </label>
+            <input 
+              type="text" 
+              name='history' 
+              value={formData.history} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              onChange={(e) => handleChange(e.target.name, e.target.value)} required 
+            />
+          </div>
+          
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg">
+              What programming language(s) are you familiar with?
+            </label>
+            <input 
+              type="text" 
+              name='language' 
+              value={formData.language} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" required 
+            />
+          </div>
+          
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              How much time (daily) are you willing to dedicate to this program?
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <select 
+              name='time' 
+              value={formData.time} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+              <option>1-2 hours</option>
+              <option>3-4 hours</option>
+              <option>5+ hours</option>
+            </select>
+          </div>
+          
+          <div className="space-y-1">
+            <label className="dark:text-white text-lg flex">
+              How did you find out about Blockfuse Labs
+              <span className="text-red-500 ml-1">*</span>
+            </label>
+            <select 
+              name='source' 
+              value={formData.source} 
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white">
+              <option>Social Media</option>
+              <option>Referral</option>
+              <option>Advertisement</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="flex justify-between items-center mt-8">
+          <button
+            type="button"
+            onClick={prevStep}
+            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
+          >
+            Previous
+          </button>
+          <p className="dark:text-gray-400 text-lg">Page 2 of 2</p>
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
+          >
+            Submit →
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+
+  return (
+    <div className="min-h-screen px-6 py-16 flex flex-col items-center">
+      <div className="flex flex-col items-center text-center dark:text-white mb-8">
+        <header>
+            <h1 className="text-5xl md:text-6xl dark:text-white">
+              Apply to the{" "}
+              <span className="text-purple-500 font-bold">Web3 Bootcamp</span>
+            </h1>
+          </header>
+        <p className="text-2xl font-semibold mt-4">
+          Cohort 2 commences on-
+        </p>
+        <p className="text-5xl font-bold mb-4">
+          02.Jan.2024
+        </p>
+        <p className="text-xl max-w-4xl">
+          Welcome to the WEB3 DEVELOPERS BOOTCAMP application form. This bootcamp is designed to take you from a Web2 developer with coding experienced that is well-prepared to dive into blockchain programming bootcamp.
+        </p>
+      </div>
+
+      {currentStep === 1 && <BioForm />}
+      {currentStep === 2 && <ExperienceForm />}
+    </div>
+  );
+};
+
+export default WebTwo;
