@@ -22,7 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     country: DataTypes.STRING,
     state: DataTypes.STRING,
     referral_source: DataTypes.STRING,
-    application_type: DataTypes.ENUM("waitlist", "web2", "web3")
+    application_type: DataTypes.ENUM("waitlist", "web2", "web3"),
+    github_link: DataTypes.STRING,
+    full_time: DataTypes.BOOLEAN,
+    programming_language: DataTypes.STRING,
+    time_dedication: DataTypes.STRING,
+    code_experience: DataTypes.STRING,
+    transaction_receipt: DataTypes.STRING,
+
   }, {
     sequelize,
     modelName: 'Application',
