@@ -17,6 +17,11 @@ const applicationSchema = Joi.object({
     residential_address: Joi.string().required(),
     referral_source: Joi.string().required(),
     application_type: Joi.string().valid('waitlist', 'web2', 'web3').insensitive().required(),
+    transaction_receipt: Joi.when('application_type', {
+        is: 'web2',
+        then: Joi.string().required(),
+        otherwise: Joi.string().optional()
+      })
 });
 
 

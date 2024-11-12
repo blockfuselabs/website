@@ -27,6 +27,11 @@ module.exports = {
       queryInterface.addColumn('applications', 'code_experience', {
         type: Sequelize.STRING,
         allowNull: true,
+      }),
+
+      queryInterface.addColumn('applications', 'transaction_receipt', {
+        type: Sequelize.STRING,
+        allowNull: true,
       })
     ]);
   },
@@ -37,7 +42,8 @@ module.exports = {
       queryInterface.removeColumn('applications', 'full_time'),
       queryInterface.removeColumn('applications', 'programming_language'),
       queryInterface.removeColumn('applications', 'time_dedication'),
-      queryInterface.removeColumn('applications', 'code_experience')
+      queryInterface.removeColumn('applications', 'code_experience'),
+      queryInterface.removeColumn('applications', 'transaction_receipt')
     ]);
   }
 };

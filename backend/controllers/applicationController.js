@@ -141,9 +141,12 @@ class ApplicationController {
                 country, 
                 state, 
                 referral_source, 
-                application_type 
+                application_type,
+                transaction_receipt 
+
             } = req.body;
 
+            console.log(application_type.toLowerCase(), transaction_receipt);
             const applictaion = await Application.create({
                 fullname: lastname.toLowerCase() + ' ' + firstname.toLowerCase(), 
                 email, 
@@ -155,6 +158,7 @@ class ApplicationController {
                 referral_source: referral_source.toLowerCase(), 
                 application_type: application_type.toLowerCase(),
                 full_time: full_time.toLowerCase() === 'yes' ? true : false,
+                transaction_receipt: application_type.toLowerCase() === 'web2' ? transaction_receipt : null,
                 github_link,
                 programming_language,
                 time_dedication,

@@ -28,6 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     programming_language: DataTypes.STRING,
     time_dedication: DataTypes.STRING,
     code_experience: DataTypes.STRING,
+    transaction_receipt: DataTypes.STRING,
+
   }, {
     sequelize,
     modelName: 'Application',
