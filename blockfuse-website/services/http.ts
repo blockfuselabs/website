@@ -1,5 +1,6 @@
 import axios from "axios"
 import routes from "./routes"
+import { ArticlesResponse, AlumniResponse } from "../types/generated";
 
 
 const AxiosInstance = axios.create({
@@ -21,17 +22,16 @@ class BaseUrl{
         }
     }
 
-
-    httpGetAllAlumni = async () => {
+    httpGetAllAlumni = async (cohortId: number | string): Promise<AlumniResponse> => {
         try {
-            const URL = `${routes.ALUMNI}`
-            const response = await AxiosInstance.get(URL)
-            return response.data
+          const response = await AxiosInstance.get<AlumniResponse>(`${routes.ALUMNI}/${cohortId}`);
+          return response.data;
         } catch (error) {
-            console.log(error);
-            throw error
+          console.error("Failed to fetch alumni data:", error);
+          throw error;
         }
-    }
+      };
+      
     httpGetTeamDetails = async () => {
         try {
             const response = await AxiosInstance.get(routes.TEAMDETAILS)
@@ -42,16 +42,16 @@ class BaseUrl{
         }
     }
 
-    httpGetTeamArticles = async () =>{
-        try {
-            const response = await AxiosInstance.get(routes.TEAMARTICLES)
-            return response.data
-        } catch (error) {
-            console.log(error);
-            throw error
-        }
-    }
 
+    httpGetTeamArticles = async (teamMemberId: number | string): Promise<ArticlesResponse> => {
+        try {
+          const response = await AxiosInstance.get<ArticlesResponse>(`${routes.TEAMARTICLES}/${teamMemberId}`);
+          return response.data;
+        } catch (error) {
+          console.error("Failed to fetch team articles:", error);
+          throw error;
+        }
+      };
     httpGetAllCohorts = async () => {
         try {
             const response = await AxiosInstance.get(routes.COHORTS)

@@ -1,19 +1,34 @@
 
-import { useQuery } from "@tanstack/react-query";
-import http from "../services/http";  
+// import { useQuery } from "@tanstack/react-query";
+// import http from "../services/http";  
 
-const useTeamArticlesQuery = () => {
-  const { data, error, isLoading, isSuccess } = useQuery({
-    queryKey: ["get_all_teams"],
-    queryFn: http.httpGetAllTeam,
-  });
+// const useTeamArticlesQuery = (query:any) => {
+//   const { data, error, isLoading, isSuccess } = useQuery({
+//     queryKey: ["get_all_teams", query],
+//     queryFn: http.httpGetTeamArticles,
+//   });
   
-  return { 
-    getAllTeamData: data, 
-    getAllTeamError: error, 
-    isGetAllTeamloading:isLoading, 
-    isGetAllTeamSuccess: isSuccess,
-   };
+//   return { 
+//     getAllTeamArticlesData: data, 
+//     getAllTeamArticlesError: error, 
+//     isGetAllArticlesloading:isLoading, 
+//     isGetAllTeamArticlesSuccess: isSuccess,
+//    };
+// };
+
+// export default useTeamArticlesQuery;
+
+
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
+import http from "../services/http";
+import { ArticlesResponse } from "../types/generated"; 
+
+const useTeamArticlesQuery = (teamMemberId: number | string): UseQueryResult<ArticlesResponse> => {
+  return useQuery<ArticlesResponse>({
+    queryKey: ["get_all_teams", teamMemberId],
+    queryFn: () => http.httpGetTeamArticles(teamMemberId),
+    enabled: !!teamMemberId, 
+  });
 };
 
 export default useTeamArticlesQuery;
