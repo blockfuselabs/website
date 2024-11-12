@@ -2,7 +2,13 @@ const Joi  = require('joi');
 const countries = require('../json/country.json');
 
 const applicationSchema = Joi.object({
-    fullname: Joi.string().min(5).required(),
+    firstname: Joi.string().min(3).required(),
+    lastname: Joi.string().min(3).required(),
+    github_link: Joi.string().uri().required(),
+    programming_language: Joi.string().required(),
+    time_dedication: Joi.string().required(),
+    code_experience: Joi.string().required(),
+    full_time: Joi.string().required(),
     email: Joi.string().email().required(),
     phone: Joi.string().pattern(/^[0-9]+$/).min(10).max(15).required(),
     gender: Joi.string().valid('male', 'female', 'others').insensitive().required(),

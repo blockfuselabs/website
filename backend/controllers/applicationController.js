@@ -127,7 +127,13 @@ class ApplicationController {
         try {
         
             const { 
-                fullname, 
+                firstname, 
+                lastname,
+                github_link,
+                full_time,
+                programming_language,
+                time_dedication,
+                code_experience, 
                 email, 
                 phone, 
                 gender, 
@@ -139,7 +145,7 @@ class ApplicationController {
             } = req.body;
 
             const applictaion = await Application.create({
-                fullname: fullname.toLowerCase(), 
+                fullname: lastname.toLowerCase() + ' ' + firstname.toLowerCase(), 
                 email, 
                 phone, 
                 gender: gender.toLowerCase(), 
@@ -147,7 +153,12 @@ class ApplicationController {
                 country: country.toLowerCase(), 
                 state: state.toLowerCase(), 
                 referral_source: referral_source.toLowerCase(), 
-                application_type: application_type.toLowerCase()
+                application_type: application_type.toLowerCase(),
+                full_time: full_time.toLowerCase() === 'yes' ? true : false,
+                github_link,
+                programming_language,
+                time_dedication,
+                code_experience, 
             });
 
             const applictaionResponse = { ...applictaion.toJSON() };
