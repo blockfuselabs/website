@@ -3,7 +3,7 @@ import BootcampCard from '/src/components/BootcampCards';
 
 const AboutBootcamp = () => {
   return (
-    <div className="dark:text-white px-6 py-36 sm:px-8 md:px-16 lg:px-24 flex flex-col items-center">
+    <div className="dark:text-white px-6 py-26 sm:px-8 md:px-16 lg:px-24 flex flex-col items-center">
       <div className="w-full max-w-[1040px] h-auto mb-16 text-center">
         <h1 className="font-space-grotesk text-[70px] font-normal leading-[89.32px]">
           Where Future <span className="font-bold">Blockchain</span> Leaders Are Made

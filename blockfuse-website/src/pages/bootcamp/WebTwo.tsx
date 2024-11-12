@@ -1,105 +1,94 @@
 import { Linkedin } from 'lucide-react';
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
 const WebTwo = () => {
 
-  const [formData, setFormData] = useState({
-    fName: '',
-    lName: '',
-    email: '',
-    phone: '',
-    country: '',
-    state: '',
-    linkedIn: '',
-    gender: '',
-    time: '',
-    fullTime: '',
-    history: '',
-    language: '',
-    source: '',
-
-  });
-
-  
+  const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
-  
-  const handleChange = (name: string, value: string) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post('https://dev.basicpayng.com/api/applications', data);
+      
+      if (response.status === 200) {
+        setFormData({});
+        setCurrentStep(1);
+      } else {
+        console.error('Server error:', response.statusText);
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      alert('Failed to submit. Please try again later.');
+    }
+
+  }
+
+  const nextStep = () => {
+    setCurrentStep((prevStep) => prevStep + 1);
   };
+
+  const prevStep = () => {
+    setCurrentStep((prevStep) => prevStep - 1);
+  };  
   
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (file) {
-      console.log("File to be submitted:", file);
-    } else {
-      alert("Please upload a receipt.");
-    }
-  };
 
-  const nextStep = () => {
-    setCurrentStep(currentStep + 1);
-  };
-
-  const prevStep = () => {
-    setCurrentStep(currentStep - 1);
-  };
-
-  const BioForm = () => (
-    <>
-    <div className="w-[1200px] bg-gray-200 dark:bg-[#1d1d1d] border border-purple-500 p-4 text-center text-xl text-red-500 space-y-1 mb-8">
-        <p>* This bootcamp is not free; the program fee is <span className="text-red-500 font-bold">₦50,000 (NON-REFUNDABLE)</span>.</p>
-        <p>* The payment is required to secure your spot in the bootcamp.</p>
-        <p>* The bootcamp duration is 5 months.</p>
-      </div>
+  const BioForm = ({register, errors}) => (
     <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
       <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
       
-      <form className="space-y-7">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
         <div className="grid grid-cols-3 gap-6">
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               First name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
+            <input
               type="text"
-              name='fName'
-              value={formData.fName} 
+              {...register('fName', { required: 'First name is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
+            />
+            {errors.fName && <p className="text-red-500">{errors.fName.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Last name
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
-              type="text" 
-              name='lName'
-              value={formData.lName}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)}  required />
+            <input
+              type="text"
+              {...register('lName', { required: 'Last name is required' })}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            />
+            {errors.lName && <p className="text-red-500">{errors.lName.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
-              Email
-              <span className="text-red-500 ml-1">*</span>
-            </label>
-            <input 
-              type="email" 
-              name='email'
-              value={formData.email}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+          <label className="dark:text-white text-lg flex">
+            Email
+            <span className="text-red-500 ml-1">*</span>
+          </label>
+          <input
+            type="email"
+            {...register('email', {
+              required: 'Email is required',
+              pattern: {
+                value: /^[\w-]+@([\w-]+\.)+[\w-]{2,4}$/,
+                message: 'Invalid email address'
+              }
+            })}
+            className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+          />
+          {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
         </div>
 
@@ -109,36 +98,38 @@ const WebTwo = () => {
               Gender
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
-              type="text" 
-              name='gender'
-              value={formData.gender}
+            <select
+              {...register('gender', { required: 'Gender is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+            >
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            {errors.gender && <p className="text-red-500">{errors.gender.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               Country
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
+            <input
               type="text"
-              name='country'
-              value={formData.country} 
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+              {...register('country', { required: 'Country is required' })}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            />
+            {errors.country && <p className="text-red-500">{errors.country.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
               State
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
-              type="text" 
-              name='state'
-              value={formData.state}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+            <input
+              type="text"
+              {...register('state', { required: 'State is required' })}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            />
+            {errors.state && <p className="text-red-500">{errors.state.message}</p>}
           </div>
         </div>
 
@@ -148,84 +139,97 @@ const WebTwo = () => {
               Phone number
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
+            <input
               type="tel"
-              name='phone'
-              value={formData.phone}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+              {...register('phone', {
+                required: 'Phone number is required',
+                pattern: {
+                  value: /^\+?[1-9]\d{1,14}$/,
+                  message: 'Invalid phone number'
+                }
+              })}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            />
+            {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
-              LinkedIn
+              Github
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
-              type="text" 
-              name='linkedIn'
-              value={formData.linkedIn}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+            <input
+              type="url"
+              {...register('github', {
+                required: 'GitHub profile is required',
+                pattern: {
+                  value: /^(https?:\/\/)?(www\.)?github\.com\/[A-z0-9_-]+\/?$/,
+                  message: 'Invalid GitHub URL'
+                }
+              })}
+              placeholder="https://github.com/username"
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            />
+            {errors.github && <p className="text-red-500">{errors.github.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
-              Are you available for full time study?
+              Are you available for full-time study?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <input 
-              type="text"
-              name='fullTime'
-              value={formData.fullTime}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white" 
-              onChange={(e) => handleChange(e.target.name, e.target.value)} required />
+            <select
+              {...register('fullTime', { required: 'This field is required' })}
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+            >
+              <option value="yes">Yes</option>
+              <option value="no">No</option>
+            </select>
+            {errors.fullTime && <p className="text-red-500">{errors.fullTime.message}</p>}
           </div>
         </div>
 
         <div className="flex justify-between items-center mt-8">
-          <div></div>
           <p className="dark:text-gray-400 text-lg">Page 1 of 3</p>
           <button
             type="button"
             onClick={nextStep}
             className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
-          >
+            >
             Continue →
           </button>
         </div>
       </form>
     </div>
-    </>
   );
 
-  const ExperienceForm = () => (
+  const ExperienceForm = ({register, errors}) => (
     <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8 rounded-lg">
       <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your experience information</h3>
       
-      <form className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         <div className="space-y-7">
           <div className="space-y-1">
             <label className="dark:text-white text-lg">
               Do you have any history with programming or writing code?
             </label>
-            <input 
+            <input
               type="text"
-              name='history'
-              value={formData.history}
+              {...register('history', { required: 'History is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)} />
+            />
+            {errors.history && <p className="text-red-500">{errors.history.message}</p>}
           </div>
-          
+         
           <div className="space-y-1">
             <label className="dark:text-white text-lg">
               What programming language(s) are you familiar with?
             </label>
-            <input 
+            <input
               type="text"
-              name='language'
-              value={formData.language}
+              {...register('language', { required: 'Programming language is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)} />
+            />
+            {errors.language && <p className="text-red-500">{errors.language.message}</p>}
           </div>
           
           <div className="space-y-1">
@@ -233,15 +237,16 @@ const WebTwo = () => {
               How much time (daily) are you willing to dedicate to this program?
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select 
-              name='time'
-              value={formData.time}
+            <select
+              {...register('time', { required: 'Time dedication is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)}>
-              <option>1-2 hours</option>
-              <option>3-4 hours</option>
-              <option>5+ hours</option>
+            >
+              <option value="">Select time dedication</option>
+              <option value="1-2">1-2 hours</option>
+              <option value="3-4">3-4 hours</option>
+              <option value="5">5+ hours</option>
             </select>
+            {errors.time && <p className="text-red-500">{errors.time.message}</p>}
           </div>
           
           <div className="space-y-1">
@@ -249,16 +254,17 @@ const WebTwo = () => {
               How did you find out about Blockfuse Labs
               <span className="text-red-500 ml-1">*</span>
             </label>
-            <select 
-              name='source'
-              value={formData.source}
+            <select
+              {...register('source', { required: 'Source is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
-              onChange={(e) => handleChange(e.target.name, e.target.value)}>
-              <option>Social Media</option>
-              <option>Referral</option>
-              <option>Advertisement</option>
-              <option>Other</option>
+            >
+              <option value="">Select source</option>
+              <option value="s">Social Media</option>
+              <option value="r">Referral</option>
+              <option value="a">Advertisement</option>
+              <option value="other">Other</option>
             </select>
+            {errors.source && <p className="text-red-500">{errors.source.message}</p>}
           </div>
         </div>
 
@@ -272,11 +278,10 @@ const WebTwo = () => {
           </button>
           <p className="dark:text-gray-400 text-lg">Page 2 of 3</p>
           <button
-            type="button"
-            onClick={nextStep}
+            type="submit"
             className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
           >
-            Proceed to payment →
+            Proceed to Payment →
           </button>
         </div>
       </form>
@@ -299,7 +304,7 @@ const WebTwo = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className="p-6 bg-gray-700 border border-purple-500 rounded-lg text-center">
           <label htmlFor="file-upload" className="cursor-pointer">
             <div className="text-4xl text-purple-500 mb-4">
@@ -359,8 +364,8 @@ const WebTwo = () => {
         </p>
       </div>
 
-      {currentStep === 1 && <BioForm />}
-      {currentStep === 2 && <ExperienceForm />}
+      {currentStep === 1 && <BioForm register={register} errors={errors} />}
+      {currentStep === 2 && <ExperienceForm register={register} errors={errors} />}
       {currentStep === 3 && <PaymentForm />}
     </div>
   );
