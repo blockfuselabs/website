@@ -3,14 +3,14 @@ import routes from "./routes"
 
 
 const AxiosInstance = axios.create({
-baseURL: "https://dev.basicpayng.com/api/",
-headers:{
-    accept: "application/json",
-    "content-Type": "application/json",
-},
+    baseURL: "https://dev.basicpayng.com/api/",
+    headers: {
+        accept: "application/json",
+        "content-Type": "application/json",
+    },
 })
 
-class BaseUrl{
+class BaseUrl {
     httpGetAllTeam = async () => {
         try {
             const response = await AxiosInstance.get(routes.TEAM)
@@ -51,5 +51,6 @@ class BaseUrl{
             throw error
         }
 
+    }
 }
-  export default new BaseUrl()
+export default new BaseUrl();

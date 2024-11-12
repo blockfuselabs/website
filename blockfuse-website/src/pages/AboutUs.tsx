@@ -6,7 +6,7 @@ const AboutUs = () => {
   <div className="px-6 h-auto dark:text-white sm:px-8 md:px-16 lg:px-24">
     
     <div className="mx-10 md:mx-10 lg:mx-10">
-      <section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
+      
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
             src="/src/assets/svgs/circles.svg"
@@ -17,26 +17,25 @@ const AboutUs = () => {
             className="w-full h-auto max-w-[800px]"
           />
         </div>
-        <div className="relative text-center z-10">
-          <header>
-            <h1 className="text-5xl  md:text-7xl dark:text-white">
-              Welcome to {" "}
-              <span className="text-purple-500 font-bold">Blockfuselabs</span>
-            </h1>
-          </header>
-          <div className="-space-y-1">
-            <p className="mt-4 text-lg md:text-3xl w-full md:w-3/4  mx-auto dark:text-gray-300">
-            At Blockfuse Labs, we provide expert training and resources to advance blockchain education.
+  {/* Text Content */}
+  <div className="text-center max-w-2xl p-6 relative z-10">
+        {/* Heading */}
+        <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-6 whitespace-nowrap">
+          Welcome to <span className="text-purple-500">Blockfuse</span>
+        </h1>
+
+        {/* Paragraphs */}
+        <p className="text-lg md:text-xl lg:text-2xl mb-4">
+          At Blockfuse Labs, we provide expert training and resources to advance blockchain education.
+        </p>
+        <p className="text-lg md:text-xl lg:text-2xl">
           Since our founding, Blockfuse Labs has grown into a leading educational platform, trusted by
           developers and enthusiasts alike. Today, we're proud to be driving blockchain education and
           innovation across Africa, helping learners at all levels build their skills and confidence.
-            </p>
-          </div>
-
-        </div>
-      </section>
-      
-    </div>
+        </p>
+      </div>
+     
+</div>
 <Alumnicohorts/>
 </div>
  )
