@@ -52,4 +52,5 @@ class BaseUrl{
         }
 
 }
-  export default new BaseUrl()
+}
+  export default new BaseUrl();
