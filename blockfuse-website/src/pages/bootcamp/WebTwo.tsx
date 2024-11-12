@@ -1,6 +1,8 @@
 import { Linkedin } from 'lucide-react';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
 const WebTwo = () => {
@@ -9,21 +11,28 @@ const WebTwo = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValues: {
+      application_type: "web2"
+    }
+  });
 
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('https://dev.basicpayng.com/api/applications/web2', data);
-      
-      if (response.status === 200) {
+      const response = await axios.post('https://dev.basicpayng.com/api/applications/web3', data);
+
+      if (response.status === 200 || response.status === 201) {
         setFormData({});
+        reset();
+        toast.success('Apllication successful!');
         setCurrentStep(1);
       } else {
         console.error('Server error:', response.statusText);
+        toast.error('Application was not submitted!');
       }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('Failed to submit. Please try again later.');
+      toast.error('Failed to submit application. Please try again!');
     }
 
   }
@@ -291,7 +300,7 @@ const WebTwo = () => {
     </div>
   );
 
-  const PaymentForm = () => (
+  const PaymentForm = ({register, errors}) => (
     <div className="w-full max-w-5xl mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
       <h2 className="text-2xl dark:text-white text-center mb-8">Use the following details to make payment</h2>
       
@@ -320,11 +329,12 @@ const WebTwo = () => {
           <input
             id="file-upload"
             type="file"
+            {...register('transaction_receipt', { required: 'transaction receipt is required' })}
             accept="image/jpeg, image/png"
             className="hidden"
             onChange={handleFileChange}
           />
-          {file && <p className="text-sm text-green-500 mt-2">{file.name}</p>}
+          {file &&  errors.transaction_receipt &&<p className="text-sm text-green-500 mt-2">{file.name}</p>}
         </div>
 
         <div className="flex justify-between items-center mt-8">
@@ -349,6 +359,7 @@ const WebTwo = () => {
 
   return (
     <div className="min-h-screen px-6 py-16 flex flex-col items-center">
+      <ToastContainer />
       <div className="flex flex-col items-center text-center dark:text-white mb-8">
         <header>
             <h1 className="text-5xl md:text-6xl dark:text-white">
@@ -369,7 +380,7 @@ const WebTwo = () => {
 
       {currentStep === 1 && <BioForm register={register} errors={errors} />}
       {currentStep === 2 && <ExperienceForm register={register} errors={errors} />}
-      {currentStep === 3 && <PaymentForm />}
+      {currentStep === 3 && <PaymentForm register={register} errors={errors} />}
     </div>
   );
 };

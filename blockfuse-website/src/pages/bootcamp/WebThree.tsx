@@ -9,7 +9,12 @@ const WebThree = () => {
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit,reset, formState: { errors } } = useForm({
+    defaultValues: {
+      application_type: "web3"
+    }
+  
+  });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionError, setSubmissionError] = useState(null);
@@ -19,27 +24,20 @@ const WebThree = () => {
     setSubmissionError(null);
 
     try {
-      const response = await axios.post('https://dev.basicpayng.com/api/applications/we3', data);
+      const response = await axios.post('https://dev.basicpayng.com/api/applications/web3', data);
 
-      if (response.status >= 200 && response.status < 300) {
-        setFormData({}); // Clear form data on success
-        setCurrentStep(1); 
-        alert('Form submitted successfully!');
+      if (response.status === 200 || response.status === 201) {
+        setFormData({});
+        reset();
+        toast.success('Apllication successful!');
+        setCurrentStep(1);
       } else {
         console.error('Server error:', response.statusText);
-        alert('Submission unsuccessful. Please check your data.');
+        toast.error('Application was not submitted!');
       }
     } catch (error) {
       console.error('Submission error:', error);
-      if (error.response) {
-        const serverMessage = error.response.data?.message || 'Submission failed. Please check your input.';
-        setSubmissionError(serverMessage);
-      } else {
-        setSubmissionError('Network error. Please try again later.');
-      }
-      alert(submissionError || 'Failed to submit. Please try again later.');
-    } finally {
-      setIsSubmitting(false);
+      toast.error('Failed to submit application. Please try again!');
     }
   };
   const nextStep = () => {
@@ -66,7 +64,7 @@ const WebThree = () => {
               {...register("application_type")} />
             <input
               type="text"
-              {...register('fullname', { required: 'Fulname is required' })}
+              {...register('fullname', { required: 'Fullname is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
             {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
@@ -95,7 +93,7 @@ const WebThree = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
-              {...register('gender', { required: 'Gender is required' })}
+              {...register('gender', { required: 'gender is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             >
               <option value="male">Male</option>
@@ -225,7 +223,7 @@ const WebThree = () => {
             </label>
             <input
               type="text"
-              {...register('code_experience', { required: 'History is required' })}
+              {...register('code_experience', { required: 'Programming History is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
             {errors.code_experience && <p className="text-red-500">{errors.code_experience.message}</p>}
@@ -301,6 +299,7 @@ const WebThree = () => {
 
   return (
     <div className="min-h-screen px-6 py-16 flex flex-col items-center">
+      <ToastContainer />
       <div className="flex flex-col items-center text-center dark:text-white mb-8">
         <header>
             <h1 className="text-5xl md:text-6xl dark:text-white">

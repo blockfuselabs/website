@@ -30,13 +30,9 @@ class BaseUrl {
           console.error("Failed to fetch alumni data:", error);
           throw error;
         }
-<<<<<<< HEAD
     }
  
-=======
-      };
       
->>>>>>> e92588ffb3070b1e48a3be3c699f81acba280923
     httpGetTeamDetails = async () => {
         try {
             const response = await AxiosInstance.get(routes.TEAMDETAILS)
@@ -57,6 +53,7 @@ class BaseUrl {
           throw error;
         }
       };
+
     httpGetAllCohorts = async () => {
         try {
             const response = await AxiosInstance.get(routes.COHORTS)
@@ -69,6 +66,5 @@ class BaseUrl {
     }
 }
 
-}
-  export default new BaseUrl();
+export default new BaseUrl();
 
