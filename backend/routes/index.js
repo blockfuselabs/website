@@ -81,6 +81,7 @@ router.get('/alumni/:id', authMiddleware, authorizeSuperAdmin, AlumniController.
 
 // Event Routes
 router.get('/events', EventController.getAll);
+router.get('/events/query', EventController.getEventsByType);
 router.get('/events/:id', EventController.getOne);
 router.post('/events', validateEvent, authMiddleware, authorizeSuperAdmin, EventController.store);
 router.patch('/events/:id', validateEventUpdate, authMiddleware, authorizeSuperAdmin, EventController.update);
