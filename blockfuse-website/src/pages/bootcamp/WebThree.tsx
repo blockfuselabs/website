@@ -113,7 +113,7 @@ const WebThree = () => {
             </label>
             <input
               type="text"
-              {...register('lName', { required: 'Residential Address is required' })}
+              {...register('residential_address', { required: 'Residential Address is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
             {errors.residential_address && <p className="text-red-500">{errors.residential_address.message}</p>}
