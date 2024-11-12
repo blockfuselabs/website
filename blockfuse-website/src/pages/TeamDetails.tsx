@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import useTeamArticlesQuery from "../../hooks/use-teamArticles.query";
@@ -20,7 +20,11 @@ const TeamDetails: React.FC = () => {
   const location = useLocation();
   const member = location.state?.member as Member | undefined;
 
-  // Only call useTeamArticlesQuery if member.id is defined
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+  }, []);
+
   const {
     data: getAllTeamArticlesData,
     error: getAllTeamArticlesError,
@@ -45,7 +49,7 @@ const TeamDetails: React.FC = () => {
             className="flex items-center mr-20 p-2 text-xs border border-purple-500 hover:bg-purple-700 rounded-lg text-black dark:text-white"
           >
             <FaLongArrowAltLeft size={20} />
-            <span className="text-sm p-1">Back to Team</span>
+            <span className="text-sm p-1">Team</span>
           </Link>
 
           <div className="flex flex-col md:flex-row items-center gap-8 w-full">
@@ -110,47 +114,51 @@ const TeamDetails: React.FC = () => {
       </div>
 
       {/* Articles Section */}
-      <section className="max-w-5xl mx-auto px-4 py-8">
-        <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-          Articles by {member.fullname}
-        </h2>
-        <div className="space-y-6">
-          {getAllTeamArticlesData?.data.articles.map((article: Article) => (
-            <div
-              key={article.id}
-              className="shadow-lg rounded-lg overflow-hidden"
-            >
-              {/* Article Title */}
-              <h3 className="text-2xl font-semibold text-center p-4 dark:text-white">
-                {article.title}
-              </h3>
-              
-              {/* Article Content */}
-              <div className="flex flex-col gap-4 md:flex-row items-start">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full md:w-1/2 h-48 md:h-auto object-cover rounded-lg"
-                />
-                <div className="p-6 md:w-1/2">
-                  <p className="text-gray-700 dark:text-gray-400 mb-4">
-                    {article.content.slice(0, 150)}...
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mb-2">
-                    {new Date(article.createdAt).toLocaleDateString()}
-                  </p>
-                  <Link
-                    to={`/articles/${article.slug}`}
-                    className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-600 font-semibold"
-                  >
-                    Read More
-                  </Link>
-                </div>
-              </div>
-            </div>
-          ))}
+    <section className="max-w-5xl mx-auto px-4 py-8">
+  <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
+    Articles by {member.fullname}
+  </h2>
+  <div className="space-y-8 ">
+    {getAllTeamArticlesData?.data.articles.map((article: Article) => (
+      <div
+        key={article.id}
+        className="flex flex-col gap-4 md:flex-row shadow-lg  overflow-hidden "
+      >
+        {/* Article Image */}
+        <div className="w-full md:w-1/2 h-64 md:h-auto border border-purple-500 border-opacity-50">
+          <img
+            src={article.image}
+            alt={article.title}
+            className="w-full h-full object-cover"
+          />
         </div>
-      </section>
+
+        {/* Article Content */}
+        <div className="w-full md:w-1/2 p-6 flex flex-col border border-purple-500 border-opacity-50 justify-between">
+          <div>
+            <h3 className="text-2xl font-semibold mb-2 dark:text-white">
+              {article.title}
+            </h3>
+            <p className="text-gray-700 dark:text-gray-400 mb-4">
+              {article.content.slice(0, 150)}...
+            </p>
+          </div>
+          <div>
+            <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
+              {new Date(article.createdAt).toLocaleDateString()}
+            </p>
+            <Link
+              to={`/articles/${article.slug}`}
+              className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-600 font-semibold"
+            >
+              Read More
+            </Link>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
     </>
   );
 };
