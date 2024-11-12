@@ -58,12 +58,12 @@ const BlogPage = () => {
                     currentPosts.map((post) => (
                         <div
                             key={post.id}
-                            className="overflow-hidden cursor-pointer group hover:bg-gray-700 transition-all duration-300"
+                            className="overflow-hidden cursor-pointer group border border-purple-500 hover:bg-gray-700 transition-all duration-300"
                             onClick={() => navigateToBlogPost(post.id)}
                         >
                             <div className="relative h-48">
                                 <img 
-                                    src={`${import.meta.env.VITE_API_URL}/${post.image}`}
+                                    src={post.image} // Direct use of image URL from API
                                     alt={post.title}
                                     className="w-full h-full object-cover"
                                 />
@@ -91,7 +91,7 @@ const BlogPage = () => {
                                         className="w-8 h-8 rounded-full"
                                     />
                                     <div className="flex flex-col">
-                                        <span className="text-sm text-white">Author</span>
+                                        <span className="text-sm text-white">{post.author_name}</span>
                                         <span className="text-xs text-gray-400">
                                             {new Date(post.createdAt).toLocaleDateString()}
                                         </span>

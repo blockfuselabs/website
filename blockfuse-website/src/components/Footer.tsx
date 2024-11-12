@@ -13,18 +13,19 @@ import ProfileImage5 from '../assets/images/Ellipse 12-4.png';
 import ProfileImage6 from '../assets/images/Ellipse 12-5.png';
 import ProfileImage7 from '../assets/images/Ellipse 12-6.png';
 import ProfileImage8 from '../assets/images/Ellipse 12-7.png';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const navigationLinks = [
-    { label: "Home", href: "#" },
-    { label: "About us", href: "#" },
-    { label: "Teams", href: "#" },
-    { label: "Bootcamps", href: "#" },
-    { label: "Events", href: "#" },
-    { label: "Alumni", href: "#" },
-    { label: "Blog", href: "#" },
-    { label: "Open source", href: "#" },
-    { label: "Contact us", href: "#" },
+    { label: "Home", to: "/home" },
+    { label: "About us", to: "/about-us" },
+    { label: "Teams", to: "/team" },
+    { label: "Bootcamps", to: "/bootcamp" },
+    { label: "Events", to: "/events" },
+    { label: "Alumni", to: "/alumni" },
+    { label: "Blog", to: "/blog" },
+    { label: "Open source", to: "/opensource" },
+    { label: "Contact us", to: "/contact-us" },
   ];
 
   const profiles = [
@@ -104,9 +105,9 @@ const Footer = () => {
 
           {/* Telegram Button */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <span className="dark:text-gray-400">Connect with us on Telegram</span>
-            <a
-              href="https://t.me/blockfuselabs"
+            <span className="text-lg dark:text-gray-400">Connect with us on Telegram</span>
+            
+            <a href="https://t.me/blockfuselabs" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-6 py-2 transition-all duration-200"
             >
               Join our Community →
@@ -125,28 +126,31 @@ const Footer = () => {
               <img src={Logo} alt="Blockfuse Logo" />
             </div>
             {/* Email text */}
-            <span className="text-sm text-center sm:text-left">blockfuse@gmail.com</span>
+            <span className="text-lg text-center sm:text-left">support@blockfuselabs.com</span>
           </div>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="mb-8 flex gap-3 items-center justify-center flex-col sm:flex-row sm:justify-between">
-          <ul className="flex flex-wrap gap-4 justify-center sm:justify-start">
-            {navigationLinks.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  className="text-sm hover:text-purple-400 transition-colors"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+    
+     {/* Navigation Links */}
+     <nav className="mb-8 flex gap-3 items-center justify-center flex-col sm:flex-row sm:justify-between">
+        <ul className="flex flex-wrap gap-4 justify-center sm:justify-start">
+          {navigationLinks.map((link) => (
+            <li key={link.label}>
+              <Link
+                to={link.to}
+                className="text-md hover:text-purple-400 transition-colors"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <Link to="/donate">
           <Button className="w-40 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0">
             Donate
           </Button>
-        </nav>
+        </Link>
+      </nav>
 
         {/* Social Links and Copyright */}
         <div className="flex flex-col sm:flex-row justify-between bg-gray-100 dark:bg-[#2F2E34] border dark:border-zinc-800 items-center py-3 border-t">

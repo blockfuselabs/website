@@ -46,14 +46,17 @@ class BaseUrl {
 
     async httpGetAllTestimonies() {
         try {
-            const response = await AxiosInstance.get(routes.TESTIMONIAL);
+            const url = routes.TESTIMONIAL;
+            console.log("Full URL being called:", `${AxiosInstance.defaults.baseURL}${url}`);
+            const response = await AxiosInstance.get(url);
             console.log("API Response:", response.data);
-            return response.data.data.testimonies;
+            return response.data.data;
         } catch (error) {
             console.error("API Error:", error);
             throw error;
         }
     }
+    
 
     async httpGetAllFAQS() {
         try {
@@ -120,22 +123,24 @@ class BaseUrl {
             console.log(error);
             throw error
         }
-<<<<<<< HEAD
+
     }
 
-    async httpPostApplication(formData) {
+
+    
+      async httpGetEventBySlug(slug: string) {
         try {
-          const response = await AxiosInstance.post(routes.APPLICATION, formData);
+          const response = await AxiosInstance.get(`${routes.EVENTS}/${slug}`);
+          console.log("API Response:", response.data);
           return response.data;
         } catch (error) {
-          console.error('API Error:', error);
+          console.error("API Error:", error);
           throw error;
         }
       }
-    
-=======
 
->>>>>>> 66c1b07d64b375c6bb9a6d2497446e15258e8e38
+
+
 }
 
 export default new BaseUrl();

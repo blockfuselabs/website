@@ -23,19 +23,24 @@ import ContactUs from "./pages/ContactUs"
 import OurAlumni from './pages/OurAlumni';
 import TeamDetails from './pages/TeamDetails';
 import Donate from './pages/Donate';
+import PastEventDetail from './pages/PastEventDetail';
 
 import { ThemeProvider } from './context/ThemeContext';
+import ScrollToTopButton, { useScrollToTop } from './components/ScrollToTopButton';
 
 
-
+import { Web3Provider } from "./components/WalletConnect/Web3Provider";
+import { ConnectKitButton } from "connectkit";
 
 
 
 function App() {
-
+  useScrollToTop();
 
   return (
     <ThemeProvider>
+      <Web3Provider>
+      <ScrollToTopButton />
     <Router>
     <div className="App noise dark:bg-[#131316] bg-[#fafafa] flex flex-col min-h-screen">
       {/* Navbar */}
@@ -58,13 +63,14 @@ function App() {
           {/* Alumni */}
           <Route path="/alumni*" element={<Alumni />} />
           {/* our Alumni */}
-          <Route path="/ouralumni*" element={<OurAlumni />} />
+          <Route path="/alumni/:slug*" element={<OurAlumni />} />
 
           {/* Testimonials */}
           <Route path="/testimonial/*" element={<Testimonial />} />
 
           {/* Events */}
           <Route path="/events/*" element={<Events />} />
+          <Route path="/events/:slug" element={<PastEventDetail />} />
 
           {/* Open Source */}
           <Route path="/opensource/*" element={<OpenSource />} />
@@ -95,6 +101,7 @@ function App() {
      
     </div>
   </Router>
+  </Web3Provider>
   </ThemeProvider>
   )
 }

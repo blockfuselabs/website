@@ -4,14 +4,14 @@ import { MoveRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Imageone from "../assets/images/Frame-10.png";
 import Box1 from "../assets/svgs/box1.svg";
 import BootcampCard from "../components/BootcampCards";
-import Frameone from "../assets/svgs/Frame-3704.svg";
+import  Frameone from "../assets/svgs/Frame-3704.svg";
 import Frametwo from "../assets/svgs/Frame-3703.svg";
 import Framethree from "../assets/svgs/Frame-3702.svg";
 import Framefour from "../assets/svgs/Frame-3701.svg";
 import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
 import TestimonialsSection from "../components/TestimonialCarousel";
-import Circles from "../assets/svgs/circles.svg"
+import Zigzag from "../assets/svgs/zigzag.svg"
 import useFAQSQuery from '../../hooks/useFaqsQuery';
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
-            src={Circles}
+            src={Zigzag}
             alt="Background illustration representing blockchain technology"
             width="800"
             height="400"
@@ -76,9 +76,7 @@ const Hero = () => {
             <br />
             Whether you're new to blockchain or an experienced developer,
             <br />
-            we offer resources, expert instructors,
-            <br />
-            and tools for every stage of your growth.
+            we offer resources, expert instructors,and tools for every stage of your growth.
           </p>
         </div>
 
@@ -305,10 +303,12 @@ const Hero = () => {
         <div className="text-center mt-8">
           <h4 className="text-white mb-4">Start Your Journey Today</h4>
           <div className="flex justify-center">
+            <a href="https://t.me/blockfuselabs" target="_blank" rel="noopener noreferrer">
             <Button>
               Join our Community
               <MoveRight />
             </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -365,11 +365,11 @@ const Hero = () => {
       >
         <header id="faq" className="text-center mb-8">
           <h2 className="text-3xl font-semibold">FAQ’s</h2>
-          <p className="mt-2 dark:text-gray-400">
+          <p className="mt-2 text-lg dark:text-gray-400">
             Everything you need to know about Blockfuse Labs! Can’t find the
             answer you’re looking for?
           </p>
-          <p className="mt-2 dark:text-gray-400">
+          <p className="mt-2 text-lg dark:text-gray-400">
             Please chat with our friendly team, or{" "}
             <a href="https://t.me/blockfuselabs" target="_blank" className="text-purple-700 underline">
               reach out to us on our Telegram channel here.
@@ -377,7 +377,7 @@ const Hero = () => {
           </p>
         </header>
 
-        <div className="space-y-4">
+        <div className="space-y-4 text-lg">
           {[
             {
               question: "What is Blockfuse Labs?",
@@ -445,11 +445,11 @@ const Hero = () => {
             Subscribe to Our Newsletter
           </h2>
           <div className="-space-y-1">
-            <p className="dark:text-gray-300 text-center text-sm">
+            <p className="dark:text-gray-300 text-center text-lg">
               Stay ahead in the world of blockchain! Get the latest updates,
               insights,
             </p>
-            <p className="dark:text-gray-300 text-center text-sm">
+            <p className="dark:text-gray-300 text-center text-lg">
               and exclusive resources from BlockTate Labs delivered straight to
               your inbox. Don't miss out—subscribe today!
             </p>

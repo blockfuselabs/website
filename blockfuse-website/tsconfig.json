@@ -17,7 +17,7 @@
       "jsx": "react-jsx",
       "outDir": "./dist"
     },
-    "include": ["src", "types"],
+    "include": ["src", "types", "declarations.d.ts"],
     "exclude": ["node_modules"]
   }
   
