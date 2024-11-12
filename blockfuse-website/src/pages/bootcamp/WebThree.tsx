@@ -1,31 +1,47 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
-const WebTwo = () => {
+const WebThree = () => {
 
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
 
-
   const { register, handleSubmit, formState: { errors } } = useForm();
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submissionError, setSubmissionError] = useState(null);
+
   const onSubmit = async (data) => {
+    setIsSubmitting(true); 
+    setSubmissionError(null);
+
     try {
-      const response = await axios.post('https://dev.basicpayng.com/api/applications', data);
-      
-      if (response.status === 200) {
-        setFormData({});
-        setCurrentStep(1);
+      const response = await axios.post('https://dev.basicpayng.com/api/applications/we3', data);
+
+      if (response.status >= 200 && response.status < 300) {
+        setFormData({}); // Clear form data on success
+        setCurrentStep(1); 
+        alert('Form submitted successfully!');
       } else {
         console.error('Server error:', response.statusText);
+        alert('Submission unsuccessful. Please check your data.');
       }
     } catch (error) {
       console.error('Submission error:', error);
-      alert('Failed to submit. Please try again later.');
+      if (error.response) {
+        const serverMessage = error.response.data?.message || 'Submission failed. Please check your input.';
+        setSubmissionError(serverMessage);
+      } else {
+        setSubmissionError('Network error. Please try again later.');
+      }
+      alert(submissionError || 'Failed to submit. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
-
-  }
+  };
   const nextStep = () => {
     setCurrentStep((prevStep) => prevStep + 1);
   };
@@ -35,7 +51,7 @@ const WebTwo = () => {
   };
 
   const BioForm = ({register, errors}) => (
-    <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
+    <div className="w-full max-w-5xl mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8">
       <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
       
@@ -46,12 +62,14 @@ const WebTwo = () => {
               Name (Full name or Alias)
               <span className="text-red-500 ml-1">*</span>
             </label>
+            <input type="hidden"
+              {...register("application_type")} />
             <input
               type="text"
-              {...register('name', { required: 'First name is required' })}
+              {...register('fullname', { required: 'Fulname is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
-            {errors.name && <p className="text-red-500">{errors.name.message}</p>}
+            {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
           </div>
           <div className="space-y-1">
           <label className="dark:text-white text-lg flex">
@@ -98,7 +116,7 @@ const WebTwo = () => {
               {...register('lName', { required: 'Residential Address is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
-            {errors.adress && <p className="text-red-500">{errors.address.message}</p>}
+            {errors.residential_address && <p className="text-red-500">{errors.residential_address.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
@@ -152,7 +170,7 @@ const WebTwo = () => {
             </label>
             <input
               type="url"
-              {...register('github', {
+              {...register('github_link', {
                 required: 'GitHub profile is required',
                 pattern: {
                   value: /^(https?:\/\/)?(www\.)?github\.com\/[A-z0-9_-]+\/?$/,
@@ -162,7 +180,7 @@ const WebTwo = () => {
               placeholder="https://github.com/username"
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
-            {errors.github && <p className="text-red-500">{errors.github.message}</p>}
+            {errors.github_link && <p className="text-red-500">{errors.github_link.message}</p>}
           </div>
           <div className="space-y-1">
             <label className="dark:text-white text-lg flex">
@@ -170,13 +188,13 @@ const WebTwo = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
-              {...register('fullTime', { required: 'This field is required' })}
+              {...register('full_time', { required: 'This field is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             >
               <option value="yes">Yes</option>
               <option value="no">No</option>
             </select>
-            {errors.fullTime && <p className="text-red-500">{errors.fullTime.message}</p>}
+            {errors.full_time && <p className="text-red-500">{errors.full_time.message}</p>}
           </div>
         </div>
 
@@ -195,7 +213,7 @@ const WebTwo = () => {
   );
 
   const ExperienceForm = ({register, errors}) => (
-    <div className="w-[1200px] mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8 rounded-lg">
+    <div className="w-full max-w-5xl mx-auto dark:bg-[#1d1d1d] border border-purple-500 p-8 rounded-lg">
       <h2 className="text-2xl dark:text-white text-center mb-8">Fill the form to complete your application</h2>
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your experience information</h3>
       
@@ -207,10 +225,10 @@ const WebTwo = () => {
             </label>
             <input
               type="text"
-              {...register('history', { required: 'History is required' })}
+              {...register('code_experience', { required: 'History is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
-            {errors.history && <p className="text-red-500">{errors.history.message}</p>}
+            {errors.code_experience && <p className="text-red-500">{errors.code_experience.message}</p>}
           </div>
          
           <div className="space-y-1">
@@ -219,10 +237,10 @@ const WebTwo = () => {
             </label>
             <input
               type="text"
-              {...register('language', { required: 'Programming language is required' })}
+              {...register('programming_language', { required: 'Programming language is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
-            {errors.language && <p className="text-red-500">{errors.language.message}</p>}
+            {errors.language && <p className="text-red-500">{errors.programming_language.message}</p>}
           </div>
           
           <div className="space-y-1">
@@ -231,7 +249,7 @@ const WebTwo = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
-              {...register('time', { required: 'Time dedication is required' })}
+              {...register('time_dedication', { required: 'Time dedication is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             >
               <option value="">Select time dedication</option>
@@ -239,7 +257,7 @@ const WebTwo = () => {
               <option value="3-4">3-4 hours</option>
               <option value="5">5+ hours</option>
             </select>
-            {errors.time && <p className="text-red-500">{errors.time.message}</p>}
+            {errors.time_dedication && <p className="text-red-500">{errors.time_dedication.message}</p>}
           </div>
           
           <div className="space-y-1">
@@ -248,16 +266,16 @@ const WebTwo = () => {
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
-              {...register('source', { required: 'Source is required' })}
+              {...register('referral_source', { required: 'Source is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             >
               <option value="">Select source</option>
-              <option value="s">Social Media</option>
-              <option value="r">Referral</option>
-              <option value="a">Advertisement</option>
+              <option value="social">Social Media</option>
+              <option value="Referral">Referral</option>
+              <option value="Advertisement">Advertisement</option>
               <option value="other">Other</option>
             </select>
-            {errors.source && <p className="text-red-500">{errors.source.message}</p>}
+            {errors.referral_source && <p className="text-red-500">{errors.referral_source.message}</p>}
           </div>
         </div>
 
@@ -307,4 +325,4 @@ const WebTwo = () => {
   );
 };
 
-export default WebTwo;
+export default WebThree;

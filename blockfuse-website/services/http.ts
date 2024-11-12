@@ -32,6 +32,7 @@ class BaseUrl{
             throw error
         }
     }
+ 
     httpGetTeamDetails = async () => {
         try {
             const response = await AxiosInstance.get(routes.TEAMDETAILS)
