@@ -14,7 +14,7 @@ const Alumni = () => {
   if (getAllCohortsError) return <p>Error loading team data</p>;
 
   return (
-    <div className="px-6 py-4 h-full sm:px-8 md:px-16 lg:px-24">
+    <div className="px-6 py-4  sm:px-8 md:px-16 lg:px-24">
       <section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
@@ -70,7 +70,7 @@ const Alumni = () => {
             </div>
             <img
               src={box}
-              alt="Box svgs"
+              alt="Box"
               className="absolute top-0 left-0 z-0 h-[250px] sm:h-[350px] md:h-[450px]"
               style={{ transform: "translate(-20%, -20%)" }}
             />

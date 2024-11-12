@@ -42,6 +42,16 @@ class BaseUrl{
         }
     }
 
+    httpGetTeamArticles = async () =>{
+        try {
+            const response = await AxiosInstance.get(routes.TEAMARTICLES)
+            return response.data
+        } catch (error) {
+            console.log(error);
+            throw error
+        }
+    }
+
     httpGetAllCohorts = async () => {
         try {
             const response = await AxiosInstance.get(routes.COHORTS)

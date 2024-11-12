@@ -15,7 +15,7 @@ const Team = () => {
   if (getAllTeamError) return <p>Error loading team data</p>;
 
   return (
-    <div className="mx-10 md:mx-10 lg:mx-10">
+    <div className="mx-10 md:mx-10 lg:mx-10 ">
       <section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
@@ -45,22 +45,20 @@ const Team = () => {
           </p>
         </div>
       </section>
-      <div className="grid grid-cols-1 sm:grid-cols-2 dark:text-slate-500 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-6 mx-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 dark:text-slate-500 md:grid-cols-4 lg:grid-cols-4 gap-6 md:gap-6 px-14 ">
         {getAllTeamData?.teams?.map((member: any) => (
           <div
             key={member.id}
             onClick={() => navigate(`/teamdetails/${member.slug}`, { state: { member } })}
-            className="flex flex-col items-center cursor-pointer"
+            className="flex flex-col items-center  cursor-pointer"
           >
             <div className="w-full h-[400px] overflow-hidden">
-              <img src={member.image} alt={member.name} className="object-cover h-full w-full" />
-            </div>
-            <div className="text-center mt-2 pb-12">
+              <img src={member.image} alt={member.name} className="object-fit h-full w-full md:w-3/4 md:h-3/6" />
+            <div className="mt-3 md:mt-3">
               <p className="font-semibold hover:text-blue-500">{member.fullname}</p>
               <p className="text-sm text-gray-500">{member.position}</p>
-              <div className="flex gap-8 mt-2">
-            
-              </div>
+  
+            </div>
             </div>
           </div>
         ))}
