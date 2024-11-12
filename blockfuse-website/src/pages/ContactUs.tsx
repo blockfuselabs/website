@@ -36,7 +36,7 @@ const ContactUs = () => {
   <div className="flex flex-col items-start w-full dark:text-white">
     <h3 className="text-sm text-gray-600 dark:text-gray-300 mb-4">
       <span className="font-semibold">Address:</span> 
-      <p>Rhomat plaza jos</p>
+      <p>Blockfuse Labs, Rhomat Plaza Rayfield,Jos.</p>
     </h3>
 
     <h3 className="text-sm text-gray-600 dark:text-gray-300 mb-4">
@@ -46,7 +46,7 @@ const ContactUs = () => {
 
     <h3 className="text-sm text-gray-600 dark:text-gray-300 mb-4">
       <span className="font-semibold">E-mail:</span> 
-      <p>blockfuse@gmail.com</p>
+      <p>support@blockfuselabs.com</p>
     </h3>
   </div>
 
@@ -55,11 +55,7 @@ const ContactUs = () => {
 
         <div className="relative z-10 dark:bg-[#1A1A1A] bg-gray-100 border border-purple-500 w-[890px] h-[700px] shadow-lg flex flex-col justify-center items-center space-y-7">
   
-        <h1 className="text-2x1 md:text-2xl dark:text-white">
-              Complete your Bio
-            </h1>
-  
-  
+         
   {/* Contact Form */}
   <div className="w-full px-8">
     <form className="space-y-10 w-full">
