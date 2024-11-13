@@ -172,18 +172,18 @@ const Footer = () => {
 
           <div className="flex flex-col sm:flex-row items-center gap-4 px-6 text-sm">
             <div className="flex gap-4">
-              {/* <a href="#" className="hover:text-purple-400">
+              <a href="#" className="hover:text-purple-400">
                 Privacy Policy
               </a>
               <span>|</span>
               <a href="#" className="hover:text-purple-400">
                 Terms & Conditions
-              </a> */}
-              <LazyLoadedFooter />
+              </a>
+              
             </div>
-            {/* <span className="dark:text-gray-500">
+            <span className="dark:text-gray-500">
               All Copyright (C) 2024 Reserved
-            </span> */}
+            </span>
           </div>
         </div>
       </div>
