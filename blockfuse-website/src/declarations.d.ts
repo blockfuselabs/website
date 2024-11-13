@@ -24,3 +24,5 @@ declare module '*.jpeg' {
     const ReactComponent: FunctionComponent<SVGAttributes<SVGElement>>;
     export { ReactComponent };
   }
+
+  declare module 'react-blockies';

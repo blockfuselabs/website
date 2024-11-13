@@ -82,7 +82,7 @@ export declare type TeamMember = {
     createdAt: string;
     updatedAt: string;
     description?: string;
-    slug?: string;
+    slug: string;
   }
   
   export interface APIError {
@@ -125,4 +125,10 @@ export interface ImageComponentProps {
   className?: string;
 }
 
-
+export interface Contributor {
+  name: string;
+  twitterHandle: string;
+  amount: string;
+  timestamp: string;
+  txHash: string;
+}

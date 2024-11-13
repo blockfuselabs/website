@@ -7,7 +7,6 @@ const config = createConfig(
   getDefaultConfig({
     chains: [mainnet, sepolia],
     transports: {
-      // RPC URL for each chain
       [mainnet.id]: http(import.meta.env.VITE_ALCHEMY_MAINNET_URL),
       [sepolia.id]: http(import.meta.env.VITE_ALCHEMY_SEPOLIA_URL),
     },

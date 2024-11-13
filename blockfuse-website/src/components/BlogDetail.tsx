@@ -2,17 +2,24 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Link as LinkIcon, Share } from "lucide-react";
+import { RWebShare } from "react-web-share";
+import Skeleton from "../components/Skeleton";
+
 import Button from "./Buttons";
 import BaseUrl from "../../services/http";
 import { BlogPost, APIError } from "../../types/generated";
 
+import Blockies from "react-blockies"; 
+
+
 const BlogPostDetail = () => {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { slug } = useParams<{ slug: string }>();
+  const [articleDetails, setArticleDetails] = useState<BlogPost | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [isModalOpen, setIsModalOpen] = useState(false); 
   const [copySuccess, setCopySuccess] = useState(false);
 
   const truncateContent = (content: string, maxLength: number = 200) => {
@@ -24,26 +31,46 @@ const BlogPostDetail = () => {
     navigator.clipboard.writeText(window.location.href);
   };
 
+  
   useEffect(() => {
-    const fetchPost = async () => {
+    const fetchArticleDetails = async () => {
+      if (!slug) {
+        setError("No article slug provided");
+        setIsLoading(false);
+        return;
+      }
+
       try {
-        const article = await BaseUrl.httpGetArticleById(id);
-        setPost(article);
-      } catch (err) {
-        setError("Failed to load the article.");
+        setIsLoading(true);
+        setError(null);
+
+        const response = await BaseUrl.httpGetArticleBySlug(slug);
+        console.log(response.article);
+        if (response.article != undefined) {
+          setArticleDetails(response.article);
+          setPost(response.article);
+        } else {
+          setError("Article not found");
+        }
+      } catch (err: any) {
+        setError(
+          err?.response?.data?.message ||
+            "Failed to fetch article details. Please try again later."
+        );
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     };
 
-    fetchPost();
-  }, [id]);
+    fetchArticleDetails();
+  }, [slug]);
 
-  if (loading)
+  if (isLoading)
     return (
-      <div className="dark:text-white min-h-screen flex items-center justify-center">
-        Loading...
-      </div>
+      <div className="max-w-4xl mx-auto px-6 py-28">
+                <Skeleton className="h-40 w-full mb-8" />
+          
+            </div>
     );
   if (error)
     return (
@@ -68,70 +95,8 @@ const BlogPostDetail = () => {
       .catch((err) => console.error("Failed to copy text: ", err));
   };
 
-  const handleShare = () => {
-    const url = window.location.href;
-    const title = document.title;
-
-    if (navigator.share) {
-      navigator
-        .share({
-          title,
-          url,
-        })
-        .catch((error) => console.error("Error sharing:", error));
-    } else {
-      const shareOptions = [
-        {
-          name: "Twitter",
-          url: `https://twitter.com/share?url=${encodeURIComponent(
-            url
-          )}&text=${encodeURIComponent(title)}`,
-        },
-        {
-          name: "LinkedIn",
-          url: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-            url
-          )}`,
-        },
-        {
-          name: "Facebook",
-          url: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-            url
-          )}`,
-        },
-        {
-          name: "WhatsApp",
-          url: `https://wa.me/?text=${encodeURIComponent(
-            title
-          )}%20${encodeURIComponent(url)}`,
-        },
-        {
-          name: "Mail",
-          url: `mailto:?subject=${encodeURIComponent(
-            title
-          )}&body=${encodeURIComponent(url)}`,
-        },
-      ];
-
-      const option = window.prompt(
-        "Share via (Twitter, LinkedIn, Facebook, WhatsApp, Mail):"
-      );
-
-      if (option && option.trim()) {
-        const selectedOption = shareOptions.find(
-          (opt) => opt.name.toLowerCase() === option.trim().toLowerCase()
-        );
-
-        if (selectedOption) {
-          window.open(selectedOption.url, "_blank");
-        } else {
-          alert("Invalid option");
-        }
-      } else {
-        alert("No option selected or invalid input");
-      }
-    }
-  };
+  const articleUrl = window.location.href;
+ 
 
   return (
     <>
@@ -177,8 +142,12 @@ const BlogPostDetail = () => {
             {/* Right column with post details */}
             <div className="order-1 lg:order-2">
               <div className="text-sm text-gray-400 mb-4">
-                {new Date(post.createdAt).toLocaleDateString()} •{" "}
-                {new Date(post.createdAt).toLocaleTimeString()}
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}{" "}
+                • {new Date(post.createdAt).toLocaleTimeString()}
               </div>
               <h1 className="text-2xl lg:text-4xl font-bold text-white mb-6 lg:mb-8">
                 {post.title}
@@ -191,24 +160,31 @@ const BlogPostDetail = () => {
                   <LinkIcon className="w-4 h-4" />
                   <span className="ml-2">Copy link</span>
                 </button>
-                <button
-                  onClick={handleShare}
-                  className="bg-purple-500 flex items-center justify-center text-white px-7 py-1 md:px-20 md:py-2 "
-                >
-                  <Share className="w-4 h-4" />
-                  <span className="ml-2">Share</span>
-                </button>
+                <RWebShare
+        data={{
+          text: post.title,
+          url: articleUrl, 
+          title: post.title,
+        }}
+        onClick={() => console.log("shared successfully!")}
+      >
+        <button className="bg-purple-500 flex items-center justify-center text-white px-7 py-1 md:px-20 md:py-2 ">
+          <Share className="w-4 h-4" />
+          <span className="ml-2">Share</span>
+        </button>
+      </RWebShare>
               </div>
               {copySuccess && (
                 <p className="text-green-500 mt-2">URL copied to clipboard!</p>
               )}
+            
               <div className="mb-8 mt-3 lg:mb-12">
                 <div className="flex items-center gap-3">
-                  <img
-                    src={post.authorAvatar || "/default-avatar.png"}
-                    alt={post.author || "Author"}
-                    className="w-10 h-10 lg:w-12 lg:h-12 rounded-full"
-                    loading="lazy"
+                <Blockies
+                    seed={post.author || "default-seed"} 
+                    size={10}
+                    scale={3}
+                    className="rounded-full"
                   />
                   <span className="text-white font-medium">{post.author}</span>
                 </div>

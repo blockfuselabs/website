@@ -77,7 +77,8 @@ function App() {
 
           {/* Blog */}
           <Route path="/blog/*" element={<Blog />} />
-          <Route path="/blog/:id" element={<BlogPostDetail />} />
+          {/* <Route path="/blog/:id" element={<BlogPostDetail />} /> */}
+          <Route path="/blog/:slug" element={<BlogPostDetail />} />
 
           {/* Boot Camp */}
           <Route path="/bootcamp/*" element={<Bootcamp />} />
