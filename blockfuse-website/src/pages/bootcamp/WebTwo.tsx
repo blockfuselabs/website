@@ -1,7 +1,5 @@
 import { Linkedin } from 'lucide-react';
 import React, { useState } from 'react';
-import useApplicationQuery from '../../../hooks/useApplication';
-import routes from '../../../services/routes';
 
 const WebTwo = () => {
 

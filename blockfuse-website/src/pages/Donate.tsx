@@ -5,6 +5,7 @@ import Flower from "../assets/svgs/flower.svg";
 import { QRCodeCanvas } from 'qrcode.react';
 import { MoveRight, Copy } from "lucide-react";
 import { useAccount, useConnect } from 'wagmi';
+import { ConnectKitButton } from 'connectkit';
 import { parseEther } from 'viem';
 import styled from "styled-components";
 
@@ -79,6 +80,9 @@ const Donate = () => {
   const [amount, setAmount] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [txError, setTxError] = useState("");
+  
+
+
 
   const walletAddress = "0x59229960316f78D20aa9e958207C8AA62a699636";
   const { address, isConnected } = useAccount();
@@ -199,41 +203,53 @@ const Donate = () => {
   };
 
   const renderContributionForm = () => {
-    if (!addName) return null;
-
     return (
       <div className="flex flex-col items-center space-y-4 mt-4">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="border border-gray-300 p-2 w-[500px] rounded"
-        />
-        <input
-          type="text"
-          placeholder="Twitter Handle"
-          value={twitterHandle}
-          onChange={(e) => setTwitterHandle(e.target.value)}
-          className="border border-gray-300 p-2 w-[500px] rounded"
-        />
-        <input
-          type="number"
-          placeholder="Amount in ETH"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-          className="border border-gray-300 p-2 w-[500px] rounded"
-          step="0.01"
-        />
-        <ContributeButton
-          onClick={handleContribute}
-          disabled={!amount || isSubmitting || !isConnected}
-        >
-          {isSubmitting ? 'Processing...' : 'Contribute'}
-        </ContributeButton>
+        {addName && (
+          <>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="border border-gray-300 p-2 w-[500px] rounded"
+            />
+            <input
+              type="text"
+              placeholder="Twitter Handle"
+              value={twitterHandle}
+              onChange={(e) => setTwitterHandle(e.target.value)}
+              className="border border-gray-300 p-2 w-[500px] rounded"
+            />
+            <input
+              type="number"
+              placeholder="Amount in ETH"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="border border-gray-300 p-2 w-[500px] rounded"
+              step="0.01"
+            />
+          </>
+        )}
+  
+        <ConnectKitButton.Custom>
+          {({ isConnected, show }) =>
+            isConnected ? (
+              <ContributeButton
+                onClick={handleContribute}
+                disabled={!amount || isSubmitting}
+              >
+                {isSubmitting ? 'Processing...' : 'Contribute'}
+              </ContributeButton>
+            ) : (
+              <StyledButton onClick={show}>Connect Wallet</StyledButton>
+            )
+          }
+        </ConnectKitButton.Custom>
       </div>
     );
   };
+  
 
   return (
     <div className="h-full flex flex-col items-center justify-center px-4 py-36 relative">

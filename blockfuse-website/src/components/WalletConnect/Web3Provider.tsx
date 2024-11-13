@@ -14,8 +14,8 @@ const config = createConfig(
     // Required API Keys
     walletConnectProjectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
 
-    // Required App Info
-    appName: "Your App Name",
+    
+    appName: "Blockfuse Labs",
 
     // Optional App Info
     appDescription: "Your App Description",
@@ -33,7 +33,9 @@ export const Web3Provider = ({ children }) => {
       <ConnectKitProvider theme="default" mode="dark"
         options={{
           embedGoogleFonts: true,
-        }}>
+          
+        }}
+        >
           {children}
         </ConnectKitProvider>
       </QueryClientProvider>
