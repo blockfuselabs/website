@@ -3,29 +3,54 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const WebTwo = () => {
 
-  const [formData, setFormData] = useState({});
+  const navigate = useNavigate();
+
+  const [formData1, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
   const [file, setFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, getValues, setValue, watch, reset, formState: { errors } } = useForm<FormData>({
     defaultValues: {
       application_type: "web2"
     }
   });
 
-  const onSubmit = async (data) => {
+  const imageFile = watch('transaction_receipt');
+
+  const onSubmit = async (data: any) => {
+    console.log(imageFile);
+    
+    const formData = new FormData();
+    Object.keys(data).forEach((key) => {
+      console.log(data[key]);
+      if (key === 'transaction_receipt' && data[key] && data[key][0]) {
+        formData.append(key, data[key][0]);
+      } else {
+        formData.append(key, data[key]);
+      }
+    });
+
+    console.log(formData);
+
     try {
-      const response = await axios.post('https://dev.basicpayng.com/api/applications/web3', data);
+      const response = await axios.post('https://dev.basicpayng.com/api/applications/web2', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
 
       if (response.status === 200 || response.status === 201) {
         setFormData({});
         reset();
         toast.success('Apllication successful!');
         setCurrentStep(1);
+        setTimeout(() => {
+          navigate('/bootcamp');
+        }, 5000);
       } else {
         console.error('Server error:', response.statusText);
         toast.error('Application was not submitted!');
@@ -45,8 +70,17 @@ const WebTwo = () => {
     setCurrentStep((prevStep) => prevStep - 1);
   };  
   
-  const handleFileChange = (e) => {
-    setFile(e.target.files[0]);
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    console.log(file);
+    console.log(e.target.files[0]);
+    if (file) {
+      setValue('transaction_receipt', e.target.files[0], { shouldValidate: true, shouldDirty: true });
+      const reader = new FileReader();
+      reader.onloadend = () => setImagePreview(reader.result as string);
+      reader.readAsDataURL(file);
+      console.log(getValues('transaction_receipt'));
+    }
   };
 
 
@@ -56,9 +90,9 @@ const WebTwo = () => {
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md sm:text-sm flex">
               Name (Full name or Alias)
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -66,13 +100,13 @@ const WebTwo = () => {
               {...register("application_type")} />
             <input
               type="text"
-              {...register('fullname', { required: 'Fulname is required' })}
+              {...register('fullname', { required: 'Fullname is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
             {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
           </div>
           <div className="space-y-1">
-          <label className="dark:text-white text-lg flex">
+          <label className="dark:text-white text-md flex">
             Email
             <span className="text-red-500 ml-1">*</span>
           </label>
@@ -90,12 +124,12 @@ const WebTwo = () => {
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Gender
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
-              {...register('gender', { required: 'Gender is required' })}
+              {...register('gender', { required: 'gender is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             >
               <option value="male">Male</option>
@@ -105,9 +139,9 @@ const WebTwo = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Residential Address
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -119,7 +153,7 @@ const WebTwo = () => {
             {errors.residential_address && <p className="text-red-500">{errors.residential_address.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Country
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -131,7 +165,7 @@ const WebTwo = () => {
             {errors.country && <p className="text-red-500">{errors.country.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               State
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -144,9 +178,9 @@ const WebTwo = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Phone number
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -164,7 +198,7 @@ const WebTwo = () => {
             {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Github
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -183,13 +217,13 @@ const WebTwo = () => {
             {errors.github_link && <p className="text-red-500">{errors.github_link.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Are you available for full-time study?
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
               {...register('full_time', { required: 'This field is required' })}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white text-sm md:text-base"
             >
               <option value="yes">Yes</option>
               <option value="no">No</option>
@@ -199,7 +233,7 @@ const WebTwo = () => {
         </div>
 
         <div className="flex justify-between items-center mt-8">
-          <p className="dark:text-gray-400 text-lg">Page 1 of 3</p>
+          <p className="dark:text-gray-400 text-md">Page 1 of 3</p>
           <button
             type="button"
             onClick={nextStep}
@@ -225,7 +259,7 @@ const WebTwo = () => {
             </label>
             <input
               type="text"
-              {...register('code_experience', { required: 'History is required' })}
+              {...register('code_experience', { required: 'Programming History is required' })}
               className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
             />
             {errors.code_experience && <p className="text-red-500">{errors.code_experience.message}</p>}
@@ -287,13 +321,13 @@ const WebTwo = () => {
           >
             Previous
           </button>
-          <p className="dark:text-gray-400 text-lg">Page 2 of 3</p>
+          <p className="dark:text-gray-400 text-md">Page 2 of 3</p>
           <button
             type="button"
             onClick={nextStep}
-            className="bg-purple-600 text-white px-6 py-2 hover:bg-purple-700"
+            className="bg-purple-600 text-white text-md px-6 py-2 hover:bg-purple-700"
           >
-            Submit →
+            Proceed to payment →
           </button>
         </div>
       </form>
@@ -329,12 +363,17 @@ const WebTwo = () => {
           <input
             id="file-upload"
             type="file"
-            {...register('transaction_receipt', { required: 'transaction receipt is required' })}
-            accept="image/jpeg, image/png"
+            {...register('transaction_receipt')}
+            accept="image/*"
             className="hidden"
             onChange={handleFileChange}
           />
-          {file &&  errors.transaction_receipt &&<p className="text-sm text-green-500 mt-2">{file.name}</p>}
+          {errors.transaction_receipt && <p className="text-red-500">{errors.transaction_receipt.message}</p>}
+          {imagePreview && (
+            <div>
+              <img src={imagePreview} alt="Selected Preview" style={{ width: '100px', height: '100px' }} />
+            </div>
+          )}
         </div>
 
         <div className="flex justify-between items-center mt-8">

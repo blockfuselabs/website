@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
 
+
 const WebThree = () => {
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({});
   const [currentStep, setCurrentStep] = useState(1);
@@ -31,6 +35,9 @@ const WebThree = () => {
         reset();
         toast.success('Apllication successful!');
         setCurrentStep(1);
+        setTimeout(() => {
+          navigate('/bootcamp');
+        }, 5000);
       } else {
         console.error('Server error:', response.statusText);
         toast.error('Application was not submitted!');
@@ -54,9 +61,9 @@ const WebThree = () => {
       <h3 className="text-xl dark:text-white text-center mb-6">Complete your Bio</h3>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Name (Full name or Alias)
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -70,7 +77,7 @@ const WebThree = () => {
             {errors.fullname && <p className="text-red-500">{errors.fullname.message}</p>}
           </div>
           <div className="space-y-1">
-          <label className="dark:text-white text-lg flex">
+          <label className="dark:text-white text-md flex">
             Email
             <span className="text-red-500 ml-1">*</span>
           </label>
@@ -88,7 +95,7 @@ const WebThree = () => {
           {errors.email && <p className="text-red-500">{errors.email.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Gender
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -103,9 +110,9 @@ const WebThree = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Residential Address
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -117,7 +124,7 @@ const WebThree = () => {
             {errors.residential_address && <p className="text-red-500">{errors.residential_address.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Country
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -129,7 +136,7 @@ const WebThree = () => {
             {errors.country && <p className="text-red-500">{errors.country.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               State
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -142,9 +149,9 @@ const WebThree = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-3">
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Phone number
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -162,7 +169,7 @@ const WebThree = () => {
             {errors.phone && <p className="text-red-500">{errors.phone.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Github
               <span className="text-red-500 ml-1">*</span>
             </label>
@@ -181,13 +188,13 @@ const WebThree = () => {
             {errors.github_link && <p className="text-red-500">{errors.github_link.message}</p>}
           </div>
           <div className="space-y-1">
-            <label className="dark:text-white text-lg flex">
+            <label className="dark:text-white text-md flex">
               Are you available for full-time study?
               <span className="text-red-500 ml-1">*</span>
             </label>
             <select
               {...register('full_time', { required: 'This field is required' })}
-              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white"
+              className="w-full dark:bg-[#2b2b2b] border border-purple-500 rounded p-2 dark:text-white text-sm md:text-base"
             >
               <option value="yes">Yes</option>
               <option value="no">No</option>
@@ -197,7 +204,7 @@ const WebThree = () => {
         </div>
 
         <div className="flex justify-between items-center mt-8">
-          <p className="dark:text-gray-400 text-lg">Page 1 of 2</p>
+          <p className="dark:text-gray-400 text-md">Page 1 of 2</p>
           <button
             type="button"
             onClick={nextStep}
