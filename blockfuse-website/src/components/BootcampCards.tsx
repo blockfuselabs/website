@@ -3,7 +3,11 @@ import Button from "./Buttons";
 import { MoveRight } from "lucide-react";
 import Web2 from "../assets/images/web2-bg.jpeg";
 import Web3 from "../assets/images/web3-bg.jpeg";
+<<<<<<< HEAD
 import { NavLink } from "react-router-dom"; // Import NavLink
+=======
+import { NavLink } from "react-router-dom"; 
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
 
 const StyledCards = () => {
   return (
@@ -21,7 +25,11 @@ const StyledCards = () => {
           </div>
         </div>
         <div className="p-4 sm:p-6">
+<<<<<<< HEAD
           <p className="dark:text-gray-300 mb-4 text-sm sm:text-base">
+=======
+          <p className="dark:text-gray-300 mb-4 text-lg sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             Learn the essentials of modern web development in HTML, CSS,
             Tailwind CSS, JavaScript, and Node.js/React. This program guides you
             through creating interactive, responsive websites, providing the
@@ -52,7 +60,11 @@ const StyledCards = () => {
           </div>
         </div>
         <div className="p-4 sm:p-6">
+<<<<<<< HEAD
           <p className="dark:text-gray-300 mb-4 text-sm sm:text-base">
+=======
+          <p className="dark:text-gray-300 mb-4 text-lg sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             Unlock the future of the internet with our Web3 Bootcamp! Learn
             blockchain fundamentals, smart contracts, and dApps to build
             decentralized applications. Ideal for beginners eager to explore

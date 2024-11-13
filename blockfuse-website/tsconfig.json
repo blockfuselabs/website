@@ -17,7 +17,11 @@
       "jsx": "react-jsx",
       "outDir": "./dist"
     },
+<<<<<<< HEAD
     "include": ["src", "types"],
+=======
+    "include": ["src", "types", "declarations.d.ts"],
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
     "exclude": ["node_modules"]
   }
   

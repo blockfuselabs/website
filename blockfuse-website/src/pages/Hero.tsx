@@ -4,17 +4,30 @@ import { MoveRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Imageone from "../assets/images/Frame-10.png";
 import Box1 from "../assets/svgs/box1.svg";
 import BootcampCard from "../components/BootcampCards";
+<<<<<<< HEAD
 import Frameone from "../assets/svgs/Frame-3704.svg";
+=======
+import  Frameone from "../assets/svgs/Frame-3704.svg";
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
 import Frametwo from "../assets/svgs/Frame-3703.svg";
 import Framethree from "../assets/svgs/Frame-3702.svg";
 import Framefour from "../assets/svgs/Frame-3701.svg";
 import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
 import TestimonialsSection from "../components/TestimonialCarousel";
+<<<<<<< HEAD
 import Circles from "../assets/svgs/circles.svg"
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+=======
+import Zigzag from "../assets/svgs/zigzag.svg"
+import useFAQSQuery from '../../hooks/useFaqsQuery';
+
+const Hero = () => {
+  const [email, setEmail] = useState("");
+  const { FAQS, FAQSError, isFAQSLoading, isFAQSSuccess } = useFAQSQuery();
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,7 +40,11 @@ const Hero = () => {
         {/* Background Image */}
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
+<<<<<<< HEAD
             src={Circles}
+=======
+            src={Zigzag}
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             alt="Background illustration representing blockchain technology"
             width="800"
             height="400"
@@ -69,14 +86,16 @@ const Hero = () => {
       >
         {/* Text Section */}
         <div className="flex justify-center md:justify-end md:px-80">
+<<<<<<< HEAD
           <p className="mt-4 text-center md:text-left dark:text-gray-300 break-words max-w-xs md:max-w-none">
+=======
+          <p className="mt-4 text-xl text-center md:text-left dark:text-gray-300 break-words max-w-xs md:max-w-none">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             At Blockfuse Labs, we see education as a journey.
             <br />
             Whether you're new to blockchain or an experienced developer,
             <br />
-            we offer resources, expert instructors,
-            <br />
-            and tools for every stage of your growth.
+            we offer resources, expert instructors,and tools for every stage of your growth.
           </p>
         </div>
 
@@ -140,11 +159,19 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+<<<<<<< HEAD
                 <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   REAL WORLD EXPERIENCE
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-3 mt-2">
                   <p className="dark:text-gray-300 text-sm sm:text-base">
+=======
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
+                  REAL WORLD EXPERIENCE
+                </h3>
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-3 mt-2">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
                     Apply your skills to solve real-world problems and see
                     immediate results.
                   </p>
@@ -165,11 +192,19 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+<<<<<<< HEAD
                 <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   HANDS-ON LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-16 mt-2">
                   <p className="dark:text-gray-300 text-sm sm:text-base">
+=======
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
+                  HANDS-ON LEARNING
+                </h3>
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-16 mt-2">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
                     Dive into projects and learn by doing, transforming theory
                     into practice.
                   </p>
@@ -190,11 +225,19 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+<<<<<<< HEAD
                 <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   INTERACTIVE LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-12 mt-2">
                   <p className="dark:text-gray-300 text-sm sm:text-base">
+=======
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
+                  INTERACTIVE LEARNING
+                </h3>
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-12 mt-2">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
                     Engage actively with hands-on activities that bring concepts
                     to life.
                   </p>
@@ -215,11 +258,19 @@ const Hero = () => {
                 className="text-purple-500 w-10 h-10 sm:w-auto sm:h-auto"
               />
               <div className="ml-0 sm:ml-4 mt-4 sm:mt-0">
+<<<<<<< HEAD
                 <h3 className="text-lg sm:text-xl font-bold dark:text-white">
                   COLLABORATIVE LEARNING
                 </h3>
                 <div className="flex items-start sm:items-center space-x-2 sm:space-x-4 mt-2">
                   <p className="dark:text-gray-300 text-sm sm:text-base">
+=======
+                <h3 className="text-lg sm:text-2xl font-bold dark:text-white">
+                  COLLABORATIVE LEARNING
+                </h3>
+                <div className="flex items-start sm:items-center space-x-2 sm:space-x-4 mt-2">
+                  <p className="dark:text-gray-300 text-xl sm:text-base">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
                     Collaborate with peers to share insights, tackle challenges,
                     and grow together.
                   </p>
@@ -253,11 +304,19 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+<<<<<<< HEAD
               <h3 className="text-xl font-semibold dark:text-white">
                 The Leap
               </h3>
             </div>
             <p className="dark:text-gray-300 text-sm">
+=======
+              <h3 className="text-2xl font-semibold dark:text-white">
+                The Leap
+              </h3>
+            </div>
+            <p className="dark:text-gray-300 text-xl">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
               Blockfuse Labs was established with a mission to empower
               developers through both remote and onsite training. Our primary
               agenda is to build a sustainable blockchain economy by fostering
@@ -270,11 +329,19 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+<<<<<<< HEAD
               <h3 className="text-xl font-semibold dark:text-white">
                 Our today
               </h3>
             </div>
             <p className="dark:text-gray-300 text-sm">
+=======
+              <h3 className="text-2xl font-semibold dark:text-white">
+                Our today
+              </h3>
+            </div>
+            <p className="dark:text-gray-300 text-xl">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
               Today, Blockfuse Labs stands as a beacon of blockchain education,
               offering cutting-edge courses that cover everything from basic
               blockchain principles to advanced development, helping learners
@@ -286,11 +353,19 @@ const Hero = () => {
           <div className="p-6 border border-purple-500 dark:bg-black">
             <div className="flex items-center gap-2 mb-4">
               <div className="w-6 h-6 bg-purple-500 rounded-full"></div>
+<<<<<<< HEAD
               <h3 className="text-xl font-semibold dark:text-white">
                 Our tomorrow
               </h3>
             </div>
             <p className="dark:text-gray-300 text-sm">
+=======
+              <h3 className="text-2xl font-semibold dark:text-white">
+                Our tomorrow
+              </h3>
+            </div>
+            <p className="dark:text-gray-300 text-xl">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
               As we look to the future, we aim to expand our reach and impact,
               continually adapting to the evolving needs of the blockchain
               ecosystem. Our commitment is to provide unmatched training and
@@ -303,10 +378,18 @@ const Hero = () => {
         <div className="text-center mt-8">
           <h4 className="text-white mb-4">Start Your Journey Today</h4>
           <div className="flex justify-center">
+<<<<<<< HEAD
+=======
+            <a href="https://t.me/blockfuselabs" target="_blank" rel="noopener noreferrer">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             <Button>
               Join our Community
               <MoveRight />
             </Button>
+<<<<<<< HEAD
+=======
+            </a>
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
           </div>
         </div>
       </section>
@@ -363,11 +446,19 @@ const Hero = () => {
       >
         <header id="faq" className="text-center mb-8">
           <h2 className="text-3xl font-semibold">FAQ’s</h2>
+<<<<<<< HEAD
           <p className="mt-2 dark:text-gray-400">
             Everything you need to know about Blockfuse Labs! Can’t find the
             answer you’re looking for?
           </p>
           <p className="mt-2 dark:text-gray-400">
+=======
+          <p className="mt-2 text-lg dark:text-gray-400">
+            Everything you need to know about Blockfuse Labs! Can’t find the
+            answer you’re looking for?
+          </p>
+          <p className="mt-2 text-lg dark:text-gray-400">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
             Please chat with our friendly team, or{" "}
             <a href="https://t.me/blockfuselabs" target="_blank" className="text-purple-700 underline">
               reach out to us on our Telegram channel here.
@@ -375,7 +466,11 @@ const Hero = () => {
           </p>
         </header>
 
+<<<<<<< HEAD
         <div className="space-y-4">
+=======
+        <div className="space-y-4 text-lg">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
           {[
             {
               question: "What is Blockfuse Labs?",
@@ -443,11 +538,19 @@ const Hero = () => {
             Subscribe to Our Newsletter
           </h2>
           <div className="-space-y-1">
+<<<<<<< HEAD
             <p className="dark:text-gray-300 text-center text-sm">
               Stay ahead in the world of blockchain! Get the latest updates,
               insights,
             </p>
             <p className="dark:text-gray-300 text-center text-sm">
+=======
+            <p className="dark:text-gray-300 text-center text-lg">
+              Stay ahead in the world of blockchain! Get the latest updates,
+              insights,
+            </p>
+            <p className="dark:text-gray-300 text-center text-lg">
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
               and exclusive resources from BlockTate Labs delivered straight to
               your inbox. Don't miss out—subscribe today!
             </p>

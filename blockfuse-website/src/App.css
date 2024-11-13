@@ -36,3 +36,16 @@ body, html {
     opacity: 0.6;
   }
 
+  #modal-root {
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  
+  .rainbow-kit-portal {
+    z-index: 9999;
+    position: relative;
+  }
+

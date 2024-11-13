@@ -11,8 +11,12 @@ node_modules
 dist
 dist-ssr
 *.local
+<<<<<<< HEAD
 package.json
 package-lock.json
+=======
+blockfuse-website/.env
+>>>>>>> 94d37b2366336f4c7cd841075f8a0067919e3294
 
 # Editor directories and files
 .vscode/*
@@ -24,3 +28,7 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+
+
+package.json
+package-lock.json
