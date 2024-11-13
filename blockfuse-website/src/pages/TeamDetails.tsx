@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import useTeamArticlesQuery from "../../hooks/use-teamArticles.query";
-import { Article } from "../../types/generated"; 
-
+import { Article } from "../../types/generated";
+import ReactMarkdown from 'react-markdown';
 interface Member {
   id: number;
   fullname: string;
@@ -21,7 +21,6 @@ const TeamDetails: React.FC = () => {
   const member = location.state?.member as Member | undefined;
 
   useEffect(() => {
-    // Scroll to top when component mounts
     window.scrollTo(0, 0);
   }, []);
 
@@ -33,7 +32,9 @@ const TeamDetails: React.FC = () => {
   } = useTeamArticlesQuery(member?.id ?? -1); // Using -1 as a fallback if member.id is undefined
 
   if (!member) {
-    return <p className="text-center mt-10 dark:text-white">Team member not found</p>;
+    return (
+      <p className="text-center mt-10 dark:text-white">Team member not found</p>
+    );
   }
 
   if (isGetAllArticlesloading) return <p>Loading articles...</p>;
@@ -41,12 +42,11 @@ const TeamDetails: React.FC = () => {
 
   return (
     <>
-      {/* Member Profile Section */}
       <div className="flex justify-center items-center py-10 dark:text-white">
         <div className="flex flex-col md:flex-row items-start gap-8 max-w-5xl w-full p-6 md:p-10 shadow-lg rounded-lg">
           <Link
             to="/team"
-            className="flex items-center mr-20 p-2 text-xs border border-purple-500 hover:bg-purple-700 rounded-lg text-black dark:text-white"
+            className="flex items-center mr-20 p-2 text-xs border border-purple-500 hover:bg-purple-700 text-black dark:text-white"
           >
             <FaLongArrowAltLeft size={20} />
             <span className="text-sm p-1">Team</span>
@@ -107,55 +107,52 @@ const TeamDetails: React.FC = () => {
             <img
               src={member.image}
               alt={member.fullname}
-              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover border border-purple-500 rounded-lg"
+              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 object-cover border border-purple-500"
             />
           </div>
         </div>
       </div>
-
-      {/* Articles Section */}
-    <section className="max-w-5xl mx-auto px-4 py-8">
+      <section className="max-w-5xl mx-auto px-4 py-8">
   <h2 className="text-3xl font-bold mb-8 text-center dark:text-white">
-    Articles by {member.fullname}
+    Written by {member.fullname}
   </h2>
   <div className="space-y-8 ">
     {getAllTeamArticlesData?.data.articles.map((article: Article) => (
-      <div
+      <Link
+        to={`/articles/${article.slug}`}
         key={article.id}
-        className="flex flex-col gap-4 md:flex-row shadow-lg  overflow-hidden "
+        className="flex flex-col gap-4 md:flex-row shadow-lg overflow-hidden"
       >
-        {/* Article Image */}
-        <div className="w-full md:w-1/2 h-64 md:h-auto border border-purple-500 border-opacity-50">
+        <div className="w-full md:w-1/2 h-64 md:h-auto p-3">
           <img
             src={article.image}
             alt={article.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-fit"
           />
         </div>
-
-        {/* Article Content */}
-        <div className="w-full md:w-1/2 p-6 flex flex-col border border-purple-500 border-opacity-50 justify-between">
+        <div className="w-full md:w-1/2 p-6 flex flex-col border-purple-500 border-opacity-50 justify-between">
           <div>
             <h3 className="text-2xl font-semibold mb-2 dark:text-white">
               {article.title}
             </h3>
-            <p className="text-gray-700 dark:text-gray-400 mb-4">
-              {article.content.slice(0, 150)}...
-            </p>
+            <ReactMarkdown className="text-gray-700 dark:text-gray-400 mb-4">
+              {article.content.slice(0, 150) + '...'}
+            </ReactMarkdown>
           </div>
           <div>
             <p className="text-gray-600 dark:text-gray-300 text-sm mb-4">
-              {new Date(article.createdAt).toLocaleDateString()}
+              {new Date(article.createdAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </p>
-            <Link
-              to={`/articles/${article.slug}`}
-              className="text-purple-600 hover:text-purple-800 dark:text-purple-400 dark:hover:text-purple-600 font-semibold"
-            >
+            <p className="text-white p-2 md:w-32 lg:w-32 flex items-center text-center justify-center border border-purple-600 font-semibold hover:text-white hover:bg-purple-600 dark:text-white dark:hover:text-white">
               Read More
-            </Link>
+            </p>
           </div>
         </div>
-      </div>
+      </Link>
     ))}
   </div>
 </section>
