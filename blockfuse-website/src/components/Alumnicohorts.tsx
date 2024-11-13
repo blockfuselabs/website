@@ -12,9 +12,7 @@ const Alumnicohorts = () => {
       >
        
         <p className="dark:text-gray-300 text-xl pl-14 pb-10 md:pb-0 lg:pb-0 leading-[26px] font-light sm:w-[90%] md:w-[700px] mx-auto text-center md:text-left md:ml-[290px]">
-          At Blockfuse Labs, we see education as a journey. Whether you're new
-          to blockchain or an experienced developer, we offer resources,
-          expert instructors, and tools for every stage of your growth.
+          As we look to the future, we're committed to expanding our impact,adapting to new technological trends and continously enhancing our programs to meet the needs of a rapidly changing industry.
         </p>
         
         {/* Image Section */}
@@ -34,7 +32,7 @@ const Alumnicohorts = () => {
 
         {/* Closing Statement */}
         <p className="text-xl md:text-2`  xl md:pt-0 lg:pt-0  pt-14 flex justify-center items-center text-center dark:text-white px-4 sm:px-6">
-          From developers and innovators to thought leaders in the Web3 space, our graduates are transforming the future of technology.
+          We provide comprehensive training programs, bridging the gap between beginner enthusiasts and seasoned developers.Our approach goes beyond traditional education, focusing on hands-on learning,mentorship and a community-driven environment that inspires growth.
         </p>
       </section>
     </div>
