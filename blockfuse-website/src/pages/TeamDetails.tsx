@@ -119,7 +119,7 @@ const TeamDetails: React.FC = () => {
   <div className="space-y-8 ">
     {getAllTeamArticlesData?.data.articles.map((article: Article) => (
       <Link
-        to={`/articles/${article.slug}`}
+        to={`/blog/${article.slug}`}
         key={article.id}
         className="flex flex-col gap-4 md:flex-row shadow-lg overflow-hidden"
       >
