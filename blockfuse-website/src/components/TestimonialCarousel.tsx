@@ -41,7 +41,7 @@ const TestimonialsSection = memo(({ Box1 }: TestimonialsSectionProps) => {
     if (!isPaused) {
       intervalId = setInterval(() => {
         nextSlide();
-      }, 5000); // Change slide every 5 seconds
+      }, 5000); 
     }
 
     return () => {
@@ -54,15 +54,15 @@ const TestimonialsSection = memo(({ Box1 }: TestimonialsSectionProps) => {
   return (
     <>
       <Helmet>
-        <title>Testimonials | Your Blog Name</title>
+       
         <meta
           name="description"
-          content="Read what our customers have to say about our products and services."
+          content="Read what our clients have to say about our products and services."
         />
-        <meta property="og:title" content="Testimonials | Your Blog Name" />
+        <meta property="og:title" content="Testimonials" />
         <meta
           property="og:description"
-          content="Discover what our customers love about our products and services."
+          content="Discover what our clients love about our products and services."
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href={window.location.href} />
@@ -106,7 +106,7 @@ const TestimonialsSection = memo(({ Box1 }: TestimonialsSectionProps) => {
                 >
                   {Testimoinal.map((testimonial: Testimonial) => (
                     <div key={testimonial.id} className="w-full flex-shrink-0">
-                      <div className="dark:bg-black border border-purple-500 mx-4 h-auto sm:mx-12 sm:h-60">
+                      <div className="dark:bg-black border text-justify border-purple-500 mx-4 h-auto sm:mx-12 sm:h-60">
                         <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 relative">
                           <div className="w-full sm:w-52 h-48 sm:h-[14.8rem] flex-shrink-0">
                             <img

@@ -1,5 +1,6 @@
 import axios from "axios";
 import routes from "./routes";
+import { ArticlesResponse } from "../types/generated";
 
 const AxiosInstance = axios.create({
   baseURL: "https://dev.basicpayng.com/api/",
@@ -104,6 +105,41 @@ class BaseUrl {
     }
   }
 
+  async httpPostContactUs(data) {
+    try {
+      const response = await AxiosInstance.post(routes.CONTACTUS, data);
+      console.log("API Response:", response.data);
+      return response.data;
+    } catch (error) {
+      console.error("API Error:", error);
+      throw error;
+    }
+  }
+
+  async httpSubmitWeb2Application(formData) {
+    try {
+      const response = await AxiosInstance.post(routes.WEB2, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Submission error:', error);
+      throw error;
+    }
+  }
+
+  async httpSubmitWeb3Application(formData) {
+    try {
+      const response = await AxiosInstance.post(routes.WEB3, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Submission error:', error);
+      throw error;
+    }
+  }
+
   httpGetAllAlumni = async () => {
     try {
       const URL = `${routes.ALUMNI}`;
@@ -144,6 +180,17 @@ class BaseUrl {
       throw error;
     }
   }
+
+
+  httpGetTeamArticles = async (teamMemberId: number | string): Promise<ArticlesResponse> => {
+    try {
+      const response = await AxiosInstance.get<ArticlesResponse>(`${routes.TEAMARTICLES}/${teamMemberId}`);
+      return response.data;
+    } catch (error) {
+      console.error("Failed to fetch team articles:", error);
+      throw error;
+    }
+  };
 }
 
 export default new BaseUrl();

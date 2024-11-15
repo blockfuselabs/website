@@ -54,26 +54,29 @@ const OpenSource = () => {
   return (
     <>
       <Helmet>
-        <title>Open Source | Your Blog Name</title>
+        <title>Blockfuse Labs-Open Source</title>
         <meta
           name="description"
-          content="Explore open-source projects from our community."
+          content="Explore the open-source projects and contributions by Blockfuse Labs. We believe in the power of collaboration and community to drive innovation in blockchain and Web3 technologies."
         />
-        <meta property="og:title" content="Open Source | Your Blog Name" />
+        <meta
+          property="og:title"
+          content="Blockfuse Labs Open Source Projects"
+        />
         <meta
           property="og:description"
-          content="Discover and contribute to open-source projects."
+          content="Discover Blockfuse Labs' open-source blockchain projects, tools, and resources. Join our community to contribute to the next generation of decentralized applications and blockchain solutions."
         />
         <meta property="og:type" content="website" />
         <link rel="canonical" href={window.location.href} />
       </Helmet>
 
       <div className="min-h-screen dark:text-white">
-        <div className="px-4 py-8 sm:px-6 md:px-16 lg:px-24 lg:py-32">
-          <h1 className="text-3xl md:text-4xl text-purple-500 text-center mb-12 lg:mb-16">
+        <div className="px-4 py-32 sm:px-6 md:px-16 lg:px-24 lg:py-32">
+          <h1 className="text-3xl md:text-4xl text-purple-500 font-semibold text-center mb-12 lg:mb-16">
             Open Source
           </h1>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 p-2 md:grid-cols-2 gap-4 sm:gap-6 max-w-7xl mx-auto">
             {loading
               ? Array.from({ length: ITEMS_PER_PAGE }).map((_, index) => (
                   <SkeletonCard key={index} />
@@ -85,15 +88,14 @@ const OpenSource = () => {
                   >
                     <div className="flex">
                       <div className="w-28 ml-5 flex items-center justify-center">
-                      <img
-  src={project.owner.avatar_url}
-  alt={project.name}
-  className="w-28 h-28 object-center object-contain"
-  loading="lazy"
-/>
-
+                        <img
+                          src={project.owner.avatar_url}
+                          alt={project.name}
+                          className="w-28 h-28 object-center object-contain"
+                          loading="lazy"
+                        />
                       </div>
-                      <div className="w-2/3 p-4 sm:p-6">
+                      <div className="w-2/3 p-6 sm:p-6">
                         <div className="flex items-center justify-between mb-2 sm:mb-4">
                           <div>
                             <h3 className="text-md text-wrap sm:text-xl font-semibold break-words">

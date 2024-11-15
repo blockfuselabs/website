@@ -71,7 +71,7 @@ const Navbar = () => {
               <div className="flex items-center space-x-3">
                 <NavLink href="/" label="Home" isActive={location.pathname === '/'} />
                 <NavLink href="/about-us" label="About us" isActive={location.pathname === '/about-us'} />
-                <NavLink href="/team" label="Teams" isActive={location.pathname === '/team'} />
+                <NavLink href="/team" label="Team" isActive={location.pathname === '/team'} />
                 <NavLink href="/bootcamp" label="Boot Camp" isActive={location.pathname === '/bootcamp'} />
                 <NavLink href="/events" label="Events" isActive={location.pathname === '/events'} />
                 <NavLink href="/alumni" label="Alumni" isActive={location.pathname === '/alumni'} />
@@ -157,7 +157,7 @@ const Navbar = () => {
               <div className="px-4 py-3 space-y-1">
                 <MobileNavLink href="/" label="Home" onClick={handleMobileNavClick} isActive={location.pathname === '/'} />
                 <MobileNavLink href="/about-us" label="About us" onClick={handleMobileNavClick} isActive={location.pathname === '/about-us'} />
-                <MobileNavLink href="/team" label="Teams" onClick={handleMobileNavClick} isActive={location.pathname === '/team'} />
+                <MobileNavLink href="/team" label="Team" onClick={handleMobileNavClick} isActive={location.pathname === '/team'} />
                 <MobileNavLink href="/bootcamp" label="Bootcamp" onClick={handleMobileNavClick} isActive={location.pathname === '/bootcamp'} />
                 <MobileNavLink href="/events" label="Events" onClick={handleMobileNavClick} isActive={location.pathname === '/events'} />
                 <MobileNavLink href="/alumni" label="Alumni" onClick={handleMobileNavClick} isActive={location.pathname === '/alumni'} />

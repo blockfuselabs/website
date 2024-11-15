@@ -12,25 +12,28 @@ export const useScrollToTop = () => {
   useEffect(() => {
     // Explicitly typing the event as MouseEvent
     const handleClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement; // Casting to HTMLElement to access methods like closest()
+      const target = event.target as HTMLElement;
+      const isInsideFAQ = target.closest('.faq-section'); // Check if click is within FAQ section
       const isCarouselArrow =
         target.closest('.testimonial-carousel-button') ||
         target.closest('.testimonial-carousel-button *');
-
-      if (!isCarouselArrow) {
-        if (
-          target.tagName === 'A' ||
-          target.tagName === 'BUTTON' ||
-          target.closest('a') ||
-          target.closest('button')
-        ) {
-          const href = target.getAttribute('href') || target.closest('a')?.getAttribute('href');
-          if (!href || href.startsWith('#') || href.startsWith('/')) {
-            scrollToTop();
-          }
+    
+      // Skip scroll-to-top if click is within FAQ or a carousel arrow
+      if (isInsideFAQ || isCarouselArrow) return;
+    
+      if (
+        target.tagName === 'A' ||
+        target.tagName === 'BUTTON' ||
+        target.closest('a') ||
+        target.closest('button')
+      ) {
+        const href = target.getAttribute('href') || target.closest('a')?.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('/')) {
+          scrollToTop();
         }
       }
     };
+    
 
     document.addEventListener('click', handleClick);
     return () => document.removeEventListener('click', handleClick);

@@ -9,4 +9,9 @@ export default Object.freeze({
   APPLICATION: "/api/applications",
   COHORTS: "/cohorts/",
   FAQS: "/faqs/",
+  TEAMDETAILS: "team/",
+  TEAMARTICLES: "team/articles",
+  CONTACTUS: "/contact-us",
+  WEB2: "/web2",
+  WEB3: "/web3"
 });

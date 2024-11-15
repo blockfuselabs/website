@@ -3,6 +3,7 @@ import box from "../assets/svgs/box1.svg";
 import Imageone from "../assets/images/Frame-10-1.png";
 import useCohortsQuery from "../../hooks/use-cohorts.guery";
 import { useNavigate } from "react-router-dom";
+import Circles from "../assets/svgs/circles.svg";
 
 const Alumni = () => {
   const { getAllCohortsData, getAllCohortsError, isGetAllCohortsloading } =
@@ -18,7 +19,7 @@ const Alumni = () => {
       <section className="relative flex items-center justify-center h-screen px-6 py-36 sm:px-8 md:px-16 lg:px-24">
         <div className="absolute inset-0 flex justify-center items-center -z-10 opacity-20">
           <img
-            src="/src/assets/svgs/circles.svg"
+            src={Circles}
             alt="Background illustration representing blockchain technology"
             width="800"
             height="400"

@@ -3,7 +3,7 @@ import Button from "./Buttons";
 import { MoveRight } from "lucide-react";
 import Web2 from "../assets/images/web2-bg.jpeg";
 import Web3 from "../assets/images/web3-bg.jpeg";
-import { NavLink } from "react-router-dom"; 
+import { NavLink } from "react-router-dom";
 
 const StyledCards = () => {
   return (
@@ -16,12 +16,12 @@ const StyledCards = () => {
         >
           <div className="flex items-center justify-center h-full bg-opacity-50">
             <h2 className="dark:text-white text-lg sm:text-2xl font-semibold">
-              Web 2 for Web 3
+              Web2 for Web3 Preparatory Bootcamp
             </h2>
           </div>
         </div>
         <div className="p-4 sm:p-6">
-          <p className="dark:text-gray-300 mb-4 text-lg sm:text-base">
+          <p className="dark:text-gray-300 text-justify mb-4 text-lg sm:text-base">
             Learn the essentials of modern web development in HTML, CSS,
             Tailwind CSS, JavaScript, and Node.js/React. This program guides you
             through creating interactive, responsive websites, providing the
@@ -30,12 +30,16 @@ const StyledCards = () => {
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
-          <NavLink to="/web2"> {/* Use NavLink instead of anchor tag */}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfhmiatYp0gh-IbqYnPNIcwNejxeIiVuI2O0q72SfPYwTZrKw/viewform?usp=pp_url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button>
               Apply now
               <MoveRight />
             </Button>
-          </NavLink>
+          </a>
         </div>
       </div>
 
@@ -47,12 +51,12 @@ const StyledCards = () => {
         >
           <div className="flex items-center justify-center h-full bg-opacity-50">
             <h2 className="dark:text-white text-lg sm:text-2xl font-semibold">
-              Web 3
+              Web3 Bootcamp
             </h2>
           </div>
         </div>
         <div className="p-4 sm:p-6">
-          <p className="dark:text-gray-300 mb-4 text-lg sm:text-base">
+          <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">
             Unlock the future of the internet with our Web3 Bootcamp! Learn
             blockchain fundamentals, smart contracts, and dApps to build
             decentralized applications. Ideal for beginners eager to explore
@@ -60,12 +64,16 @@ const StyledCards = () => {
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-24">
-          <NavLink to="/web3"> {/* Use NavLink instead of anchor  */}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScOJq9oESgBFI65yxsQcyb1AUOM2DkqLy0xdlseq7eTM5-tIw/viewform"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Button>
               Apply now
               <MoveRight />
             </Button>
-          </NavLink>
+          </a>
         </div>
       </div>
     </div>

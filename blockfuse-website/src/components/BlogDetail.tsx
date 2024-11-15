@@ -4,13 +4,13 @@ import { Helmet } from "react-helmet";
 import { Link as LinkIcon, Share } from "lucide-react";
 import { RWebShare } from "react-web-share";
 import Skeleton from "../components/Skeleton";
+import ReactMarkdown from "react-markdown";
 
 import Button from "./Buttons";
 import BaseUrl from "../../services/http";
 import { BlogPost, APIError } from "../../types/generated";
 
-import Blockies from "react-blockies"; 
-
+import Blockies from "react-blockies";
 
 const BlogPostDetail = () => {
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ const BlogPostDetail = () => {
   const [articleDetails, setArticleDetails] = useState<BlogPost | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
 
   const truncateContent = (content: string, maxLength: number = 200) => {
@@ -31,7 +31,6 @@ const BlogPostDetail = () => {
     navigator.clipboard.writeText(window.location.href);
   };
 
-  
   useEffect(() => {
     const fetchArticleDetails = async () => {
       if (!slug) {
@@ -68,9 +67,8 @@ const BlogPostDetail = () => {
   if (isLoading)
     return (
       <div className="max-w-4xl mx-auto px-6 py-28">
-                <Skeleton className="h-40 w-full mb-8" />
-          
-            </div>
+        <Skeleton className="h-40 w-full mb-8" />
+      </div>
     );
   if (error)
     return (
@@ -96,12 +94,11 @@ const BlogPostDetail = () => {
   };
 
   const articleUrl = window.location.href;
- 
 
   return (
     <>
       <Helmet>
-        <title>{post.title} | Your Blog Name</title>
+        <title>{post.title} | Blockfuse Labs - BLog Details</title>
         <meta name="description" content={truncateContent(post.content)} />
         <meta property="og:title" content={post.title} />
         <meta
@@ -116,7 +113,7 @@ const BlogPostDetail = () => {
       </Helmet>
 
       <div className="">
-        <div className="max-w-7xl  py-32 mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl py-32 mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-6 lg:pt-12">
             {/* Left column with images */}
             <div className="relative order-2 lg:order-1">
@@ -149,7 +146,7 @@ const BlogPostDetail = () => {
                 })}{" "}
                 • {new Date(post.createdAt).toLocaleTimeString()}
               </div>
-              <h1 className="text-2xl lg:text-4xl font-bold text-white mb-6 lg:mb-8">
+              <h1 className="text-2xl text-justify lg:text-4xl font-bold text-white mb-6 lg:mb-8">
                 {post.title}
               </h1>
               <div className="flex space-x-4">
@@ -161,27 +158,27 @@ const BlogPostDetail = () => {
                   <span className="ml-2">Copy link</span>
                 </button>
                 <RWebShare
-        data={{
-          text: post.title,
-          url: articleUrl, 
-          title: post.title,
-        }}
-        onClick={() => console.log("shared successfully!")}
-      >
-        <button className="bg-purple-500 flex items-center justify-center text-white px-7 py-1 md:px-20 md:py-2 ">
-          <Share className="w-4 h-4" />
-          <span className="ml-2">Share</span>
-        </button>
-      </RWebShare>
+                  data={{
+                    text: post.title,
+                    url: articleUrl,
+                    title: post.title,
+                  }}
+                  onClick={() => console.log("shared successfully!")}
+                >
+                  <button className="bg-purple-500 flex items-center justify-center text-white px-7 py-1 md:px-20 md:py-2 ">
+                    <Share className="w-4 h-4" />
+                    <span className="ml-2">Share</span>
+                  </button>
+                </RWebShare>
               </div>
               {copySuccess && (
                 <p className="text-green-500 mt-2">URL copied to clipboard!</p>
               )}
-            
+
               <div className="mb-8 mt-3 lg:mb-12">
                 <div className="flex items-center gap-3">
-                <Blockies
-                    seed={post.author || "default-seed"} 
+                  <Blockies
+                    seed={post.author || "default-seed"}
                     size={10}
                     scale={3}
                     className="rounded-full"
@@ -193,19 +190,12 @@ const BlogPostDetail = () => {
           </div>
 
           {/* Article content */}
+          {/* Article content */}
           <div className="w-full h-auto my-8 lg:my-16" />
           <div className="max-w-5xl mx-auto">
-            <article className="text-gray-300 space-y-4 lg:space-y-6 w-full prose prose-invert prose-lg">
-              {post.content &&
-                post.content.split("\n\n").map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="text-base lg:text-lg leading-relaxed"
-                  >
-                    {paragraph.trim()}
-                  </p>
-                ))}
-            </article>
+            <ReactMarkdown className="text-gray-300 space-y-4 lg:space-y-6 w-full prose prose-invert prose-lg">
+              {post.content}
+            </ReactMarkdown>
           </div>
         </div>
       </div>
