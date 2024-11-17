@@ -60,7 +60,7 @@ const Footer = () => {
             </div>
           </div>
 
-       {/* Profile Images */}
+{/* Profile Images */}
 <div className="mb-12 py-8 overflow-hidden sm:block">
   <div className="flex justify-center items-center -space-x-3 px-2 sm:px-4">
     {currentProfiles.map((profile, index) => {
@@ -85,7 +85,7 @@ const Footer = () => {
       return (
         <div
           key={profile.id}
-          className="relative group"
+          className="relative group transition-transform duration-1000 ease-in-out"
           style={{
             zIndex,
             transform: `translateX(${translateX}px) scale(${scale})`,
@@ -104,6 +104,8 @@ const Footer = () => {
     })}
   </div>
 </div>
+
+
 
 
           {/* Telegram Button */}

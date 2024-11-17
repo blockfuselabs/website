@@ -109,10 +109,10 @@ class BaseUrl {
     try {
       const response = await AxiosInstance.post(routes.CONTACTUS, data);
       console.log("API Response:", response.data);
-      return response.data;
+      return response.data;  
     } catch (error) {
       console.error("API Error:", error);
-      throw error;
+      throw error;  
     }
   }
 

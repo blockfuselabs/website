@@ -87,7 +87,7 @@ const OurAlumni = () => {
                       )}
                       {alumni.linkedin && (
                         <a
-                          href={alumni.linkedin}
+                          href={alumni.linkedin_link}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-gray-200 hover:text-white"

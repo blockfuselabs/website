@@ -21,14 +21,15 @@ const ContactUs = () => {
     try {
       setIsLoading(true);
       const response = await BaseUrl.httpPostContactUs(data);
-      if (response.status === 200 || response.status === 201) {
+    
+      if (response?.message === 'Email sent successfully') {
         reset();
         toast.success("Your message has been sent successfully.");
       } else {
         toast.error("Failed to send message.");
       }
     } catch (error) {
-      toast.error("Failed to send message");
+      toast.error(error?.response?.data?.message || "Failed to send message");
       console.error(error);
     } finally {
       setIsLoading(false);
