@@ -21,6 +21,14 @@ module.exports = {
       link: {
         type: Sequelize.STRING
       },
+      youtube_link: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      twitter_link: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
       slug: {
         type: Sequelize.STRING,
         allowNull: false

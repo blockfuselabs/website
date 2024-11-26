@@ -102,7 +102,7 @@ class AuthController {
           email: user.email
         }, 
         SECRET_KEY, 
-        { expiresIn: '1h' }
+        { expiresIn: '24h' }
       );
 
       res.json({ 

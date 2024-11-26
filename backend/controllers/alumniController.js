@@ -9,14 +9,14 @@ class AlumniController {
         try {
             const { cohort_id, fullname, github_link, linkedin_link } = req.body;
 
-            if (!fullname) {
+            if (!fullname || !cohort_id) {
                 return res.status(400).json({
                     error: "Validation failed",
                     message: "All fields are required."
                 });
             }
 
-            const cohort = await Cohort.findByPK(cohort_id);
+            const cohort = await Cohort.findByPk(cohort_id);
 
             if(!cohort) {
                 return res.status(404).json({
@@ -24,11 +24,30 @@ class AlumniController {
                     message: "Cohort not found,"
                 });
             }
+            
+            let imagePath = null;
+
+            if (req.file) {
+                
+                const b64 = Buffer.from(req.file.buffer).toString("base64");
+                let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+                
+                const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+                  resource_type: 'image',
+                  folder: 'alumnis'
+                });
+                imagePath = cloudinaryResponse.secure_url;
+            } else {
+                return res.status(400).json({
+                  error: 'Alumni not added',
+                  message: 'Please upload a photo of the alumni',
+                });
+            }
 
             const alumni = await Alumni.create({
                 cohort_id,
                 fullname,
-                major,
+                image: imagePath,
                 github_link,
                 linkedin_link
             });
@@ -42,7 +61,7 @@ class AlumniController {
         } catch (error) {
             console.error('Error:', error);
             res.status(500).json({
-                error: 'Unable to add cohort.',
+                error: 'Unable to add alumni.',
                 message: error.message
             });
         }

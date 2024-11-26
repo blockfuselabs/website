@@ -1,5 +1,7 @@
 const { Application } = require('../models');
 const { Op } = require('sequelize');
+const { body, validationResult } = require('express-validator');
+const cloudinary = require('../config/cloudinaryConfig');
 
 class ApplicationController {
 
@@ -125,10 +127,29 @@ class ApplicationController {
 
     static async store(req, res) {
         try {
+            
+            await body('fullname').notEmpty().withMessage('Full name is required').run(req);
+            await body('github_link').isURL().withMessage('A valid GitHub link is required').run(req);
+            await body('full_time').isIn(['yes', 'no']).withMessage('Full time must be yes or no').run(req);
+            await body('programming_language').notEmpty().withMessage('Programming language is required').run(req);
+            await body('time_dedication').notEmpty().withMessage('Time dedication is required').run(req);
+            await body('code_experience').notEmpty().withMessage('Coding experience is required').run(req);
+            await body('email').isEmail().withMessage('A valid email is required').run(req);
+            await body('phone').notEmpty().withMessage('Phone number is required').run(req);
+            await body('gender').isIn(['male', 'female', 'other']).withMessage('Gender is required').run(req);
+            await body('residential_address').notEmpty().withMessage('Residential address is required').run(req);
+            await body('country').notEmpty().withMessage('Country is required').run(req);
+            await body('state').notEmpty().withMessage('State is required').run(req);
+            await body('referral_source').notEmpty().withMessage('Referral source is required').run(req);
+            await body('application_type').isIn(['web2', 'web3', 'waitlist']).withMessage('Application type must be web2 or web3').run(req);
+            
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ error: "Application not successfull", errors: errors.array() });
+            }
         
             const { 
-                firstname, 
-                lastname,
+                fullname,
                 github_link,
                 full_time,
                 programming_language,
@@ -145,10 +166,28 @@ class ApplicationController {
                 transaction_receipt 
 
             } = req.body;
-
-            console.log(application_type.toLowerCase(), transaction_receipt);
+            
+            let imagePath = null;
+            if (application_type.toLowerCase() === 'web2') {
+                if (!req.file) {
+                    return res.status(400).json({
+                        error: 'Application not created',
+                        message: 'Transaction receipt is required for web2 applications',
+                    });
+                } else {
+                    const b64 = Buffer.from(req.file.buffer).toString("base64");
+                    let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+                    
+                    const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+                        resource_type: 'image',
+                        folder: 'applications'
+                    });
+                    imagePath = cloudinaryResponse.secure_url;
+                }
+            }
+            
             const applictaion = await Application.create({
-                fullname: lastname.toLowerCase() + ' ' + firstname.toLowerCase(), 
+                fullname,
                 email, 
                 phone, 
                 gender: gender.toLowerCase(), 
@@ -158,7 +197,7 @@ class ApplicationController {
                 referral_source: referral_source.toLowerCase(), 
                 application_type: application_type.toLowerCase(),
                 full_time: full_time.toLowerCase() === 'yes' ? true : false,
-                transaction_receipt: application_type.toLowerCase() === 'web2' ? transaction_receipt : null,
+                transaction_receipt: application_type.toLowerCase() === 'web2' ? imagePath : null,
                 github_link,
                 programming_language,
                 time_dedication,

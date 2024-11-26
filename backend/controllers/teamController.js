@@ -1,24 +1,45 @@
 const { Team } = require('../models');
+const cloudinary = require('../config/cloudinaryConfig');
 
 class TeamController {
-  /**
-   * TODO: - Add validation for each data.
-   *       - Image should be uploaded, processed and the image URL should be saved.
-   *       - Protect the controller, only authenticated users with Super Admin role should be allowed to access this controller
-   **/
+    
   static async add(req, res) {
     try {
       
       const slug = (await import('slug')).default;
 
-      const { fullname, position, about, image } = req.body;
+      const { fullname, position, about, twitter, github, linkedin, warpcast } = req.body;
 
-      if (!fullname || !position || !about || !image) {
+      if (!fullname || !position) {
         return res.status(400).json({ 
           error: 'Validation failed', 
           details: 'All fields are required.' 
         });
       }
+      
+      let imagePath = null;
+
+        if (req.file) {
+            
+            const b64 = Buffer.from(req.file.buffer).toString("base64");
+            let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+            
+            const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+              resource_type: 'image',
+              folder: 'team',
+              quality: 'auto:low',
+              width: 800,
+              height: 600,
+              crop: 'limit',
+              format: 'png'
+            });
+            imagePath = cloudinaryResponse.secure_url;
+        } else {
+            return res.status(400).json({
+              error: 'Team member not added',
+              message: 'Please upload a photo of the team member',
+            });
+        }
 
       const memberSlug = slug(`${fullname} ${position}`);
 
@@ -26,11 +47,15 @@ class TeamController {
         fullname,
         position,
         about,
-        image,
+        image: imagePath,
         slug: memberSlug,
+        github,
+        twitter,
+        linkedin,
+        warpcast
       });
 
-      const teamResponse = { ...team.toJSON() };
+      const teamResponse = team.toJSON();
 
       res.status(201).json({ 
         message: 'Team member added successfully.', 
@@ -47,42 +72,63 @@ class TeamController {
 
   // Update Team
   static async update(req, res) {
-    try {
-      const { id } = req.params;
-      const { fullname, position, about, image } = req.body;
-
-      const team = await Team.findByPk(id);
-
-      const slug = (await import('slug')).default;
-
-     // Checking if the team member exists in the database.
-      if (!team) {
-        return res.status(404).json({
-          error: 'Not found',
-          details:  'Team member not found.'
+      try {
+        const { id } = req.params;
+        const { fullname, position, about, twitter, github, linkedin, warpcast } = req.body;
+    
+        const team = await Team.findByPk(id);
+        const slug = (await import('slug')).default;
+        
+        if (!team) {
+          return res.status(404).json({
+            error: 'Not found',
+            details: 'Team member not found.'
+          });
+        }
+        
+        let imagePath = team.image;
+        if (req.file) {
+          const b64 = Buffer.from(req.file.buffer).toString("base64");
+          let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+          
+          const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+            resource_type: 'image',
+            folder: 'team',
+            quality: 'auto:low',
+              width: 800,
+              height: 600,
+              crop: 'limit',
+              format: 'png'
+          });
+          imagePath = cloudinaryResponse.secure_url;
+        }
+        
+        team.fullname = fullname || team.fullname;
+        team.position = position || team.position;
+        team.about = about || team.about;
+        team.image = imagePath;
+        team.twitter = twitter || team.twitter;
+        team.github = github || team.github;
+        team.linkedin = linkedin || team.linkedin;
+        team.warpcast = warpcast || team.warpcast;
+        team.slug = ((fullname === team.fullname && position === team.position) || (!fullname && !position)) 
+                      ? team.slug 
+                      : slug(`${fullname} ${position}`);
+    
+        await team.save();
+    
+        res.status(200).json({
+          message: 'Team member updated successfully.',
+          team: team.toJSON()
+        });
+      } catch (error) {
+        res.status(500).json({
+          error: 'Unable to update team member.',
+          details: error.message
         });
       }
-      // Updating the fields of the team member object
-      team.fullname = fullname || team.fullname;
-      team.position = position || team.position;
-      team.about = about || team.about;
-      team.image = image || team.image;
-      team.slug = (fullname == team.fullname && position == team.position)?team.slug:slug(`${fullname} ${position}`);
-
-      await team.save();
-
-      res.status(200).json({
-        message: 'Team member updated successfully.',
-        team
-      });
-
-    } catch (error) {
-      res.status(500).json({
-        error: 'Unable to update team member.',
-        details: error.message
-      });
     }
-  }
+
    /**
    * Get all team members
    **/

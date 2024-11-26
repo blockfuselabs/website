@@ -1,5 +1,6 @@
 const { Cohort } = require('../models');
 const { Op } = require('sequelize');
+const cloudinary = require('../config/cloudinaryConfig');
 
 class CohortController {
   static async add(req, res) {
@@ -15,11 +16,31 @@ class CohortController {
           details: 'All fields are required.' 
         });
       }
+      
+      let imagePath = null;
+
+    if (req.file) {
+        
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+        
+        const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+          resource_type: 'image',
+          folder: 'cohort'
+        });
+        imagePath = cloudinaryResponse.secure_url;
+    } else {
+        return res.status(400).json({
+          error: 'Cohort not created',
+          message: 'Please upload an image for the cohort',
+        });
+    }
 
       const cohort_slug = slug(`${type} ${name}`);
 
       const cohort = await Cohort.create({
         name,
+        image: imagePath,
         start_date,
         end_date,
         type,
@@ -188,7 +209,7 @@ class CohortController {
       }
 
       let newSlug = cohort.slug;
-      if (name || type) {
+      if (name != cohort.name || type != cohort.type) {
         newSlug = slug(`${type || cohort.type} ${name || cohort.name}`);
 
         if (newSlug !== cohort.slug) {
@@ -201,9 +222,22 @@ class CohortController {
           }
         }
       }
+      
+      let imagePath = cohort.image;
+        if (req.file) {
+          const b64 = Buffer.from(req.file.buffer).toString("base64");
+          let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+          
+          const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+            resource_type: 'image',
+            folder: 'cohort'
+          });
+          imagePath = cloudinaryResponse.secure_url;
+        }
 
       await cohort.update({
         name: name || cohort.name,
+        image: imagePath,
         start_date: start_date || cohort.start_date,
         end_date: end_date || cohort.end_date,
         type: type || cohort.type,

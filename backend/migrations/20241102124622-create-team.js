@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       about: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: true
       },
       image: {
         type: Sequelize.STRING
@@ -24,6 +25,18 @@ module.exports = {
       slug: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      github: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      linkedin: {
+        type: Sequelize.STRING,
+        allowNull: true
+      },
+      warpcast: {
+        type: Sequelize.STRING,
+        allowNull: true
       },
       createdAt: {
         type: Sequelize.DATE,

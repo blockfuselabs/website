@@ -10,11 +10,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Article.belongsTo(models.User, { foreignKey: 'author_id', as: 'author', onDelete: 'CASCADE' });
+      Article.belongsTo(models.User, { 
+        foreignKey: 'author_id', 
+        as: 'author', 
+        onDelete: 'CASCADE' 
+      });
+      
+      Article.belongsTo(models.Team, { 
+        foreignKey: 'team_member_id', 
+        as: 'teamAuthor', 
+        onDelete: 'CASCADE' 
+      });
     }
   }
   Article.init({
     author_id: DataTypes.BIGINT,
+    author_type: DataTypes.STRING,
+    team_member_id: DataTypes.BIGINT,
     title: DataTypes.STRING,
     content: DataTypes.TEXT('long'),
     image: DataTypes.STRING,

@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Cohort.init({
     name: DataTypes.STRING,
+    image: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE,
     type: DataTypes.ENUM('web3', 'web2'),

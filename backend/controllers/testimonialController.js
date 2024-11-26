@@ -1,12 +1,40 @@
 const { Testimonial } = require('../models');
+const cloudinary = require('../config/cloudinaryConfig');
 
 // Create a new testimony
 exports.createTestimony = async (req, res) => {
   try {
-    const { fullname, image, testimony } = req.body;
+    const { fullname, testimony } = req.body;
+    
+    if (!fullname || !testimony) {
+        return res.status(400).json({ 
+          error: 'Validation failed', 
+          details: 'All fields are required.' 
+        });
+    }
+    
+    let imagePath = null;
+
+    if (req.file) {
+        
+        const b64 = Buffer.from(req.file.buffer).toString("base64");
+        let dataURI = "data:" + req.file.mimetype + ";base64," + b64;
+        
+        const cloudinaryResponse = await cloudinary.uploader.upload(dataURI, {
+          resource_type: 'image',
+          folder: 'testimony'
+        });
+        imagePath = cloudinaryResponse.secure_url;
+    } else {
+        return res.status(400).json({
+          error: 'Testimony not added',
+          message: 'Please upload a photo of the person',
+        });
+    }
+        
     const newTestimony = await Testimonial.create({
       fullname,
-      image,
+      image: imagePath,
       testimony
     });
     return res.status(201).json({ message: 'Testimony created successfully', data: newTestimony });

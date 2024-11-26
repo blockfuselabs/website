@@ -1,4 +1,4 @@
-const { Article, Team } = require('../models');
+const { Article, Team, User } = require('../models');
 const { Op, where } = require('sequelize');
 const path=require('path');
 const fs=require('fs');
@@ -16,7 +16,8 @@ class ArticleController {
         body:
         {
           title,
-          content
+          content,
+          team_member_id
         },
      
       } = req;
@@ -43,6 +44,8 @@ class ArticleController {
       }
       
       const author_id = req.user.id;
+      const author_type = (team_member_id?'team':'user');
+      const team_member = team_member_id ?? '';
       let imagePath = null;
 
       if (req.file) {
@@ -64,7 +67,9 @@ class ArticleController {
 
       const article = await Article.create(
         {
-          author_id,
+          author_id: author_id,
+          author_type,
+          team_member_id: team_member,
           title,
           content,
           image: imagePath,
@@ -89,82 +94,116 @@ class ArticleController {
   }
 
   static async getAll(req, res) {
-    try {
-      const { page = 1, limit = 10 } = req.query;
-      const offset = (page - 1) * limit;
-
-      
-      const { count, rows: articles } = await Article.findAndCountAll({
-        offset: parseInt(offset),
-        limit: parseInt(limit),
-      });
-
-     
-      const totalPages = Math.ceil(count / limit);
-      const currentPage = parseInt(page);
-      const hasNextPage = currentPage < totalPages;
-      const hasPrevPage = currentPage > 1;
-
-      res.status(200).json({
-        message: 'Articles retrieved successfully.',
-        data: {
-          articles,
-          pagination: {
-            total: count,
-            per_page: parseInt(limit),
-            current_page: currentPage,
-            total_pages: totalPages,
-            has_next_page: hasNextPage,
-            has_prev_page: hasPrevPage,
+      try {
+        const { page = 1, limit = 10 } = req.query;
+        const offset = (page - 1) * limit;
+        
+        const { count, rows: articles } = await Article.findAndCountAll({
+          offset: parseInt(offset),
+          limit: parseInt(limit),
+          attributes: ['id', 'author_id', 'slug', 'team_member_id', 'title', 'image', 'content', 'author_type'],
+          include: [
+            {
+              model: User,
+              as: 'author',
+              attributes: ['fullname'],
+            },
+            {
+              model: Team,
+              as: 'teamAuthor',
+              attributes: ['fullname'],
+            }
+          ],
+        });
+        
+        const mappedArticles = articles.map((article) => {
+          const authorName = article.author_type === 'team'
+            ? article.teamAuthor?.fullname
+            : article.author?.fullname;
+          return { ...article.toJSON(), author_name: authorName };
+        });
+        
+        const totalPages = Math.ceil(count / limit);
+        const currentPage = parseInt(page);
+        const hasNextPage = currentPage < totalPages;
+        const hasPrevPage = currentPage > 1;
+    
+        res.status(200).json({
+          message: 'Articles retrieved successfully.',
+          data: {
+            articles: mappedArticles,
+            pagination: {
+              total: count,
+              per_page: parseInt(limit),
+              current_page: currentPage,
+              total_pages: totalPages,
+              has_next_page: hasNextPage,
+              has_prev_page: hasPrevPage,
+            },
           },
-        },
-      });
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({
-        error: 'Unable to retrieve articles.',
-        details: error.message,
-      });
-    }
-
-  
-  }
-
-  static async getOne(req, res) {
-    try {
-      const { identifier } = req.params;
-
-      const where = {};
-      if (!isNaN(identifier)) {
-        where.id = identifier;
-      } else {
-        where.slug = identifier;
-      }
-
-      const article = await Article.findOne({
-        where: { [Op.or]: [where] }
-      });
-
-      if (!article) {
-        return res.status(404).json({
-          error: 'Not found',
-          details: 'Article not found.'
+        });
+      } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({
+          error: 'Unable to retrieve articles.',
+          details: error.message,
         });
       }
-
-      const articleResponse = { ...article.toJSON() };
-      res.status(200).json({
-        message: 'Article retrieved successfully.',
-        article: articleResponse
-      });
-    } catch (error) {
-      console.error('Error:', error);
-      res.status(500).json({
-        error: 'Unable to retrieve article.',
-        details: error.message
-      });
     }
-  }
+
+
+  static async getOne(req, res) {
+      try {
+        const { identifier } = req.params;
+    
+        const where = {};
+        if (!isNaN(identifier)) {
+          where.id = identifier;
+        } else {
+          where.slug = identifier;
+        }
+    
+        const article = await Article.findOne({
+          where: { [Op.or]: [where] },
+          include: [
+            {
+              model: User,
+              as: 'author',
+              attributes: ['fullname']
+            },
+            {
+              model: Team,
+              as: 'teamAuthor',
+              attributes: ['fullname']
+            },
+          ],
+        });
+    
+        if (!article) {
+          return res.status(404).json({
+            error: 'Not found',
+            details: 'Article not found.',
+          });
+        }
+    
+        const author = article.team_member_id
+          ? article.teamAuthor.fullname
+          : article.author.fullname;
+    
+        const articleResponse = { ...article.toJSON(), author };
+    
+        res.status(200).json({
+          message: 'Article retrieved successfully.',
+          article: articleResponse,
+        });
+      } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({
+          error: 'Unable to retrieve article.',
+          details: error.message,
+        });
+      }
+    }
 
   static async delete(req, res) {
     try {
@@ -305,17 +344,10 @@ class ArticleController {
       }
 
       const { count, rows: articles } = await Article.findAndCountAll({
-        where: { author_id: identifier },
+        where: { team_member_id: identifier },
         offset: parseInt(offset),
         limit: parseInt(limit),
       });
-
-      if (!article) {
-        return res.status(404).json({
-          error: 'Not found',
-          details: 'Article not found.'
-        });
-      }
 
       const totalPages = Math.ceil(count / limit);
       const currentPage = parseInt(page);
@@ -343,7 +375,6 @@ class ArticleController {
         details: error.message,
       });
     }
-
   
   }
 }

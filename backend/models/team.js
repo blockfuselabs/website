@@ -18,7 +18,11 @@ module.exports = (sequelize, DataTypes) => {
     position: DataTypes.STRING,
     about: DataTypes.TEXT,
     image: DataTypes.STRING,
-    slug: DataTypes.STRING
+    slug: DataTypes.STRING,
+    twitter: DataTypes.STRING,
+    github: DataTypes.STRING,
+    linkedin: DataTypes.STRING,
+    warpcast: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Team',

@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
   }, {
     sequelize,
     modelName: 'Testimonial',
-    tableName: 'Testimonies',
+    tableName: 'testimonies',
     timestamps: true, // This automatically adds createdAt and updatedAt fields
   });
 

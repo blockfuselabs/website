@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT('medium'),
     image: DataTypes.STRING,
     link: DataTypes.STRING,
+    youtube_link: DataTypes.STRING,
+    twitter_link: DataTypes.STRING,
     slug: DataTypes.STRING,
     start_date: DataTypes.DATE,
     end_date: DataTypes.DATE
