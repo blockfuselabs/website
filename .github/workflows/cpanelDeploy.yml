@@ -33,7 +33,7 @@ jobs:
         working-directory: blockfuse-website
         run: npm install
       
-      - name: 🔨 Build the Next.js app
+      - name: 🔨 Build the React.js app
         working-directory: blockfuse-website
         run: npm run build
       

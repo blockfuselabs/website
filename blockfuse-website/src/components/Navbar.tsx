@@ -54,7 +54,7 @@ const Navbar = () => {
 
   return (
     <div className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`}>
-      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 w-[300px] lg:w-[1200px]">
+      <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8 w-[400px] lg:w-[1280px]">
         <div className="bg-white dark:bg-[#2F2E34] border border-gray-200 dark:border-zinc-800">
           <div className="flex items-center gap-4 lg:gap-10 justify-between h-16 px-4 lg:px-10">
             {/* Logo */}
@@ -78,6 +78,7 @@ const Navbar = () => {
                 <NavLink href="/blog" label="Blog" isActive={location.pathname === '/blog'} />
                 <NavLink href="/opensource" label="Open source" isActive={location.pathname === '/opensource'} />
                 <NavLink href="/contact-us" label="Contact us" isActive={location.pathname === '/contact-us'} />
+                <NavLink href="https://faucet.blockfuselabs.com" label="Faucet" isActive={false} />
               </div>
               <div className="flex gap-4 items-center">
                 <Button
@@ -164,6 +165,7 @@ const Navbar = () => {
                 <MobileNavLink href="/blog" label="Blog" onClick={handleMobileNavClick} isActive={location.pathname === '/blog'} />
                 <MobileNavLink href="/opensource" label="Open source" onClick={handleMobileNavClick} isActive={location.pathname === '/opensource'} />
                 <MobileNavLink href="/contact-us" label="Contact us" onClick={handleMobileNavClick} isActive={location.pathname === '/contact-us'} />
+                <MobileNavLink href="https://faucet.blockfuselabs.com" label="Faucet" onClick={handleMobileNavClick} isActive={false} />
                 <div className="pt-4">
                   <Button
                     style={{
