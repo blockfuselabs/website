@@ -43,6 +43,6 @@ jobs:
           server: ${{ vars.FTP_SERVER }}
           username: ${{ vars.FTP_USERNAME }}
           password: ${{ vars.FTP_PASSWORD }}
-          server-dir: faucet.blockfuselabs.com/
+          server-dir: public_html/
           local-dir: 'blockfuse-website/dist/'
 
