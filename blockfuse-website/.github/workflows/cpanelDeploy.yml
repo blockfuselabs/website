@@ -1,0 +1,44 @@
+name: Deploy Blockfuselabs Website to cPanel
+
+on:
+  push:
+    branches:
+      - frontend-main
+
+jobs:
+  FTP-Deploy-Action:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+      
+      - name: 📂 Navigate to blockfuselabs-website
+        working-directory: blockfuselabs-website
+        run: echo "Switched to blockfuselabs-website directory"
+      
+      - name: 🛠 Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: 📦 Install dependencies
+        working-directory: blockfuselabs-website
+        run: npm install
+      
+      - name: 🔨 Build the Next.js app
+        working-directory: blockfuselabs-website
+        run: npm run build
+      
+      - name: 📂 Sync folders and files to the server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ vars.FTP_PASSWORD }}
+          server-dir: faucet.blockfuselabs.com/
+          local-dir: 'blockfuselabs-website/dist'
+

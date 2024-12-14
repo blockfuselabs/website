@@ -26,3 +26,5 @@ blockfuse-website/.env
 
 # Local Netlify folder
 .netlify
+
+.env
