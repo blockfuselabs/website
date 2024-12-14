@@ -22,7 +22,7 @@ jobs:
       
       - name: 📂 Navigate to blockfuse-website
         working-directory: blockfuse-website
-        run: echo "Switched to blockfuselabs-website directory"
+        run: echo "Switched to blockfuse-website directory"
       
       - name: 🛠 Set up Node.js
         uses: actions/setup-node@v3
@@ -30,11 +30,11 @@ jobs:
           node-version: '20'
       
       - name: 📦 Install dependencies
-        working-directory: blockfuselabs-website
+        working-directory: blockfuse-website
         run: npm install
       
       - name: 🔨 Build the Next.js app
-        working-directory: blockfuselabs-website
+        working-directory: blockfuse-website
         run: npm run build
       
       - name: 📂 Sync folders and files to the server
@@ -44,5 +44,5 @@ jobs:
           username: ${{ vars.FTP_USERNAME }}
           password: ${{ vars.FTP_PASSWORD }}
           server-dir: faucet.blockfuselabs.com/
-          local-dir: 'blockfuselabs-website/dist'
+          local-dir: 'blockfuse-website/dist'
 
