@@ -15,9 +15,13 @@ jobs:
         uses: actions/checkout@v3
         with:
           fetch-depth: 2
+
+      - name: 🧐 Check directory
+        run: ls -la
+        working-directory: ./
       
       - name: 📂 Navigate to blockfuselabs-website
-        working-directory: blockfuselabs-website
+        working-directory: blockfuse-website
         run: echo "Switched to blockfuselabs-website directory"
       
       - name: 🛠 Set up Node.js
