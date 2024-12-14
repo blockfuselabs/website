@@ -20,7 +20,7 @@ jobs:
         run: ls -la
         working-directory: ./
       
-      - name: 📂 Navigate to blockfuselabs-website
+      - name: 📂 Navigate to blockfuse-website
         working-directory: blockfuse-website
         run: echo "Switched to blockfuselabs-website directory"
       
