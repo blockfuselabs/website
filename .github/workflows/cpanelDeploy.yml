@@ -21,7 +21,7 @@ jobs:
         working-directory: ./
       
       - name: 📂 Navigate to blockfuselabs-website
-        working-directory: blockfuselabs-website
+        working-directory: ./blockfuselabs-website
         run: echo "Switched to blockfuselabs-website directory"
       
       - name: 🛠 Set up Node.js
