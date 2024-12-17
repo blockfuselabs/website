@@ -55,7 +55,7 @@ const BlogPage = () => {
     <>
       <Helmet>
         <html lang="en" />
-        <title>Blockfuse Labs-Blog</title>
+        <title>Blockfuse Labs Blog</title>
         <meta
           name="description"
           content="Read more about what's happening in the blockchain space."

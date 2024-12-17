@@ -3,7 +3,7 @@ import routes from "./routes";
 import { ArticlesResponse } from "../types/generated";
 
 const AxiosInstance = axios.create({
-  baseURL: "https://dev.basicpayng.com/api/",
+  baseURL: "https://api.blockfuselabs.com/api/",
   headers: {
     accept: "application/json",
     "content-Type": "application/json",
