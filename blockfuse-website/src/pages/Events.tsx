@@ -34,7 +34,7 @@ const EventsPage = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}/api/events`
+          `https://api.blockfuselabs.com/api/events`
         );
         if (!response.ok) throw new Error("Failed to fetch events");
         const data = await response.json();
