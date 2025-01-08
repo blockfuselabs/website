@@ -41,6 +41,9 @@ const StyledCards = () => {
             </Button>
           </a>
         </div>
+        <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+          NOTE: Registration for Cohort III will start on March 1st.
+        </div>
       </div>
 
       {/* Card 2 */}
@@ -63,7 +66,7 @@ const StyledCards = () => {
             Web3 technology and launch into the world of blockchain development!
           </p>
         </div>
-        <div className="flex justify-center mb-3 mx-2 sm:mt-24">
+        <div className="flex justify-center mb-3 mx-2 sm:mt-16">
           <a
             href="https://docs.google.com/forms/d/e/1FAIpQLSerXQAQAfV_fpga4mpHBvjGvfnetyHnCdEmkDeFSishs-vTRQ/viewform?usp=pp_url"
             target="_blank"
@@ -74,6 +77,9 @@ const StyledCards = () => {
               <MoveRight />
             </Button>
           </a>
+        </div>
+        <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+          NOTE: Registration for Cohort III will start on March 1st.
         </div>
       </div>
     </div>
