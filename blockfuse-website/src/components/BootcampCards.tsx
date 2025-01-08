@@ -31,12 +31,12 @@ const StyledCards = () => {
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfhmiatYp0gh-IbqYnPNIcwNejxeIiVuI2O0q72SfPYwTZrKw/viewform?usp=pp_url"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSerXQAQAfV_fpga4mpHBvjGvfnetyHnCdEmkDeFSishs-vTRQ/viewform?usp=pp_url"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button>
-              Apply now
+              Join the Waitlist
               <MoveRight />
             </Button>
           </a>
@@ -65,12 +65,12 @@ const StyledCards = () => {
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-24">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScOJq9oESgBFI65yxsQcyb1AUOM2DkqLy0xdlseq7eTM5-tIw/viewform"
+            href="https://docs.google.com/forms/d/e/1FAIpQLSerXQAQAfV_fpga4mpHBvjGvfnetyHnCdEmkDeFSishs-vTRQ/viewform?usp=pp_url"
             target="_blank"
             rel="noopener noreferrer"
           >
             <Button>
-              Apply now
+              Join the Waitlist
               <MoveRight />
             </Button>
           </a>
