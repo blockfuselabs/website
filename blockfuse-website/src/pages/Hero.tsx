@@ -14,6 +14,9 @@ import TestimonialsSection from "../components/TestimonialCarousel";
 import Zigzag from "../assets/svgs/zigzag.svg";
 import useFAQSQuery from "../../hooks/useFaqsQuery";
 import { Helmet } from "react-helmet";
+import  PartnerCarousel from "../components/PartnerCarousel"
+
+
 
 const Hero = () => {
   const [email, setEmail] = useState("");
@@ -343,6 +346,18 @@ const Hero = () => {
         >
           <TestimonialsSection Testimonial={Testimonial} Box1={Box1} />
         </section>
+
+
+      {/* Our Partners */}
+      <section
+          className="px-6 py-20 sm:px-8 md:px-16 lg:px-24"
+          role="region"
+          aria-labelledby="testimonials"
+        >
+           <PartnerCarousel />
+      </section>
+
+
 
         {/* Section 7: Next Cohort */}
         <section
