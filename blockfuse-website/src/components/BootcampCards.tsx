@@ -40,9 +40,9 @@ const StyledCards = () => {
             </Button>
           </a>
         </div>
-        <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+        {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
           NOTE: Registration for Cohort III will start on March 1st.
-        </div>
+        </div> */}
       </div>
 
 
@@ -75,9 +75,9 @@ const StyledCards = () => {
             </Button>
           </a>
         </div>
-        <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+        {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
           NOTE: Registration for Cohort III will start on March 1st.
-        </div>
+        </div> */}
       </div>
 
 
@@ -110,9 +110,9 @@ const StyledCards = () => {
             </Button>
           </a>
         </div>
-        <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+        {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
           NOTE: Registration for Cohort III will start on March 1st.
-        </div>
+        </div> */}
       </div>
     </div>
   );
