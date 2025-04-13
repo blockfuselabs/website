@@ -18,31 +18,44 @@ jobs:
 
       - name: 🧐 Check directory
         run: ls -la
-        working-directory: ./
-      
-      - name: 📂 Navigate to blockfuse-website
-        working-directory: blockfuse-website
-        run: echo "Switched to blockfuse-website directory"
       
       - name: 🛠 Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
       
-      - name: 📦 Install dependencies
+      # --- Blockfuse Website Build & Deploy ---
+      - name: 📦 Install dependencies (blockfuse-website)
         working-directory: blockfuse-website
         run: npm install
-      
-      - name: 🔨 Build the React.js app
+
+      - name: 🔨 Build React app (blockfuse-website)
         working-directory: blockfuse-website
         run: npm run build
-      
-      - name: 📂 Sync folders and files to the server
+
+      - name: 🚀 Deploy blockfuse-website to cPanel
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ${{ vars.FTP_SERVER }}
           username: ${{ vars.FTP_USERNAME }}
           password: ${{ vars.FTP_PASSWORD }}
           server-dir: public_html/
-          local-dir: 'blockfuse-website/dist/'
+          local-dir: blockfuse-website/dist/
 
+      # --- Blogsite Build & Deploy ---
+      - name: 📦 Install dependencies (blogsite)
+        working-directory: blogsite
+        run: npm install
+
+      - name: 🔨 Build React app (blogsite)
+        working-directory: blogsite
+        run: npm run build
+
+      - name: 🚀 Deploy blogsite to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ vars.FTP_PASSWORD }}
+          server-dir: blog.blockfuselabs.com/
+          local-dir: blogsite/dist/
