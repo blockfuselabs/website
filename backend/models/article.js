@@ -31,6 +31,8 @@ module.exports = (sequelize, DataTypes) => {
     content: DataTypes.TEXT('long'),
     image: DataTypes.STRING,
     slug: DataTypes.STRING,
+    is_featured: DataTypes.BOOLEAN,
+    is_published: DataTypes.BOOLEAN,
     views: DataTypes.BIGINT
   }, {
     sequelize,

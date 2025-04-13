@@ -31,6 +31,14 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false
       },
+      is_featured: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
+      is_published: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       views: {
         type: Sequelize.BIGINT,
         allowNull: true,

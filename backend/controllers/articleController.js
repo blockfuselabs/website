@@ -17,7 +17,8 @@ class ArticleController {
         {
           title,
           content,
-          team_member_id
+          team_member_id,
+          is_featured,
         },
      
       } = req;
@@ -74,6 +75,8 @@ class ArticleController {
           content,
           image: imagePath,
           slug: article_slug,
+          is_featured: is_featured,
+          is_published: true,
           views: 0
         }
       );
@@ -99,9 +102,12 @@ class ArticleController {
         const offset = (page - 1) * limit;
         
         const { count, rows: articles } = await Article.findAndCountAll({
+          where: {
+            is_published: true,
+          },
           offset: parseInt(offset),
           limit: parseInt(limit),
-          attributes: ['id', 'author_id', 'slug', 'team_member_id', 'title', 'image', 'content', 'author_type'],
+          attributes: ['id', 'author_id', 'slug', 'team_member_id', 'title', 'image', 'content', 'is_featured', 'author_type'],
           include: [
             {
               model: User,
@@ -242,7 +248,9 @@ class ArticleController {
       {
         title,
         image,
-        content
+        content,
+        is_featured,
+        is_published,
       },
     } = req;
    
@@ -298,7 +306,14 @@ class ArticleController {
         article.image = req.file.path;
         console.log("Successfully update the filepath")
         }
+      }
+
+      if(is_featured){
+        article.is_featured = is_featured;
+      }
       
+      if(is_published){
+        article.is_published = is_published;
       }
 
       await article.save();
