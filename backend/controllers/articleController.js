@@ -213,7 +213,7 @@ class ArticleController {
     }
 
   static async delete(req, res) {
-    try { WHERE `articles`.`id` = 13
+    try {
       const { id } = req.params;
       
       const article = await Article.findOne({
@@ -312,7 +312,7 @@ class ArticleController {
       if(is_featured){
         article.is_featured = is_featured;
       }
-
+      
       if(is_published){
         article.is_published = is_published;
       }
