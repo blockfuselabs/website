@@ -1,0 +1,29 @@
+name: Deploy Blockfuselabs Website API to cPanel
+
+on:
+  push:
+    branches:
+      - backend
+
+jobs:
+  FTP-Deploy-Action:
+    name: 🎉 Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: 🧐 Check directory
+        run: ls -la
+
+      - name: 🚀 Deploy API to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ${{ vars.FTP_SERVER }}
+          username: ${{ vars.FTP_USERNAME }}
+          password: ${{ vars.FTP_PASSWORD }}
+          server-dir: api.blockfuselabs.com/
+          local-dir: backend/
