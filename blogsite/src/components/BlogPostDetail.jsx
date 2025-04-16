@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Link as LinkIcon, Share, ChevronLeft } from "lucide-react";
+import { Link as LinkIcon, Share, ChevronLeft, Copy, Check } from "lucide-react";
 import { RWebShare } from "react-web-share";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
@@ -12,6 +12,41 @@ import remarkGfm from "remark-gfm";
 import Blockies from "react-blockies";
 import BaseUrl from "../services/http";
 import useArticlesQuery from "../../hooks/useArticlesQuery";
+
+// New component for code blocks with copy functionality
+const CodeBlock = ({ language, value }) => {
+  const [copied, setCopied] = useState(false);
+  
+  const handleCopy = () => {
+    navigator.clipboard.writeText(value)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      })
+      .catch(err => console.error('Failed to copy code:', err));
+  };
+  
+  return (
+    <div className="relative group">
+      <button 
+        onClick={handleCopy}
+        className="absolute top-2 right-2 p-2 bg-gray-700 rounded-md text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity"
+        aria-label="Copy code"
+      >
+        {copied ? <Check size={16} className="text-green-400" /> : <Copy size={16} />}
+      </button>
+      <SyntaxHighlighter
+        style={vscDarkPlus}
+        language={language}
+        className="rounded-md my-6"
+        wrapLines={true}
+        wrapLongLines={true}
+      >
+        {value}
+      </SyntaxHighlighter>
+    </div>
+  );
+};
 
 const BlogPostDetail = () => {
   const navigate = useNavigate();
@@ -65,7 +100,7 @@ const BlogPostDetail = () => {
         
         if (response && response.article) {
           setPost(response.article);
-          // Scroll to top when article loads
+         
           window.scrollTo(0, 0);
         } else {
           setError("Article not found");
@@ -109,12 +144,12 @@ const BlogPostDetail = () => {
       article => article.id !== post.id && article.category === post.category
     );
     
-    // If we have enough same-category articles, use them
+   
     if (sameCategory.length >= 3) {
       return sameCategory.slice(0, 3);
     }
     
-    // Otherwise, add other articles to fill up to 3
+  
     const otherArticles = allArticles.filter(
       article => article.id !== post.id && article.category !== post.category
     );
@@ -143,7 +178,7 @@ const BlogPostDetail = () => {
         "name": "Blockfuse Labs",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://yoursite.com/logo.png" // Update with your actual logo URL
+          "url": "https://yoursite.com/logo.png" 
         }
       },
       "mainEntityOfPage": {
@@ -231,9 +266,9 @@ const BlogPostDetail = () => {
         </script>
       </Helmet>
 
-      {/* Added overflow-x-hidden to prevent horizontal scrolling */}
+      
       <div className="bg-black text-white min-h-screen overflow-x-hidden w-full">
-        {/* Back button (only on mobile) */}
+       
         <button 
           onClick={() => navigate(-1)}
           className="fixed top-4 left-4 z-10 md:hidden bg-black bg-opacity-60 text-white p-2 rounded-full"
@@ -242,7 +277,7 @@ const BlogPostDetail = () => {
           <ChevronLeft size={20} />
         </button>
 
-        {/* Sticky header that appears on scroll (mobile only) */}
+        {/* Sticky header  */}
         {isScrolled && (
           <div className="fixed top-0 left-0 right-0 z-10 bg-black bg-opacity-90 border-b border-gray-800 py-3 px-4 md:hidden transition-opacity duration-300">
             <h1 className="text-sm font-semibold truncate break-words">
@@ -259,12 +294,12 @@ const BlogPostDetail = () => {
             </span>
           </div>
           
-          {/* Article Title - Added break-all for long words */}
+          {/* Article Title */}
           <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 leading-tight break-words px-2 max-w-full">
             {post.title}
           </h1>
           
-          {/* Article Subtitle - Added break-all */}
+          {/* Article Subtitle */}
           {post.subtitle && (
             <p className="text-gray-400 text-center mb-6 text-base sm:text-lg px-2 break-words max-w-full">
               {post.subtitle}
@@ -341,7 +376,7 @@ const BlogPostDetail = () => {
             </div>
           </div>
           
-          {/* Article Content with Enhanced Markdown Rendering */}
+          {/* Article Content with Markdown Rendering */}
           <div className="max-w-3xl mx-auto mb-12 sm:mb-20 px-2 sm:px-4">
             <div className="text-gray-300 space-y-4 lg:space-y-6 w-full prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none blog-content">
               <ReactMarkdown
@@ -351,26 +386,20 @@ const BlogPostDetail = () => {
                   code({node, inline, className, children, ...props}) {
                     const match = /language-(\w+)/.exec(className || '');
                     return !inline && match ? (
-                      <SyntaxHighlighter
-                        style={vscDarkPlus}
-                        language={match[1]}
-                        PreTag="div"
-                        className="rounded-md my-6"
-                        wrapLines={true}
-                        wrapLongLines={true}
-                        {...props}
-                      >
-                        {String(children).replace(/\n$/, '')}
-                      </SyntaxHighlighter>
+                     
+                      <CodeBlock 
+                        language={match[1]} 
+                        value={String(children).replace(/\n$/, '')} 
+                      />
                     ) : (
-                      <code className="bg-gray-800 px-1 py-0.5 rounded text-gray-200" {...props}>
+                      <code className="bg-gray-800 px-2 py-0.5 rounded text-gray-200" {...props}>
                         {children}
                       </code>
                     );
                   },
                   pre({node, children, ...props}) {
                     return (
-                      <pre className="overflow-x-auto bg-gray-900 rounded-md p-0 my-6" {...props}>
+                      <pre className="overflow-x-auto bg-gray-900 rounded-md py-2 px-4 my-6" {...props}>
                         {children}
                       </pre>
                     );
@@ -426,7 +455,7 @@ const BlogPostDetail = () => {
                   },
                   blockquote({node, children, ...props}) {
                     return (
-                      <blockquote className="border-l-4 border-purple-500 pl-4 py-1 my-4 text-gray-400 italic" {...props}>
+                      <blockquote className="border-l-4 border-purple-500 pl-4 px-3 py-2 my-4 text-gray-400 italic" {...props}>
                         {children}
                       </blockquote>
                     );
@@ -553,7 +582,7 @@ const BlogPostDetail = () => {
             </div>
           )}
           
-          {/* Bottom Subscribe Button (Mobile) */}
+          {/* Bottom Subscribe  */}
           <div className="fixed bottom-4 right-4 md:hidden z-10">
             <button 
               onClick={() => document.getElementById('subscribe-section').scrollIntoView({ behavior: 'smooth' })}
