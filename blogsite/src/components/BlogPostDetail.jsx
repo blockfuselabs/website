@@ -4,6 +4,11 @@ import { Helmet } from "react-helmet";
 import { Link as LinkIcon, Share, ChevronLeft } from "lucide-react";
 import { RWebShare } from "react-web-share";
 import ReactMarkdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import remarkGfm from "remark-gfm";
 import Blockies from "react-blockies";
 import BaseUrl from "../services/http";
 import useArticlesQuery from "../../hooks/useArticlesQuery";
@@ -255,13 +260,13 @@ const BlogPostDetail = () => {
           </div>
           
           {/* Article Title - Added break-all for long words */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 leading-tight break-words break-all px-2 max-w-full">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-center mb-4 leading-tight break-words px-2 max-w-full">
             {post.title}
           </h1>
           
           {/* Article Subtitle - Added break-all */}
           {post.subtitle && (
-            <p className="text-gray-400 text-center mb-6 text-base sm:text-lg px-2 break-words break-all max-w-full">
+            <p className="text-gray-400 text-center mb-6 text-base sm:text-lg px-2 break-words max-w-full">
               {post.subtitle}
             </p>
           )}
@@ -329,53 +334,142 @@ const BlogPostDetail = () => {
                 height="540"
               />
               {post.image_caption && (
-                <p className="text-sm text-gray-500 text-center mt-2 italic px-4 break-words break-all">
+                <p className="text-sm text-gray-500 text-center mt-2 italic px-4 break-words">
                   {post.image_caption}
                 </p>
               )}
             </div>
           </div>
           
-          {/* Article Content - Added custom styles for markdown with word-break */}
+          {/* Article Content with Enhanced Markdown Rendering */}
           <div className="max-w-3xl mx-auto mb-12 sm:mb-20 px-2 sm:px-4">
-            <style>
-              {`
-                .blog-content {
-                  word-wrap: break-word;
-                  overflow-wrap: break-word;
-                  word-break: break-word;
-                  hyphens: auto;
-                }
-                .blog-content * {
-                  max-width: 100%;
-                  overflow-wrap: break-word;
-                  word-break: break-word;
-                }
-                .blog-content a {
-                  word-break: break-all;
-                }
-                .blog-content pre {
-                  white-space: pre-wrap;
-                  word-break: break-word;
-                  overflow-x: auto;
-                }
-                .blog-content code {
-                  white-space: pre-wrap;
-                  word-break: break-word;
-                }
-                .blog-content img {
-                  max-width: 100%;
-                  height: auto;
-                }
-                .blog-content table {
-                  display: block;
-                  overflow-x: auto;
-                  max-width: 100%;
-                }
-              `}
-            </style>
             <div className="text-gray-300 space-y-4 lg:space-y-6 w-full prose prose-invert prose-sm sm:prose-base lg:prose-lg max-w-none blog-content">
-              <ReactMarkdown>{post.content}</ReactMarkdown>
+              <ReactMarkdown
+                remarkPlugins={[remarkGfm]}
+                rehypePlugins={[rehypeRaw, rehypeSanitize]}
+                components={{
+                  code({node, inline, className, children, ...props}) {
+                    const match = /language-(\w+)/.exec(className || '');
+                    return !inline && match ? (
+                      <SyntaxHighlighter
+                        style={vscDarkPlus}
+                        language={match[1]}
+                        PreTag="div"
+                        className="rounded-md my-6"
+                        wrapLines={true}
+                        wrapLongLines={true}
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, '')}
+                      </SyntaxHighlighter>
+                    ) : (
+                      <code className="bg-gray-800 px-1 py-0.5 rounded text-gray-200" {...props}>
+                        {children}
+                      </code>
+                    );
+                  },
+                  pre({node, children, ...props}) {
+                    return (
+                      <pre className="overflow-x-auto bg-gray-900 rounded-md p-0 my-6" {...props}>
+                        {children}
+                      </pre>
+                    );
+                  },
+                  p({node, children, ...props}) {
+                    return (
+                      <p className="my-4 break-words" {...props}>
+                        {children}
+                      </p>
+                    );
+                  },
+                  h1({node, children, ...props}) {
+                    return (
+                      <h1 className="text-2xl font-bold my-6 break-words" {...props}>
+                        {children}
+                      </h1>
+                    );
+                  },
+                  h2({node, children, ...props}) {
+                    return (
+                      <h2 className="text-xl font-bold my-4 break-words" {...props}>
+                        {children}
+                      </h2>
+                    );
+                  },
+                  h3({node, children, ...props}) {
+                    return (
+                      <h3 className="text-lg font-bold my-3 break-words" {...props}>
+                        {children}
+                      </h3>
+                    );
+                  },
+                  ul({node, children, ...props}) {
+                    return (
+                      <ul className="list-disc pl-6 my-4" {...props}>
+                        {children}
+                      </ul>
+                    );
+                  },
+                  ol({node, children, ...props}) {
+                    return (
+                      <ol className="list-decimal pl-6 my-4" {...props}>
+                        {children}
+                      </ol>
+                    );
+                  },
+                  li({node, children, ...props}) {
+                    return (
+                      <li className="my-1 break-words" {...props}>
+                        {children}
+                      </li>
+                    );
+                  },
+                  blockquote({node, children, ...props}) {
+                    return (
+                      <blockquote className="border-l-4 border-purple-500 pl-4 py-1 my-4 text-gray-400 italic" {...props}>
+                        {children}
+                      </blockquote>
+                    );
+                  },
+                  table({node, children, ...props}) {
+                    return (
+                      <div className="overflow-x-auto my-6">
+                        <table className="min-w-full divide-y divide-gray-700" {...props}>
+                          {children}
+                        </table>
+                      </div>
+                    );
+                  },
+                  th({node, children, ...props}) {
+                    return (
+                      <th className="px-4 py-2 bg-gray-800 text-left text-sm font-medium text-gray-200 uppercase tracking-wider" {...props}>
+                        {children}
+                      </th>
+                    );
+                  },
+                  td({node, children, ...props}) {
+                    return (
+                      <td className="px-4 py-2 whitespace-nowrap text-sm text-gray-300 border-t border-gray-700" {...props}>
+                        {children}
+                      </td>
+                    );
+                  },
+                  a({node, children, ...props}) {
+                    return (
+                      <a className="text-purple-400 hover:text-purple-300 underline break-words" {...props}>
+                        {children}
+                      </a>
+                    );
+                  },
+                  img({node, ...props}) {
+                    return (
+                      <img className="max-w-full h-auto my-6 rounded-md" loading="lazy" {...props} />
+                    );
+                  }
+                }}
+              >
+                {post.content}
+              </ReactMarkdown>
             </div>
             
             {/* Tags */}
@@ -437,8 +531,8 @@ const BlogPostDetail = () => {
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-bold mb-2 line-clamp-2 break-words break-all">{article.title}</h3>
-                      <p className="text-gray-400 text-sm mb-2 line-clamp-2 break-words break-all">
+                      <h3 className="text-lg font-bold mb-2 line-clamp-2 break-words">{article.title}</h3>
+                      <p className="text-gray-400 text-sm mb-2 line-clamp-2 break-words">
                         {article.excerpt || truncateContent(article.content)}
                       </p>
                       <div className="flex items-center text-xs text-gray-500">
