@@ -231,9 +231,9 @@ const EventsPage = () => {
                 </div>
 
                 <div className="px-4 sm:px-6 py-6 sm:py-8 flex flex-col justify-between h-[calc(100%-16rem)] sm:h-[calc(600px-384px)]">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-md">
+                  <ReactMarkdown className="text-gray-600 dark:text-gray-300 text-sm sm:text-md">
                     {event.description}
-                  </p>
+                  </ReactMarkdown>
                   <div className="flex justify-end gap-4 sm:gap-10 items-center mt-4">
                     {activeFilter === "past" && (
                       <a
