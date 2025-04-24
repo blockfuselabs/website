@@ -5,6 +5,7 @@ import BaseUrl from "../../services/http";
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 import { Helmet } from "react-helmet";
+import ReactMarkdown from "react-markdown";
 
 interface PastEventDetails {
   id: number;
@@ -173,9 +174,9 @@ const PastEventDetail = () => {
           </div>
         )}
 
-        <div className="dark:text-white text-lg prose dark:prose-invert max-w-none mb-12">
-          <p>{eventDetails.description}</p>
-        </div>
+        <ReactMarkdown className="dark:text-white text-lg prose dark:prose-invert max-w-none mb-12">
+          {eventDetails.description}
+        </ReactMarkdown>
 
         {eventDetails.event_photos && eventDetails.event_photos.length > 0 && (
           <div>
