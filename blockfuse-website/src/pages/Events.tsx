@@ -9,6 +9,7 @@ import {
   ProcessedEvent,
   SortedEvents,
 } from "../../types/generated";
+import ReactMarkdown from "react-markdown";
 
 const EventsPage = () => {
   const navigate = useNavigate();
