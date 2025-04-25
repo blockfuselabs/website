@@ -406,10 +406,11 @@ class EventController {
       }
 
       const allowedSortFields = ['id', 'title', 'start_date', 'end_date', 'created_at'];
+
       const validSortBy = allowedSortFields.includes(sortBy) ? sortBy : 'start_date';
 
       const validSortOrder = ['ASC', 'DESC'].includes(sortOrder.toUpperCase()) 
-        ? sortOrder.toUpperCase() 
+        ? (queryType != 'past' ? 'ASC' : sortOrder.toUpperCase()) 
         : 'DESC';
 
       const { count, rows: events } = await Event.findAndCountAll({
