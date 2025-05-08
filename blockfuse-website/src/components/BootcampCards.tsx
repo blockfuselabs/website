@@ -45,7 +45,7 @@ const StyledCards = () => {
         </div> */}
       {/* </div> */}
 
-      <div className="dark:bg-black h-auto sm:h-[850px] border border-purple-500 shadow-lg overflow-hidden">
+      <div className="dark:bg-black h-auto sm:h-[700px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 m-3 sm:m-5 bg-cover bg-center"
           style={{ backgroundImage: `url(${Web2})` }}
@@ -115,7 +115,7 @@ const StyledCards = () => {
 
 
          {/* Card 3 */}
-         <div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
+         <div className="dark:bg-black h-auto sm:h-[700px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 m-3 sm:m-5 bg-cover bg-center"
           style={{ backgroundImage: `url(${Web3})` }}
