@@ -58,7 +58,7 @@ const StyledCards = () => {
         </div>
         <div className="p-4 sm:p-6">
           <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">
-          The Web2 Software Engineering track at Blockfuse Labs is a full-spectrum program designed to take you from beginner to industry-ready developer — even if you're starting from scratch. You'll begin by learning the fundamentals of software development: HTML, CSS, JavaScript, and Version Control Systems — building a solid foundation in web development. From there, you'll advance into modern frontend and backend technologies like React, Node.js & Express, along with essential tools like Databases and DevOps. By the end of this program, you'll be able to build and deploy full-stack applications confidently — and you'll be fully prepared to transition into Web3 and blockchain development. This is the path to becoming a well-rounded, future-ready engineer — and it starts here.
+          The is a full-spectrum program designed to take you from beginner to industry-ready developer, even if you're starting from scratch. You'll begin by learning the fundamentals of software development: HTML, CSS, JavaScript, and Version Control Systems, building a solid foundation in web development. From there, you'll advance into modern frontend and backend technologies like React, Node.js & Express, along with essential tools like Databases and DevOps. By the end of this program, you'll be able to build and deploy full-stack applications confidently, and you'll be fully prepared to transition into Web3 development. This is the path to becoming a well-rounded, future-ready engineer.
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
