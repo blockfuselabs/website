@@ -45,7 +45,7 @@ const StyledCards = () => {
         </div> */}
       {/* </div> */}
 
-      <div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
+      <div className="dark:bg-black h-auto sm:h-[850px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 m-3 sm:m-5 bg-cover bg-center"
           style={{ backgroundImage: `url(${Web2})` }}
@@ -80,7 +80,7 @@ const StyledCards = () => {
 
 
       {/* Card 2 */}
-      <div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
+      {/* <div className="dark:bg-black h-auto sm:h-[650px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 bg-cover dark:bg-black m-3 sm:m-5 bg-center"
           style={{ backgroundImage: `url(${Web2})` }}
@@ -107,11 +107,11 @@ const StyledCards = () => {
               <MoveRight />
             </Button>
           </a>
-        </div>
+        </div> */}
         {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
           NOTE: Registration for Cohort III will start on March 1st.
         </div> */}
-      </div>
+      {/* </div> */}
 
 
          {/* Card 3 */}
