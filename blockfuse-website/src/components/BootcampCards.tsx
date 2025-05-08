@@ -128,7 +128,7 @@ const StyledCards = () => {
         </div>
         <div className="p-4 sm:p-6">
           <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">
-          This program is designed for skilled programmers who want to dive into blockchain development and build the future of Web3. If you have a strong programming background and are ready to take on the world of smart contracts and decentralized applications, this is for you!
+          This program is designed for skilled programmers who want to dive into blockchain development and build the future of Web3. If you have a strong programming background and are ready to take on the world of smart contracts and decentralized applications, this is for you!<br/><br/><br/><br/><br/><br/><br/>
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
