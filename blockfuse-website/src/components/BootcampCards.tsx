@@ -52,13 +52,12 @@ const StyledCards = () => {
         >
           <div className="flex items-center justify-center h-full bg-opacity-50">
             <h2 className="dark:text-white text-lg sm:text-2xl font-semibold">
-            Web2 Software Engineering
+            Software Engineering Bootcamp (Web2 Track)
             </h2>
           </div>
         </div>
         <div className="p-4 sm:p-6">
-          <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">
-          The is a full-spectrum program designed to take you from beginner to industry-ready developer, even if you're starting from scratch. You'll begin by learning the fundamentals of software development: HTML, CSS, JavaScript, and Version Control Systems, building a solid foundation in web development. From there, you'll advance into modern frontend and backend technologies like React, Node.js & Express, along with essential tools like Databases and DevOps. By the end of this program, you'll be able to build and deploy full-stack applications confidently, and you'll be fully prepared to transition into Web3 development. This is the path to becoming a well-rounded, future-ready engineer.
+          <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">At Blockfuse Labs, we're not just teaching code — we're shaping engineers ready for the future. Start your journey from zero to advanced with hands-on training in:<br/>JavaScript for full-stack web development, Python for automation and AI, Rust for tooling, infrastructure, and high-performance systems, Vim for ultra-fast development workflows<br/>You'll build real-world projects, gain in-demand skills, and graduate with the confidence to tackle any tech stack — or even transition into Web3.
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
