@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import HackMD from "../assets/logos/hackmd.svg";
+import Ethereum from "../assets/logos/Ethereum-Foundation.png";
 
 const PartnerCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const partners = [
     { id: 1, name: "HackMD", logo: HackMD },
+    { id: 2, name: "", logo: Ethereum },
+
  
   ];
 
@@ -73,7 +76,7 @@ const PartnerCarousel = () => {
                     <img
                       src={partner.logo}
                       alt={`${partner.name} logo`}
-                      className="w-[600px] h-[200px] object-contain hover:scale-105 transition-transform"
+                      className="w-[300px] h-[100px] object-contain hover:scale-105 transition-transform"
                     />
                     <span className="dark:text-gray-200 text-3xl font-bold">{partner.name}</span>
                   </div>
