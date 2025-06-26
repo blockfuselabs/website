@@ -27,6 +27,7 @@ const CommunityController = require('../controllers/communityController');
 const TestimonyController = require('../controllers/testimonialController');
 const ApplicationController = require('../controllers/applicationController');
 const HelperController = require('../controllers/helperController');
+const NewsletterController = require('../controllers/newsletterController');
 
 const router = express.Router();
 
@@ -110,5 +111,8 @@ router.put('/community-update/:id', authMiddleware, upload.single('image'), Comm
 // Contact
 router.post('/contact-us', EmailController.contactUsEmail);
 router.post('/contact-us-test', EmailController.testMailtrap);
+
+// Newsletter
+router.post('/newsletter', NewsletterController.submit);
 
 module.exports = router;
