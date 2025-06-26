@@ -31,6 +31,7 @@ import ScrollToTopButton, { useScrollToTop } from './components/ScrollToTopButto
 
 import { Web3Provider } from "./components/WalletConnect/Web3Provider";
 import { ConnectKitButton } from "connectkit";
+import { ToastContainer } from 'react-toastify';
 
 
 
@@ -43,6 +44,7 @@ function App() {
       <ScrollToTopButton />
     <Router>
     <div className="App noise dark:bg-[#131316] bg-[#fafafa] flex flex-col min-h-screen">
+      <ToastContainer />
       {/* Navbar */}
       <Navbar />
 
