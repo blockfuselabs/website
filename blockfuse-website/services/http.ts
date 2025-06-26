@@ -105,7 +105,7 @@ class BaseUrl {
     }
   }
 
-  async httpPostContactUs(data) {
+  async httpPostContactUs(data: any) {
     try {
       const response = await AxiosInstance.post(routes.CONTACTUS, data);
       console.log("API Response:", response.data);
@@ -116,7 +116,7 @@ class BaseUrl {
     }
   }
 
-  async httpSubmitWeb2Application(formData) {
+  async httpSubmitWeb2Application(formData: any) {
     try {
       const response = await AxiosInstance.post(routes.WEB2, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
@@ -128,10 +128,10 @@ class BaseUrl {
     }
   }
 
-  async httpSubmitWeb3Application(formData) {
+  async httpSubmitWeb3Application(formData: any) {
     try {
       const response = await AxiosInstance.post(routes.WEB3, formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+        headers: { 'Content-Type': 'application/json' },
       });
       return response.data;
     } catch (error) {
@@ -191,6 +191,18 @@ class BaseUrl {
       throw error;
     }
   };
+
+  async httpNewsletterSubscription(formData: any) {
+    try {
+      const response = await AxiosInstance.post(routes.NEWSLETTER, formData, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return response;
+    } catch (error) {
+      console.error('Submission error:', error);
+      throw error;
+    }
+  }
 }
 
 export default new BaseUrl();

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import Button from "../components/Buttons";
 import { MoveRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Imageone from "../assets/images/Frame-10.png";
@@ -12,20 +12,40 @@ import Diamond from "../assets/svgs/diamond.svg";
 import Testimonial from "../assets/images/Frame-3676.png";
 import TestimonialsSection from "../components/TestimonialCarousel";
 import Zigzag from "../assets/svgs/zigzag.svg";
-import useFAQSQuery from "../../hooks/useFaqsQuery";
 import { Helmet } from "react-helmet";
 import  PartnerCarousel from "../components/PartnerCarousel"
-
+import BaseUrl from "../../services/http";
+import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
 
 const Hero = () => {
   const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Subscription submitted:", email);
-    setEmail("");
+  const handleSubmit = async() => {
+    setIsSubmitting(true);
+    try {
+      console.log("Subscription submitted:", email);
+      if(!email) {
+        throw new Error("Please submit an email.")
+      }
+
+      const response = await BaseUrl.httpNewsletterSubscription({email});
+      if (response.status === 200 || response.status === 201) {
+        toast.success("You have successfully subscribed to our newsletter.");
+        setEmail("");
+      } else {
+        toast.error(response.statusText);
+      }
+      return;
+    } catch(error) {
+      toast.error(error as any)
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   return (
     <>
       <Helmet>
@@ -495,7 +515,7 @@ const Hero = () => {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <div className="space-y-3">
               <div className="flex justify-center">
                 <input
                   type="email"
@@ -507,17 +527,43 @@ const Hero = () => {
                 />
               </div>
               <div className="flex justify-center">
-                <Button
-                  type="submit"
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                  }}
+                  className={`
+                    bg-gradient-to-r from-purple-600 to-purple-400
+                    hover:from-purple-700 hover:to-purple-500
+                    text-white
+                    py-3 px-6
+                    w-72
+                    transition-colors
+                    duration-300
+                    ease-in-out
+                    flex 
+                    gap-3
+                    items-center
+                    justify-center
+                  `}
+                  disabled={isSubmitting}
                   style={{
                     width: "100%",
                     maxWidth: "800px",
                   }}
                 >
-                  Subscribe
-                </Button>
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="animate-spin duration-300" style={{ animationDuration: '0.5s' }} size={18} />
+                      Submitting
+                    </>
+                  ) : (
+                    "Subscribe"
+                  )}
+                </button>
               </div>
-            </form>
+            </div>
           </div>
         </section>
       </main>

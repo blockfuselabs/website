@@ -13,5 +13,6 @@ export default Object.freeze({
   TEAMARTICLES: "team/articles",
   CONTACTUS: "/contact-us",
   WEB2: "/web2",
-  WEB3: "/web3"
+  WEB3: "/web3",
+  NEWSLETTER: "/newsletter/"
 });
