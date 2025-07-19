@@ -21,7 +21,7 @@ import  PartnerCarousel from "../components/PartnerCarousel"
 const Hero = () => {
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Subscription submitted:", email);
     setEmail("");
