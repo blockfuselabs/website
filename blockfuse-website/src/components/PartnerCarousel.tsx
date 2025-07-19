@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import HackMD from "../assets/logos/hackmd.svg";
 import Ethereum from "../assets/logos/Ethereum-Foundation.png";
+import Base from "../assets/logos/Base_Network_Logo.png";
+
 
 const PartnerCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -9,6 +11,8 @@ const PartnerCarousel = () => {
   const partners = [
     { id: 1, name: "HackMD", logo: HackMD },
     { id: 2, name: "", logo: Ethereum },
+    { id: 2, name: "Base", logo: Base },
+
 
  
   ];
@@ -16,7 +20,7 @@ const PartnerCarousel = () => {
   const itemsPerPage = 4;
   const totalPages = Math.ceil(partners.length / itemsPerPage);
 
-  const nextSlide = (e) => {
+  const nextSlide = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentIndex((prevIndex) =>
@@ -24,7 +28,7 @@ const PartnerCarousel = () => {
     );
   };
 
-  const prevSlide = (e) => {
+  const prevSlide = (e: any) => {
     e.preventDefault();
     e.stopPropagation();
     setCurrentIndex((prevIndex) =>
@@ -74,7 +78,7 @@ const PartnerCarousel = () => {
                     className="flex flex-col items-center gap-4"
                   >
                     <img
-                      src={partner.logo}
+                      src={partner.logo as string}
                       alt={`${partner.name} logo`}
                       className="w-[300px] h-[100px] object-contain hover:scale-105 transition-transform"
                     />
