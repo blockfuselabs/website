@@ -62,7 +62,7 @@ const StyledCards = () => {
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfCODkmge9yxJZkoUMgHUdiEEPaEJGWUSs0trXZ-gZ3xgqdTw/viewform?usp=header"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScaRCcX2vWNy6scSb1EReX1Hbcyzo9tF1Z23-pzDTyGYyC9SQ/viewform?usp=dialog"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -132,7 +132,7 @@ const StyledCards = () => {
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSfb01Vi2rBOYXEMPLIKzgwcWWMkyCg8roDyzlnILem_WODjsg/viewform?usp=dialog"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScaRCcX2vWNy6scSb1EReX1Hbcyzo9tF1Z23-pzDTyGYyC9SQ/viewform?usp=dialog"
             target="_blank"
             rel="noopener noreferrer"
           >
