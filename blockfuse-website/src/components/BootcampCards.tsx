@@ -67,7 +67,7 @@ const StyledCards = () => {
             rel="noopener noreferrer"
           >
             <Button>
-              JOIN THE WAITLIST
+              ENROLL
               <MoveRight />
             </Button>
           </a>
@@ -137,7 +137,7 @@ const StyledCards = () => {
             rel="noopener noreferrer"
           >
             <Button>
-            JOIN THE WAITLIST
+            ENROLL
               <MoveRight />
             </Button>
           </a>
