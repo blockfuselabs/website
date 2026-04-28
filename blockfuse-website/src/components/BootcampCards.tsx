@@ -52,17 +52,17 @@ const StyledCards = () => {
         >
           <div className="flex items-center justify-center h-full bg-opacity-50">
             <h2 className="dark:text-white text-lg sm:text-2xl font-semibold">
-            Software Engineering Bootcamp (Web2 Track)
+              Software Engineering Bootcamp (Web2 Track)
             </h2>
           </div>
         </div>
         <div className="p-4 sm:p-6">
-          <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">At Blockfuse Labs, we're not just teaching code — we're shaping engineers ready for the future. Start your journey from zero to advanced with hands-on training in:<br/>JavaScript for full-stack web development, Python for automation and AI, Rust for tooling, infrastructure, and high-performance systems, Vim for ultra-fast development workflows<br/>You'll build real-world projects, gain in-demand skills, and graduate with the confidence to tackle any tech stack — or even transition into Web3.
+          <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">At Blockfuse Labs, we're not just teaching code — we're shaping engineers ready for the future. Start your journey from zero to advanced with hands-on training in:<br />JavaScript for full-stack web development, Python for automation and AI, Rust for tooling, infrastructure, and high-performance systems, Vim for ultra-fast development workflows<br />You'll build real-world projects, gain in-demand skills, and graduate with the confidence to tackle any tech stack — or even transition into Web3.
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLSdyRLwDHBvyIZdaBiBvfWh6vKPHkxWS4Y7N1V-Ds1R5yi_y4Q/viewform?usp=dialog"
+            href="https://forms.gle/nQso9NxcAVHtX7hN8"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -107,27 +107,27 @@ const StyledCards = () => {
             </Button>
           </a>
         </div> */}
-        {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
+      {/* <div className="dark:text-sky-400 font-bold italic flex justify-center mb-3 mx-2">
           NOTE: Registration for Cohort III will start on March 1st.
         </div> */}
       {/* </div> */}
 
 
-         {/* Card 3 */}
-         <div className="dark:bg-black h-auto sm:h-[700px] md:h-[800px] border border-purple-500 shadow-lg overflow-hidden">
+      {/* Card 3 */}
+      <div className="dark:bg-black h-auto sm:h-[700px] md:h-[800px] border border-purple-500 shadow-lg overflow-hidden">
         <div
           className="h-40 sm:h-60 m-3 sm:m-5 bg-cover bg-center"
           style={{ backgroundImage: `url(${Web3})` }}
         >
           <div className="flex items-center justify-center h-full bg-opacity-50">
             <h2 className="dark:text-white text-lg sm:text-2xl font-semibold">
-            Web3 Track
+              Web3 Track
             </h2>
           </div>
         </div>
         <div className="p-4 sm:p-6">
           <p className="dark:text-gray-300 mb-4 text-justify text-lg sm:text-base">
-          This program is designed for skilled programmers who want to dive into blockchain development and build the future of Web3. If you have a strong programming background and are ready to take on the world of smart contracts and decentralized applications, this is for you!<br/><br/><br/><br/>
+            This program is designed for skilled programmers who want to dive into blockchain development and build the future of Web3. If you have a strong programming background and are ready to take on the world of smart contracts and decentralized applications, this is for you!<br /><br /><br /><br />
           </p>
         </div>
         <div className="flex justify-center mb-3 mx-2 sm:mt-16">
@@ -137,7 +137,7 @@ const StyledCards = () => {
             rel="noopener noreferrer"
           >
             <Button>
-            ENROLL
+              ENROLL
               <MoveRight />
             </Button>
           </a>
