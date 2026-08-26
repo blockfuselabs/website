@@ -81,12 +81,14 @@ const Navbar = () => {
                 <NavLink href="https://faucet.blockfuselabs.com" label="Faucet" isActive={false} />
               </div>
               <div className="flex gap-4 items-center">
+                {/**
                 <Button
                   className="w-28 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0"
                   onClick={() => navigate('/donate/*')}
                 >
                   Donate
                 </Button>
+                **/}
                 <Link to="/bootcamp">
                   <button
                     className="flex items-center gap-2 bg-gradient-to-r from-purple-600 to-purple-400 hover:from-purple-700 hover:to-purple-500 text-white px-4 py-2 transition-all duration-200"

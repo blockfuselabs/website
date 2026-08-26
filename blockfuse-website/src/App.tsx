@@ -91,7 +91,7 @@ function App() {
           <Route path="/contact-us/*" element={<ContactUs />} />
 
               {/* Donate */}
-              <Route path="/donate/*" element={<Donate />} />
+              {/*<Route path="/donate/*" element={<Donate />} />*/}
 
           {/* Sign up  */}
           <Route path="/auth/*" element={<Auth />} />

@@ -147,11 +147,13 @@ const Footer = () => {
               </li>
             ))}
           </ul>
+          {/**
           <Link to="/donate">
             <Button className="w-40 border-2 border-primary-100 py-2 px-4 text-black dark:bg-black dark:border dark:border-primary-100 dark:text-white mt-4 sm:mt-0 mx-auto sm:mx-0">
               Donate
             </Button>
           </Link>
+          **/}
         </nav>
 
         {/* Social Links and Copyright */}
