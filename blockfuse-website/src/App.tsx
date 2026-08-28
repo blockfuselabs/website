@@ -24,6 +24,7 @@ import OurAlumni from './pages/OurAlumni';
 import TeamDetails from './pages/TeamDetails';
 import Donate from './pages/Donate';
 import PastEventDetail from './pages/PastEventDetail';
+import PrivacyPolicy from './pages/PrivacyPolicy';
 
 import { ThemeProvider } from './context/ThemeContext';
 import ScrollToTopButton, { useScrollToTop } from './components/ScrollToTopButton';
@@ -89,6 +90,9 @@ function App() {
 
           {/* Contact Us */}
           <Route path="/contact-us/*" element={<ContactUs />} />
+
+          {/* Privacy */}
+          <Route path="/privacy" element={<PrivacyPolicy />} />
 
               {/* Donate */}
               {/*<Route path="/donate/*" element={<Donate />} />*/}

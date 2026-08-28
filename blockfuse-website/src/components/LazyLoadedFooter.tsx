@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const LazyLoadedFooter = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,9 +34,9 @@ const LazyLoadedFooter = () => {
       {isVisible && (
         <div className="flex flex-col sm:flex-row items-center gap-4 px-6 text-sm">
           <div className="flex gap-4">
-            <a href="#" className="hover:text-purple-400">
+            <Link to="/privacy" className="hover:text-purple-400">
               Privacy Policy
-            </a>
+            </Link>
             <span>|</span>
             <a href="#" className="hover:text-purple-400">
               Terms & Conditions
